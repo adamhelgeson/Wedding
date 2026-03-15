@@ -110,7 +110,7 @@
     /* ── Full album CTA ── */
     .full-album-section {
       text-align: center;
-      padding: 1rem 1.5rem 5rem;
+      padding: 1rem 1.5rem 4rem;
     }
     .full-album-section p {
       font-family: 'Cormorant Garamond', serif;
@@ -134,6 +134,138 @@
     .btn-gold:hover {
       background: transparent;
       color: var(--gold);
+    }
+
+    /* ── Guest upload section ── */
+    .guest-upload-divider {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .guest-upload-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), var(--gold-light, #c4a270), var(--gold), transparent);
+    }
+
+    .guest-upload-section {
+      background: var(--rose-dark, #1A3009);
+      padding: 5rem 1.5rem 5.5rem;
+      text-align: center;
+    }
+    .guest-upload-inner {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+    .guest-upload-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 1.4rem;
+      display: block;
+      opacity: 0.9;
+    }
+    .guest-upload-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 400;
+      color: var(--ivory, #FAF7F2);
+      letter-spacing: 0.03em;
+      margin: 0 0 0.5rem;
+    }
+    .guest-upload-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--gold, #a3844f);
+      margin: 0 0 1.8rem;
+      letter-spacing: 0.02em;
+    }
+    .guest-upload-divider-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      margin-bottom: 1.8rem;
+    }
+    .guest-upload-divider-ornament .orn-line {
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(to right, transparent, rgba(163,132,79,0.5), transparent);
+    }
+    .guest-upload-divider-ornament .orn-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold, #a3844f);
+      opacity: 0.7;
+    }
+    .guest-upload-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: rgba(250, 247, 242, 0.75);
+      margin: 0 0 2.5rem;
+    }
+    .guest-upload-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .btn-upload-primary {
+      display: inline-block;
+      background: var(--gold, #a3844f);
+      color: var(--ivory, #FAF7F2);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid var(--gold, #a3844f);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-upload-primary:hover {
+      background: transparent;
+      color: var(--gold, #a3844f);
+    }
+    .btn-upload-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--gold, #a3844f);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid rgba(163,132,79,0.6);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-upload-secondary:hover {
+      background: rgba(163,132,79,0.12);
+      border-color: var(--gold, #a3844f);
+    }
+    .guest-upload-note {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(250, 247, 242, 0.45);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .guest-upload-note a {
+      color: rgba(163, 132, 79, 0.75);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(163, 132, 79, 0.3);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .guest-upload-note a:hover {
+      color: var(--gold, #a3844f);
+      border-bottom-color: var(--gold, #a3844f);
     }
 
     /* ── Lightbox ── */
@@ -247,74 +379,56 @@
     <div class="masonry-grid" id="masonry-grid">
 
       <div class="masonry-item" data-index="0">
-        <img src="photos/Bridge engagement photo at sunset without ring - 1 smiling.jpg"
-             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <img src="photos/Stillwater bridge in background engagement day photo.jpg"
+             alt="Stillwater bridge in background engagement photo" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
       <div class="masonry-item" data-index="1">
-        <img src="photos/Bridge engagement photo at sunset without ring - 2 smiling.jpg"
-             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <img src="photos/charcuterie board engagement day photo at lunch.jpg"
+             alt="Charcuterie board on engagement day" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
       <div class="masonry-item" data-index="2">
-        <img src="photos/Bridge engagement photo at sunset without ring - 3 smiling.jpg"
-             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <img src="photos/Proposal - Bridge with no ring.jpg"
+             alt="The proposal on the bridge" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
       <div class="masonry-item" data-index="3">
-        <img src="photos/Bridge engagement photo at sunset without ring - 4 smiling.jpg"
-             alt="Bridge engagement photo at sunset" loading="lazy" />
-        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
-      </div>
-
-      <div class="masonry-item" data-index="4">
-        <img src="photos/charcuterie board engagement day photo at lunch.jpg"
-             alt="Charcuterie board engagement day photo" loading="lazy" />
-        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
-      </div>
-
-      <div class="masonry-item" data-index="5">
         <img src="photos/Downtown Engagement with ring - 2 excited funny face.jpg"
              alt="Downtown engagement photo with ring" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
-      <div class="masonry-item" data-index="6">
+      <div class="masonry-item" data-index="4">
         <img src="photos/Downtown Engagement with ring - 3 me kissing fannies face with ring.jpg"
              alt="Downtown engagement photo with ring" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
-      <div class="masonry-item" data-index="7">
+      <div class="masonry-item" data-index="5">
         <img src="photos/Engagement photos day after - kissing fannie's leg up.jpg"
-             alt="Engagement photos day after" loading="lazy" />
+             alt="Engagement photos the day after" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="6">
+        <img src="photos/Engagement photos day after - Showing her hand and my back.jpg"
+             alt="Showing the engagement ring" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="7">
+        <img src="photos/Ring Photo.jpg"
+             alt="Engagement ring" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
       <div class="masonry-item" data-index="8">
-        <img src="photos/Engagement photos day after - Showing her hand and my back.jpg"
-             alt="Engagement photos showing ring" loading="lazy" />
-        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
-      </div>
-
-      <div class="masonry-item" data-index="9">
         <img src="photos/Engagement photos day after - with nova.jpg"
-             alt="Engagement photos day after" loading="lazy" />
-        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
-      </div>
-
-      <div class="masonry-item" data-index="10">
-        <img src="photos/Ring Photo.jpg"
-             alt="Engagement ring photo" loading="lazy" />
-        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
-      </div>
-
-      <div class="masonry-item" data-index="11">
-        <img src="photos/Stillwater bridge in background engagement day photo.jpg"
-             alt="Stillwater bridge engagement photo" loading="lazy" />
+             alt="Engagement photos with Nova" loading="lazy" />
         <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
       </div>
 
@@ -336,6 +450,55 @@
          class="btn-gold"
          data-i18n="gallery_full_btn">View Our Full Album</a>
     </div>
+
+  </div>
+</section>
+
+<!-- Gold divider before guest upload section -->
+<div class="guest-upload-divider" aria-hidden="true">
+  <div class="guest-upload-divider-line"></div>
+</div>
+
+<!-- Guest photo upload section -->
+<section class="guest-upload-section">
+  <div class="guest-upload-inner fade-in">
+
+    <span class="guest-upload-icon">📷</span>
+
+    <h2 class="guest-upload-title">Share Your Wedding Day Photos</h2>
+    <p class="guest-upload-subtitle">Capture a moment? We&rsquo;d love to see it.</p>
+
+    <div class="guest-upload-divider-ornament" aria-hidden="true">
+      <div class="orn-line"></div>
+      <div class="orn-dot"></div>
+      <div class="orn-dot"></div>
+      <div class="orn-dot"></div>
+      <div class="orn-line"></div>
+    </div>
+
+    <p class="guest-upload-text">
+      We&rsquo;ve created a shared album where guests can upload photos from the wedding weekend.
+      Whether it&rsquo;s a candid moment, a dance floor memory, or a beautiful shot of the venue &mdash;
+      add it to our shared collection so we can all relive the day together.
+    </p>
+
+    <div class="guest-upload-buttons">
+      <a href="https://photos.app.goo.gl/DRJ4tR2YweUpVVPv9"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn-upload-secondary">View Guest Photos</a>
+      <a href="https://photos.app.goo.gl/DRJ4tR2YweUpVVPv9"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn-upload-primary">Upload Your Photos</a>
+    </div>
+
+    <p class="guest-upload-note">
+      You&rsquo;ll need a Google account to upload photos.
+      Don&rsquo;t have one? Just send your photos to
+      <a href="mailto:adambhelgeson@gmail.com?cc=estefania.garduno13@gmail.com&subject=Wedding%20Photos">Estefania&amp;Adam@gmail.com</a>
+      and we&rsquo;ll add them for you.
+    </p>
 
   </div>
 </section>
