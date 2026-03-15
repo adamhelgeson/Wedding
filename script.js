@@ -370,7 +370,7 @@ var setLanguage = applyLanguage;
       visibleIds[entry.target.id] = entry.isIntersecting;
     });
 
-    // Find topmost currently-visible section
+    // Find topmost section currently in the trigger zone
     var active = null;
     for (var i = 0; i < sections.length; i++) {
       if (visibleIds[sections[i].id]) { active = sections[i].id; break; }
@@ -391,7 +391,12 @@ var setLanguage = applyLanguage;
     }
 
     setActive(active);
-  }, { threshold: 0.3 });
+  }, {
+    // A section activates when it enters the top ~40% of the viewport.
+    // rootMargin shrinks the observation area: ignore the bottom 55%.
+    rootMargin: '-8% 0px -55% 0px',
+    threshold: 0
+  });
 
   sections.forEach(function (s) { observer.observe(s); });
 
