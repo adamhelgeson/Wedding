@@ -165,6 +165,48 @@
       .sched-time { font-size: 1rem; }
     }
 
+    /* ---- Day section ---- */
+    .day-section {
+      margin-bottom: 4.5rem;
+    }
+    .day-section:last-child {
+      margin-bottom: 0;
+    }
+    .day-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2.8rem;
+    }
+    .day-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0.5;
+    }
+    .day-divider-line.right {
+      background: linear-gradient(to left, var(--gold), transparent);
+    }
+    .day-divider-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--rose);
+      font-weight: 400;
+      font-style: italic;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .day-divider-text small {
+      display: block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-style: normal;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
     /* ---- Weather Widget ---- */
     .weather-section {
       padding: 4rem 0;
@@ -513,7 +555,7 @@
 <section style="padding:3.5rem 0 0;background:var(--warm-white)">
   <div class="container">
     <div class="tbd-banner fade-in" data-i18n="sched_tbd_banner">
-      Full schedule details coming soon — times are approximate and subject to change.
+      Full schedule details and exact times will be confirmed closer to the wedding date. Times are approximate.
     </div>
     <div class="venue-info-box fade-in">
       <h3>Fiesta Americana Hacienda Galindo Resort &amp; Spa</h3>
@@ -523,122 +565,202 @@
   </div>
 </section>
 
-<!-- Wedding Day Schedule -->
+<!-- Three-Day Schedule -->
 <section style="padding:0 0 5rem;background:var(--warm-white)">
   <div class="container">
     <div class="day-schedule">
 
-      <!-- Morning -->
-      <div class="schedule-group fade-in">
-        <div class="schedule-group-header">
-          <h2 data-i18n="sched_morning">Morning</h2>
+      <!-- ===== DAY 1: WELCOME EVENING ===== -->
+      <div class="day-section fade-in">
+        <div class="day-divider">
+          <div class="day-divider-line"></div>
+          <div class="day-divider-text">
+            <small>Day One</small>
+            The Day Before — Welcome Evening
+          </div>
+          <div class="day-divider-line right"></div>
         </div>
 
-        <!-- Parallel: Bridal + Groom prep same time -->
-        <div class="sched-parallel fade-in">
-          <div class="sched-time">
-            10:00
-            <span class="sched-ampm">AM</span>
-          </div>
-          <div class="sched-parallel-events">
-            <div class="sched-parallel-item">
-              <h3 data-i18n="sched_bridal_prep">Bridal Preparation</h3>
-              <p class="sched-location" data-i18n="sched_location_tbd">[Location TBD]</p>
+        <div class="schedule-group">
+
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              6:00
+              <span class="sched-ampm">PM</span>
             </div>
-            <div class="sched-parallel-item">
-              <h3 data-i18n="sched_groom_prep">Groom's Preparation</h3>
-              <p class="sched-location" data-i18n="sched_location_tbd">[Location TBD]</p>
+            <div class="sched-info">
+              <h3>Welcome Drinks</h3>
+              <p class="sched-location">Hacienda Galindo</p>
+              <p class="sched-note">Join us for welcome drinks as we kick off the celebration with family and friends.</p>
+            </div>
+          </div>
+
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              7:00
+              <span class="sched-ampm">PM</span>
+            </div>
+            <div class="sched-info">
+              <h3>Welcome Dinner</h3>
+              <p class="sched-location">Hacienda Galindo</p>
+              <p class="sched-note">A relaxed dinner to welcome our loved ones and set the tone for an unforgettable weekend.</p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end Day 1 -->
+
+      <!-- ===== DAY 2: WEDDING DAY ===== -->
+      <div class="day-section fade-in">
+        <div class="day-divider">
+          <div class="day-divider-line"></div>
+          <div class="day-divider-text">
+            <small>Day Two</small>
+            Wedding Day
+          </div>
+          <div class="day-divider-line right"></div>
+        </div>
+
+        <!-- Morning -->
+        <div class="schedule-group fade-in">
+          <div class="schedule-group-header">
+            <h2 data-i18n="sched_morning">Morning</h2>
+          </div>
+
+          <div class="sched-parallel fade-in">
+            <div class="sched-time">
+              9:00
+              <span class="sched-ampm">AM</span>
+            </div>
+            <div class="sched-parallel-events">
+              <div class="sched-parallel-item">
+                <h3 data-i18n="sched_bridal_prep">Bridal Preparation</h3>
+                <p class="sched-location" data-i18n="sched_location_tbd">[Location TBD]</p>
+              </div>
+              <div class="sched-parallel-item">
+                <h3 data-i18n="sched_groom_prep">Groom's Preparation</h3>
+                <p class="sched-location" data-i18n="sched_location_tbd">[Location TBD]</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Ceremony -->
-      <div class="schedule-group fade-in">
-        <div class="schedule-group-header">
-          <h2 data-i18n="sched_ceremony">Ceremony</h2>
-        </div>
+        <!-- Ceremony -->
+        <div class="schedule-group fade-in">
+          <div class="schedule-group-header">
+            <h2 data-i18n="sched_ceremony">Ceremony</h2>
+          </div>
 
-        <div class="sched-event fade-in">
-          <div class="sched-time">
-            4:00
-            <span class="sched-ampm">PM</span>
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              4:00
+              <span class="sched-ampm">PM</span>
+            </div>
+            <div class="sched-info">
+              <h3 data-i18n="sched_ceremony_event">Wedding Ceremony</h3>
+              <p class="sched-location">The Terrace Le Château, Hacienda Galindo</p>
+              <p class="sched-note">Please be seated by 3:45 PM. Seating is open.</p>
+            </div>
           </div>
-          <div class="sched-info">
-            <h3 data-i18n="sched_ceremony_event">Wedding Ceremony</h3>
-            <p class="sched-location">Gardens at Hacienda Galindo</p>
-            <p class="sched-note">Please be seated by 3:45 PM. Seating is open.</p>
-          </div>
-        </div>
 
-        <div class="sched-event fade-in">
-          <div class="sched-time">
-            4:30
-            <span class="sched-ampm">PM</span>
-          </div>
-          <div class="sched-info">
-            <h3 data-i18n="sched_cocktail">Cocktail Hour</h3>
-            <p class="sched-location">Hacienda Courtyard</p>
-            <p class="sched-note">Champagne, cocktails, and light refreshments while the newlyweds take photographs.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Evening -->
-      <div class="schedule-group fade-in">
-        <div class="schedule-group-header">
-          <h2 data-i18n="sched_evening">Evening</h2>
-        </div>
-
-        <div class="sched-event fade-in">
-          <div class="sched-time">
-            6:00
-            <span class="sched-ampm">PM</span>
-          </div>
-          <div class="sched-info">
-            <h3 data-i18n="sched_reception">Reception Dinner</h3>
-            <p class="sched-location">Grand Ballroom, Hacienda Galindo</p>
-            <p class="sched-note">Dinner seating is assigned — find your place card at the entrance.</p>
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              4:30
+              <span class="sched-ampm">PM</span>
+            </div>
+            <div class="sched-info">
+              <h3 data-i18n="sched_cocktail">Cocktail Hour</h3>
+              <p class="sched-location">Hacienda Courtyard</p>
+              <p class="sched-note">Champagne, cocktails, and light refreshments while the newlyweds take photographs.</p>
+            </div>
           </div>
         </div>
 
-        <div class="sched-event fade-in">
-          <div class="sched-time">
-            7:30
-            <span class="sched-ampm">PM</span>
+        <!-- Evening -->
+        <div class="schedule-group fade-in">
+          <div class="schedule-group-header">
+            <h2 data-i18n="sched_evening">Evening</h2>
           </div>
-          <div class="sched-info">
-            <h3 data-i18n="sched_first_dance">First Dance &amp; Toasts</h3>
-            <p class="sched-location">Grand Ballroom</p>
-            <p class="sched-note">Welcome the newlyweds, followed by the first dance and toasts from the wedding party.</p>
+
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              6:00
+              <span class="sched-ampm">PM</span>
+            </div>
+            <div class="sched-info">
+              <h3 data-i18n="sched_reception">Reception Dinner</h3>
+              <p class="sched-location">The Terrace Le Château, Hacienda Galindo</p>
+              <p class="sched-note">Dinner seating is assigned — find your place card at the entrance.</p>
+            </div>
           </div>
+
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              7:30
+              <span class="sched-ampm">PM</span>
+            </div>
+            <div class="sched-info">
+              <h3 data-i18n="sched_first_dance">First Dance &amp; Toasts</h3>
+              <p class="sched-location">The Terrace Le Château</p>
+              <p class="sched-note">Welcome the newlyweds, followed by the first dance and toasts from the wedding party.</p>
+            </div>
+          </div>
+
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              8:00
+              <span class="sched-ampm">PM</span>
+            </div>
+            <div class="sched-info">
+              <h3 data-i18n="sched_dancing">Dancing &amp; Celebration</h3>
+              <p class="sched-location">The Terrace Le Château</p>
+              <p class="sched-note">Live music, dancing, and wedding cake. The real party begins!</p>
+            </div>
+          </div>
+
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              12:00
+              <span class="sched-ampm">AM</span>
+            </div>
+            <div class="sched-info">
+              <h3 data-i18n="sched_farewell">Grand Farewell</h3>
+              <p class="sched-location">Hacienda Entrance</p>
+              <p class="sched-note">One last dance, then we bid you goodnight. Safe travels to all!</p>
+            </div>
+          </div>
+
+        </div><!-- end Evening -->
+      </div><!-- end Day 2 -->
+
+      <!-- ===== DAY 3: MORNING AFTER ===== -->
+      <div class="day-section fade-in">
+        <div class="day-divider">
+          <div class="day-divider-line"></div>
+          <div class="day-divider-text">
+            <small>Day Three</small>
+            The Morning After
+          </div>
+          <div class="day-divider-line right"></div>
         </div>
 
-        <div class="sched-event fade-in">
-          <div class="sched-time">
-            8:00
-            <span class="sched-ampm">PM</span>
-          </div>
-          <div class="sched-info">
-            <h3 data-i18n="sched_dancing">Dancing &amp; Celebration</h3>
-            <p class="sched-location">Grand Ballroom</p>
-            <p class="sched-note">Live music, dancing, and the wedding cake. The real party begins!</p>
-          </div>
-        </div>
+        <div class="schedule-group">
 
-        <div class="sched-event fade-in">
-          <div class="sched-time">
-            11:00
-            <span class="sched-ampm">PM</span>
+          <div class="sched-event fade-in">
+            <div class="sched-time">
+              10:00
+              <span class="sched-ampm">AM</span>
+            </div>
+            <div class="sched-info">
+              <h3>El Desayuno — Post-Wedding Breakfast</h3>
+              <p class="sched-location">Hacienda Galindo</p>
+              <p class="sched-note">A beloved Mexican tradition — join the couple the morning after for a leisurely breakfast to relive the memories, say your goodbyes, and enjoy one last meal together before heading home.</p>
+            </div>
           </div>
-          <div class="sched-info">
-            <h3 data-i18n="sched_farewell">Farewell Send-Off</h3>
-            <p class="sched-location">Hacienda Entrance</p>
-            <p class="sched-note">One last dance, then we bid you goodnight. Safe travels to all!</p>
-          </div>
-        </div>
 
-      </div><!-- end Evening -->
+        </div>
+      </div><!-- end Day 3 -->
+
     </div><!-- end day-schedule -->
   </div>
 </section>
@@ -677,7 +799,7 @@
             <li data-i18n="sched_ladies_avoid3">Sequins or heavy embellishment</li>
             <li data-i18n="sched_ladies_avoid4">White, ivory, or cream</li>
           </ul>
-          <p class="dc-note" data-i18n="sched_ladies_note">👠 The ceremony is partially outdoors — block heels or flats are highly recommended for the garden.</p>
+          <p class="dc-note" data-i18n="sched_ladies_note">👠 The entire evening is outdoors — block heels, flats, or clean dressy sneakers are recommended for the vineyard and garden. A light wrap is also suggested for the cooler evening air.</p>
         </div>
 
         <div class="dc-card fade-in">
@@ -687,9 +809,9 @@
           <span class="dc-avoid-label" data-i18n="sched_gents_avoid_label">Please avoid</span>
           <ul class="dc-avoid-list">
             <li data-i18n="sched_gents_avoid1">Casual suits or sport coats</li>
-            <li data-i18n="sched_gents_avoid2">Jeans, sneakers, or open-toed shoes</li>
+            <li data-i18n="sched_gents_avoid2">Jeans or open-toed shoes</li>
           </ul>
-          <p class="dc-note" data-i18n="sched_gents_note">🌿 Light linen suits are acceptable given the warm Mexican climate.</p>
+          <p class="dc-note" data-i18n="sched_gents_note">💟 The entire evening is outdoors — clean dressy sneakers are acceptable given the outdoor setting.</p>
         </div>
 
       </div>
