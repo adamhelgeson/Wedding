@@ -63,7 +63,7 @@
 
     .pay-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(155, 74, 90, 0.12);
+      box-shadow: 0 6px 20px rgba(45, 80, 22, 0.12);
     }
 
     .pay-btn-venmo {
@@ -155,7 +155,7 @@
 
     .exp-card:hover:not(.open) {
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(155, 74, 90, 0.09);
+      box-shadow: 0 10px 30px rgba(45, 80, 22, 0.09);
     }
 
     .exp-card:hover::after,
@@ -509,8 +509,8 @@
 
     .pledge-error {
       display: none;
-      background: #fff0f0;
-      border: 1px solid rgba(155, 74, 90, 0.3);
+      background: #f0f5f0;
+      border: 1px solid rgba(45, 80, 22, 0.3);
       color: var(--rose);
       padding: 0.85rem 1.2rem;
       font-size: 0.88rem;
@@ -801,6 +801,24 @@
         <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
       </div>
 
+      <div class="exp-card fade-in" data-exp="Mario Kart Street Go-Karting in Tokyo" data-goal="250">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🏎️</span>
+          <span class="exp-name">Mario Kart Street Go-Karting in Tokyo</span>
+          <span class="exp-goal-badge">$250</span>
+        </div>
+        <p class="exp-desc">Race through the streets of Tokyo in a real-life Mario Kart — dressed in costume, weaving through traffic with the city skyline as your backdrop.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://tokyobay.streetkart.com/_/shop/tokyobay/main02.webp" alt="Mario Kart street go-karting Tokyo" loading="lazy" />
+          <p class="exp-dream">Imagine us in full Mario and Princess Peach costumes, racing through Akihabara at golden hour — the most absurdly perfect honeymoon adventure.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
       <div class="exp-card fade-in" data-exp="Surprise Us! General Fund" data-goal="500">
         <div class="exp-card-header">
           <span class="exp-emoji">💝</span>
@@ -892,6 +910,7 @@
               <option value="Arashiyama Bamboo Forest & Boat Ride">🎋 Arashiyama Bamboo Forest &amp; Boat Ride</option>
 <option value="Couples Spa Day at an Onsen Resort">♨️ Couples Spa Day at an Onsen Resort</option>
               <option value="Flight Upgrade Fund">✈️ Flight Upgrade Fund</option>
+              <option value="Mario Kart Street Go-Karting in Tokyo">🏎️ Mario Kart Street Go-Karting in Tokyo</option>
               <option value="Surprise Us! General Fund">💝 Surprise Us! General Fund</option>
               <option value="Multiple / General">Multiple / General</option>
             </select>

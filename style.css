@@ -13,15 +13,15 @@
 }
 
 :root {
-  --blush:     #F2D4D0;
+  --blush:     #E8EDE8;
   --ivory:     #FAF7F2;
   --gold:      #C9A84C;
   --gold-light:#e4c97a;
-  --rose:      #9B4A5A;
-  --rose-dark: #7a3545;
+  --rose:      #2D5016;
+  --rose-dark: #1A3009;
   --warm-white:#FDFBF8;
-  --text:      #3a2a2e;
-  --text-light:#7a6068;
+  --text:      #1e2d14;
+  --text-light:#506040;
   --nav-h:     72px;
 }
 
@@ -457,7 +457,7 @@ main {
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(155, 74, 90, 0.1);
+  box-shadow: 0 12px 40px rgba(45, 80, 22, 0.1);
 }
 
 .card:hover::after {
@@ -529,7 +529,7 @@ main {
   display: block;
   margin-top: 0.35rem;
   font-size: 0.78rem;
-  color: #9B4A5A;
+  color: #2D5016;
   letter-spacing: 0.01em;
 }
 
