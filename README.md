@@ -131,7 +131,6 @@ a digest to Adam and Estefania only when new entries exist.
 - [ ] Spanish translations — final review by Fannie
 - [ ] Update countdown timer when real wedding date is confirmed
 - [ ] Consider custom domain (e.g. estefania-and-adam.com)
-- [ ] Replace E and A initial placeholders in "Meet the Couple" section (our-story.html) with real individual photos of Estefania and Adam — circular, gold border ring, ~200px diameter
 - [ ] Investigate converting photo slideshows to GIFs or animated carousels to show more photos in less space (engagement gallery, Our Story section photos)
 
 ---

@@ -327,19 +327,18 @@
       border: 1px solid var(--blush);
     }
 
-    .person-avatar {
-      width: 90px;
-      height: 90px;
+    .person-photo {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      background: var(--blush);
+      object-fit: cover;
+      display: block;
       margin: 0 auto 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      color: var(--rose);
-      border: 2px solid var(--gold);
+      box-shadow: 0 0 0 3px #a3844f, 0 0 0 7px var(--warm-white), 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    @media (max-width: 580px) {
+      .person-photo { width: 160px; height: 160px; }
     }
 
     .person-card h3 {
@@ -558,8 +557,8 @@
 
     <div class="couple-grid">
       <div class="person-card fade-in">
-        <!-- Replace with Estefania's individual portrait photo -->
-        <div class="person-avatar">E</div>
+        <!-- Estefania portrait photo -->
+        <img src="photos/Estefania individual photo for about us.jpg" alt="Estefania" class="person-photo" style="object-position: center 15%">
         <h3>Estefania</h3>
         <p data-i18n="story_bio_estefania_p1">Querétaro born and raised, Estefania brings warmth, creativity, and an infectious joy to every room she enters. She's deeply faithful, fiercely driven, and somehow also the person who will hand-draw you an illustrated recap of your entire year together as an anniversary gift. She painted Adam his favorite national park — Zion.</p>
         <p data-i18n="story_bio_estefania_p2">When she's not creating something beautiful — paintings, pottery, photo books, or elaborate anniversary illustrations — she's taking excellent care of Bruno, her dog, who has strong opinions about most things. She sees her family every Sunday at church and lunch, a tradition that says everything about who she is.</p>
@@ -567,8 +566,8 @@
       </div>
 
       <div class="person-card fade-in">
-        <!-- Replace with Adam's individual portrait photo -->
-        <div class="person-avatar">A</div>
+        <!-- Adam portrait photo -->
+        <img src="photos/Adam individual photo for about us.jpg" alt="Adam" class="person-photo" style="object-position: top center">
         <h3>Adam</h3>
         <p data-i18n="story_bio_adam_p1">A Minnesota native with a wanderer's heart, Adam is equally at home paddling a canoe through the Boundary Waters, hiking a mountain out west, or cheering on the Minnesota Vikings from his season tickets — which he has held, through thick and thin, since 2013. Mostly thin.</p>
         <p data-i18n="story_bio_adam_p2">He maintains a media server, works out at his CrossFit gym with a crew of close friends, and takes Nova on daily walks — which she demands and deserves.</p>
