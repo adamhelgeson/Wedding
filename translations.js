@@ -413,6 +413,50 @@ var TRANSLATIONS = {
     faq_contact_title: 'Still Have Questions?',
     faq_contact_text: 'We\u2019re happy to help. Reach out to us at any time.',
     faq_contact_rsvp_btn: 'RSVP Now',
+
+    /* --- Sub-nav links --- */
+    subnav_index_story:      'Our Story',
+    subnav_index_schedule:   'Schedule',
+    subnav_index_gallery:    'Gallery',
+    subnav_index_registry:   'Registry',
+    subnav_index_guestbook:  'Guestbook',
+    subnav_index_faq:        'FAQ',
+
+    subnav_story_how_met:    'How We Met',
+    subnav_story_unofficial: 'Unofficial First Date',
+    subnav_story_first_date: 'First Date',
+    subnav_story_proposal:   'The Proposal',
+    subnav_story_planning:   'Planning Our Day',
+    subnav_story_couple:     'Meet the Couple',
+
+    subnav_sched_welcome:     'Welcome Evening',
+    subnav_sched_wedding_day: 'Wedding Day',
+    subnav_sched_morning:     'Morning After',
+    subnav_sched_dress:       'Dress Code',
+    subnav_sched_weather:     'Weather',
+
+    subnav_gallery_photos: 'Our Photos',
+    subnav_gallery_album:  'Full Album',
+    subnav_gallery_share:  'Share Your Photos',
+
+    subnav_reg_fund:   'Honeymoon Fund',
+    subnav_reg_exp:    'Experiences',
+    subnav_reg_pledge: 'Make a Pledge',
+
+    subnav_rsvp_form:  'RSVP Form',
+    subnav_rsvp_dress: 'Dress Code',
+
+    subnav_gb_form:     'Leave a Message',
+    subnav_gb_messages: 'Messages',
+
+    subnav_faq_venue:          'Venue \u0026 Location',
+    subnav_faq_travel:         'Travel \u0026 Airports',
+    subnav_faq_getting_around: 'Getting Around',
+    subnav_faq_accommodations: 'Accommodations',
+    subnav_faq_dress:          'Dress Code',
+    subnav_faq_children:       'Children',
+    subnav_faq_gifts:          'Gifts',
+    subnav_faq_contact:        'Contact',
   },
 
   es: {
@@ -824,6 +868,50 @@ var TRANSLATIONS = {
     faq_contact_title: '\u00bfA\u00fan tienes preguntas?',
     faq_contact_text: 'Con gusto te ayudamos. Esc\u00edbenos cuando quieras.',
     faq_contact_rsvp_btn: 'Confirmar Asistencia',
+
+    /* --- Sub-nav links --- */
+    subnav_index_story:      'Nuestra Historia',
+    subnav_index_schedule:   'Programa',
+    subnav_index_gallery:    'Galer\u00eda',
+    subnav_index_registry:   'Registro',
+    subnav_index_guestbook:  'Visitas',
+    subnav_index_faq:        'FAQ',
+
+    subnav_story_how_met:    'C\u00f3mo Nos Conocimos',
+    subnav_story_unofficial: 'Primera Cita Unofficial',
+    subnav_story_first_date: 'Primera Cita',
+    subnav_story_proposal:   'La Propuesta',
+    subnav_story_planning:   'Planeando Nuestro D\u00eda',
+    subnav_story_couple:     'Conoce a la Pareja',
+
+    subnav_sched_welcome:     'Noche de Bienvenida',
+    subnav_sched_wedding_day: 'D\u00eda de la Boda',
+    subnav_sched_morning:     'La Ma\u00f1ana Siguiente',
+    subnav_sched_dress:       'C\u00f3digo de Vestimenta',
+    subnav_sched_weather:     'Clima',
+
+    subnav_gallery_photos: 'Nuestras Fotos',
+    subnav_gallery_album:  '\u00c1lbum Completo',
+    subnav_gallery_share:  'Comparte tus Fotos',
+
+    subnav_reg_fund:   'Fondo de Luna de Miel',
+    subnav_reg_exp:    'Experiencias',
+    subnav_reg_pledge: 'Hacer una Promesa',
+
+    subnav_rsvp_form:  'Formulario RSVP',
+    subnav_rsvp_dress: 'C\u00f3digo de Vestimenta',
+
+    subnav_gb_form:     'Dejar un Mensaje',
+    subnav_gb_messages: 'Mensajes',
+
+    subnav_faq_venue:          'Lugar y Ubicaci\u00f3n',
+    subnav_faq_travel:         'Viaje y Aeropuertos',
+    subnav_faq_getting_around: 'C\u00f3mo Moverse',
+    subnav_faq_accommodations: 'Alojamiento',
+    subnav_faq_dress:          'C\u00f3digo de Vestimenta',
+    subnav_faq_children:       'Ni\u00f1os',
+    subnav_faq_gifts:          'Regalos',
+    subnav_faq_contact:        'Contacto',
   }
 };
 

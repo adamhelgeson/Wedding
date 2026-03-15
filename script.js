@@ -342,6 +342,69 @@ function applyLanguage(lang) {
 // setLanguage is kept as an alias — all nav buttons use onclick="setLanguage('en')"
 var setLanguage = applyLanguage;
 
+/* --- Sub-nav section highlighting --- */
+(function () {
+  var subnav = document.querySelector('.page-subnav');
+  if (!subnav) return;
+
+  var links = Array.from(subnav.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  var sectionIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+  var sections   = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach(function (a) {
+      a.classList.toggle('subnav-active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  // Activate first link on load
+  setActive(sectionIds[0]);
+
+  var visibleIds = {};
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      visibleIds[entry.target.id] = entry.isIntersecting;
+    });
+
+    // Find topmost currently-visible section
+    var active = null;
+    for (var i = 0; i < sections.length; i++) {
+      if (visibleIds[sections[i].id]) { active = sections[i].id; break; }
+    }
+
+    // Fallback: last section scrolled past
+    if (!active) {
+      var scrollY = window.scrollY;
+      var bestTop = -Infinity;
+      active = sectionIds[0];
+      sections.forEach(function (s) {
+        var top = s.getBoundingClientRect().top + scrollY;
+        if (top <= scrollY + 108 && top > bestTop) {
+          bestTop = top;
+          active  = s.id;
+        }
+      });
+    }
+
+    setActive(active);
+  }, { threshold: 0.3 });
+
+  sections.forEach(function (s) { observer.observe(s); });
+
+  // Smooth scroll on click
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+
 // Run immediately on every page load — reads saved preference from localStorage
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('preferredLanguage');

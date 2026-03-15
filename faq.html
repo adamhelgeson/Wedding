@@ -100,6 +100,19 @@
   </div>
 </nav>
 
+<nav class="page-subnav" aria-label="Page sections">
+  <div class="page-subnav-inner">
+    <a href="#venue-location" data-i18n="subnav_faq_venue">Venue &amp; Location</a>
+    <a href="#travel-airports" data-i18n="subnav_faq_travel">Travel &amp; Airports</a>
+    <a href="#getting-around" data-i18n="subnav_faq_getting_around">Getting Around</a>
+    <a href="#accommodations" data-i18n="subnav_faq_accommodations">Accommodations</a>
+    <a href="#dress-code" data-i18n="subnav_faq_dress">Dress Code</a>
+    <a href="#children" data-i18n="subnav_faq_children">Children</a>
+    <a href="#gifts" data-i18n="subnav_faq_gifts">Gifts</a>
+    <a href="#contact" data-i18n="subnav_faq_contact">Contact</a>
+  </div>
+</nav>
+
 <div class="page-hero">
   <h1 class="fade-in" data-i18n="faq_hero_title">Frequently Asked Questions</h1>
   <p class="fade-in" data-i18n="faq_hero_subtitle">Everything you need to know</p>
@@ -110,7 +123,7 @@
     <div class="faq-max">
 
       <!-- Venue & Location -->
-      <div class="faq-category fade-in">
+      <div id="venue-location" class="faq-category fade-in">
         <div class="faq-category-title" data-i18n="faq_cat_venue">Venue &amp; Location</div>
 
         <div class="info-box">
@@ -143,7 +156,7 @@
       </div>
 
       <!-- Travel -->
-      <div class="faq-category fade-in">
+      <div id="travel-airports" class="faq-category fade-in">
         <div class="faq-category-title" data-i18n="faq_cat_travel">Travel &amp; Getting There</div>
 
         <div class="accordion fade-in">
@@ -156,7 +169,7 @@
           </div>
         </div>
 
-        <div class="accordion fade-in">
+        <div id="getting-around" class="accordion fade-in">
           <div class="accordion-header">
             <h3 data-i18n="faq_q_transport">How do I get from the airport to the venue?</h3>
             <span class="accordion-icon">+</span>
@@ -195,7 +208,7 @@
       </div>
 
       <!-- Accommodations -->
-      <div class="faq-category fade-in">
+      <div id="accommodations" class="faq-category fade-in">
         <div class="faq-category-title" data-i18n="faq_cat_accommodations">Accommodations</div>
 
         <div class="info-box">
@@ -229,7 +242,7 @@
       <div class="faq-category fade-in">
         <div class="faq-category-title" data-i18n="faq_cat_wedding_day">The Wedding Day</div>
 
-        <div class="info-box fade-in" style="border-left-color:var(--gold);display:flex;align-items:flex-start;gap:1rem">
+        <div id="dress-code" class="info-box fade-in" style="border-left-color:var(--gold);display:flex;align-items:flex-start;gap:1rem">
           <span style="font-size:1.6rem;line-height:1;flex-shrink:0" aria-hidden="true">👗🤵</span>
           <div>
             <strong style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.4rem" data-i18n="faq_dresscode_label">Dress Code</strong>
@@ -256,7 +269,7 @@
           </div>
         </div>
 
-        <div class="accordion fade-in">
+        <div id="children" class="accordion fade-in">
           <div class="accordion-header">
             <h3 data-i18n="faq_q_children">Are children welcome?</h3>
             <span class="accordion-icon">+</span>
@@ -277,7 +290,7 @@
           </div>
         </div>
 
-        <div class="accordion fade-in">
+        <div id="gifts" class="accordion fade-in">
           <div class="accordion-header">
             <h3 data-i18n="faq_q_registry">Will there be a gift registry?</h3>
             <span class="accordion-icon">+</span>
@@ -334,7 +347,7 @@
 </section>
 
 <!-- Contact -->
-<section class="contact-section">
+<section id="contact" class="contact-section">
   <div class="container">
     <h2 class="fade-in" data-i18n="faq_contact_title">Still Have Questions?</h2>
     <p class="fade-in" data-i18n="faq_contact_text">We're happy to help. Reach out to us at any time.</p>

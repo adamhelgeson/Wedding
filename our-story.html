@@ -388,6 +388,17 @@
   </div>
 </nav>
 
+<nav class="page-subnav" aria-label="Page sections">
+  <div class="page-subnav-inner">
+    <a href="#how-we-met" data-i18n="subnav_story_how_met">How We Met</a>
+    <a href="#unofficial-first-date" data-i18n="subnav_story_unofficial">Unofficial First Date</a>
+    <a href="#first-date" data-i18n="subnav_story_first_date">First Date</a>
+    <a href="#the-proposal" data-i18n="subnav_story_proposal">The Proposal</a>
+    <a href="#planning-our-day" data-i18n="subnav_story_planning">Planning Our Day</a>
+    <a href="#meet-the-couple" data-i18n="subnav_story_couple">Meet the Couple</a>
+  </div>
+</nav>
+
 <div class="page-hero">
   <h1 class="fade-in" data-i18n="story_hero_title">Our Story</h1>
   <p class="fade-in" data-i18n="story_hero_subtitle">How it all began</p>
@@ -425,7 +436,7 @@
     <div class="story-timeline">
 
       <!-- Chapter One: How We Met — photo left, text right -->
-      <div class="story-item fade-in">
+      <div id="how-we-met" class="story-item fade-in">
         <div class="story-col-a">
           <img src="photos/How we met - Microsoft-Teams-Logo.png" alt="How We Met" class="story-img">
         </div>
@@ -442,7 +453,7 @@
       </div>
 
       <!-- Chapter Two: Our Unofficial First Date — text right, photo left -->
-      <div class="story-item fade-in">
+      <div id="unofficial-first-date" class="story-item fade-in">
         <div class="story-col-a">
           <div class="story-text">
             <div class="story-label" data-i18n="story_ch2_label">August 1st, 2024</div>
@@ -459,7 +470,7 @@
       </div>
 
       <!-- Chapter Three: Our First Date — photo left, text right -->
-      <div class="story-item fade-in">
+      <div id="first-date" class="story-item fade-in">
         <div class="story-col-a">
           <img src="photos/First Date - Cervecería Hércules.jpg" alt="Our First Date" class="story-img">
         </div>
@@ -476,7 +487,7 @@
       </div>
 
       <!-- Chapter Four: The Proposal — long form, text left, photo right -->
-      <div class="story-item story-item--long fade-in">
+      <div id="the-proposal" class="story-item story-item--long fade-in">
         <div class="story-col-a">
           <div class="story-text">
             <div class="story-label" data-i18n="story_ch4_label">September 13th, 2025</div>
@@ -506,7 +517,7 @@
       </div>
 
       <!-- Chapter Five: Planning Our Day — photo left, text right -->
-      <div class="story-item fade-in">
+      <div id="planning-our-day" class="story-item fade-in">
         <div class="story-col-a">
           <div class="story-photo">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -540,13 +551,14 @@
 </section>
 
 <!-- Meet the Couple -->
-<section class="couple-section">
+<section id="meet-the-couple" class="couple-section">
   <div class="container">
     <h2 class="section-title fade-in" data-i18n="story_couple_title">Meet the Couple</h2>
     <p class="section-subtitle fade-in" data-i18n="story_couple_subtitle">Two lives, one love story</p>
 
     <div class="couple-grid">
       <div class="person-card fade-in">
+        <!-- Replace with Estefania's individual portrait photo -->
         <div class="person-avatar">E</div>
         <h3>Estefania</h3>
         <p data-i18n="story_bio_estefania_p1">Querétaro born and raised, Estefania brings warmth, creativity, and an infectious joy to every room she enters. She's deeply faithful, fiercely driven, and somehow also the person who will hand-draw you an illustrated recap of your entire year together as an anniversary gift. She painted Adam his favorite national park — Zion.</p>
@@ -555,6 +567,7 @@
       </div>
 
       <div class="person-card fade-in">
+        <!-- Replace with Adam's individual portrait photo -->
         <div class="person-avatar">A</div>
         <h3>Adam</h3>
         <p data-i18n="story_bio_adam_p1">A Minnesota native with a wanderer's heart, Adam is equally at home paddling a canoe through the Boundary Waters, hiking a mountain out west, or cheering on the Minnesota Vikings from his season tickets — which he has held, through thick and thin, since 2013. Mostly thin.</p>

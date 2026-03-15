@@ -127,6 +127,18 @@ MORNING AFTER:
 
 ## Future Ideas
 
+### Meet the Couple Photos
+Replace the E and A initial placeholder circles in the "Meet the Couple"
+section on our-story.html with real individual photos of Estefania and Adam.
+- Photo should be circular (border-radius: 50%)
+- Suggested size: 200px x 200px circular crop
+- Gold border ring around each photo matching site style
+- Fannie's photo filename suggestion: photos/estefania-portrait.jpg
+- Adam's photo filename suggestion: photos/adam-portrait.jpg
+- Add HTML comment above each placeholder:
+  <!-- Replace with Estefania's individual portrait photo -->
+  <!-- Replace with Adam's individual portrait photo -->
+
 ### Photo/GIF Investigation
 Consider converting the Our Story photo placeholders and gallery
 sections to support animated GIFs or CSS carousels so multiple
