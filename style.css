@@ -145,6 +145,24 @@ main {
   .nav-links a { font-size: 0.7rem; letter-spacing: 0.08em; }
 }
 
+/* Spanish nav compression — html[lang="es"] is set by setLanguage() */
+@media (min-width: 861px) {
+  html[lang="es"] .nav-links {
+    gap: 0.9rem;
+  }
+  html[lang="es"] .nav-links a {
+    letter-spacing: 0.03em;
+  }
+}
+@media (min-width: 861px) and (max-width: 1060px) {
+  html[lang="es"] .nav-links {
+    gap: 0.65rem;
+  }
+  html[lang="es"] .nav-links a {
+    letter-spacing: 0.02em;
+  }
+}
+
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--rose);

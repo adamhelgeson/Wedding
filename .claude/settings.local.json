@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"#[0-9a-fA-F]\\\\{3,6\\\\}\" c:/Users/helgi/GitHub/Wedding/index.html c:/Users/helgi/GitHub/Wedding/schedule.html c:/Users/helgi/GitHub/Wedding/faq.html)",
+      "Bash(node -e \":*)"
+    ]
+  }
+}

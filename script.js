@@ -281,14 +281,21 @@
   }
 })();
 
-/* --- Language / i18n --- */
-function setLanguage(lang) {
-  if (typeof TRANSLATIONS === 'undefined' || !TRANSLATIONS[lang]) return;
-  var t = TRANSLATIONS[lang];
+// ============================================
+// LANGUAGE SYSTEM — runs on every page load
+// ============================================
+function applyLanguage(lang) {
+  if (!window.translations || !window.translations[lang]) return;
+  var t = window.translations[lang];
 
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
     if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
   });
 
   document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
@@ -301,18 +308,44 @@ function setLanguage(lang) {
     if (t[key] !== undefined) el.value = t[key];
   });
 
+  // Registry: update toggle text respecting open/closed state
+  document.querySelectorAll('.toggle-text').forEach(function(span) {
+    var card = span.closest('.exp-card');
+    var key = (card && card.classList.contains('open')) ? 'registry_show_less' : 'registry_learn_more';
+    if (t[key] !== undefined) span.textContent = t[key];
+  });
+
+  // Registry: re-translate progress labels that have been filled in by JS
+  var fundedOf    = t['registry_funded_of']    || 'of';
+  var fundedLabel = t['registry_funded_label'] || 'funded';
+  document.querySelectorAll('.progress-text[data-verified]').forEach(function(el) {
+    var verified = parseFloat(el.dataset.verified);
+    var goal     = parseFloat(el.dataset.goal);
+    el.textContent = '$' + verified.toLocaleString() + ' ' + fundedOf + ' $' + goal.toLocaleString() + ' ' + fundedLabel;
+  });
+
   localStorage.setItem('preferredLanguage', lang);
   document.documentElement.lang = lang;
 
+  // Update toggle buttons by class (data-lang attribute)
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
     btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
   });
+
+  // Also update by ID if present
+  var enBtn = document.getElementById('lang-en');
+  var esBtn = document.getElementById('lang-es');
+  if (enBtn) enBtn.classList.toggle('lang-active', lang === 'en');
+  if (esBtn) esBtn.classList.toggle('lang-active', lang === 'es');
 }
 
-// Auto-apply on page load
-(function() {
+// setLanguage is kept as an alias — all nav buttons use onclick="setLanguage('en')"
+var setLanguage = applyLanguage;
+
+// Run immediately on every page load — reads saved preference from localStorage
+document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('preferredLanguage');
-  var lang = (saved === 'en' || saved === 'es') ? saved
-    : ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en');
-  document.addEventListener('DOMContentLoaded', function() { setLanguage(lang); });
-})();
+  var browser = (navigator.language || navigator.userLanguage || 'en').substring(0, 2);
+  var lang = (saved === 'en' || saved === 'es') ? saved : (browser === 'es' ? 'es' : 'en');
+  applyLanguage(lang);
+});

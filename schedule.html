@@ -537,8 +537,8 @@
       <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
       <li class="lang-toggle-item" style="display:flex;align-items:center">
         <div class="lang-toggle" role="group" aria-label="Language">
-          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+          <button class="lang-btn lang-active" id="lang-en" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="lang-es" data-lang="es" onclick="setLanguage('es')">ES</button>
         </div>
       </li>
       <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
@@ -560,7 +560,7 @@
     <div class="venue-info-box fade-in">
       <h3>Fiesta Americana Hacienda Galindo Resort &amp; Spa</h3>
       <p>Carretera San Juan del Río a Amealco, San Juan del Río, Querétaro, Mexico</p>
-      <p style="margin-top:0.4rem"><a href="faq.html">View travel &amp; accommodation details →</a></p>
+      <p style="margin-top:0.4rem"><a href="faq.html" data-i18n="sched_venue_travel_link">View travel &amp; accommodation details →</a></p>
     </div>
   </div>
 </section>
@@ -575,8 +575,8 @@
         <div class="day-divider">
           <div class="day-divider-line"></div>
           <div class="day-divider-text">
-            <small>Day One</small>
-            The Day Before — Welcome Evening
+            <small data-i18n="sched_day1_label">Day One</small>
+            <span data-i18n="sched_day1_title">The Day Before — Welcome Evening</span>
           </div>
           <div class="day-divider-line right"></div>
         </div>
@@ -589,9 +589,9 @@
               <span class="sched-ampm">PM</span>
             </div>
             <div class="sched-info">
-              <h3>Welcome Drinks</h3>
+              <h3 data-i18n="sched_welcome_drinks">Welcome Drinks</h3>
               <p class="sched-location">Hacienda Galindo</p>
-              <p class="sched-note">Join us for welcome drinks as we kick off the celebration with family and friends.</p>
+              <p class="sched-note" data-i18n="sched_welcome_drinks_note">Join us for welcome drinks as we kick off the celebration with family and friends.</p>
             </div>
           </div>
 
@@ -601,9 +601,9 @@
               <span class="sched-ampm">PM</span>
             </div>
             <div class="sched-info">
-              <h3>Welcome Dinner</h3>
+              <h3 data-i18n="sched_welcome_dinner">Welcome Dinner</h3>
               <p class="sched-location">Hacienda Galindo</p>
-              <p class="sched-note">A relaxed dinner to welcome our loved ones and set the tone for an unforgettable weekend.</p>
+              <p class="sched-note" data-i18n="sched_welcome_dinner_note">A relaxed dinner to welcome our loved ones and set the tone for an unforgettable weekend.</p>
             </div>
           </div>
 
@@ -615,8 +615,8 @@
         <div class="day-divider">
           <div class="day-divider-line"></div>
           <div class="day-divider-text">
-            <small>Day Two</small>
-            Wedding Day
+            <small data-i18n="sched_day2_label">Day Two</small>
+            <span data-i18n="sched_day2_title">Wedding Day</span>
           </div>
           <div class="day-divider-line right"></div>
         </div>
@@ -659,7 +659,7 @@
             <div class="sched-info">
               <h3 data-i18n="sched_ceremony_event">Wedding Ceremony</h3>
               <p class="sched-location">The Terrace Le Château, Hacienda Galindo</p>
-              <p class="sched-note">Please be seated by 3:45 PM. Seating is open.</p>
+              <p class="sched-note" data-i18n="sched_ceremony_note">Please be seated by 3:45 PM. Seating is open.</p>
             </div>
           </div>
 
@@ -670,8 +670,8 @@
             </div>
             <div class="sched-info">
               <h3 data-i18n="sched_cocktail">Cocktail Hour</h3>
-              <p class="sched-location">Hacienda Courtyard</p>
-              <p class="sched-note">Champagne, cocktails, and light refreshments while the newlyweds take photographs.</p>
+              <p class="sched-location" data-i18n="sched_hacienda_courtyard">Hacienda Courtyard</p>
+              <p class="sched-note" data-i18n="sched_cocktail_note">Champagne, cocktails, and light refreshments while the newlyweds take photographs.</p>
             </div>
           </div>
         </div>
@@ -690,7 +690,7 @@
             <div class="sched-info">
               <h3 data-i18n="sched_reception">Reception Dinner</h3>
               <p class="sched-location">The Terrace Le Château, Hacienda Galindo</p>
-              <p class="sched-note">Dinner seating is assigned — find your place card at the entrance.</p>
+              <p class="sched-note" data-i18n="sched_reception_note">Dinner seating is assigned — find your place card at the entrance.</p>
             </div>
           </div>
 
@@ -702,7 +702,7 @@
             <div class="sched-info">
               <h3 data-i18n="sched_first_dance">First Dance &amp; Toasts</h3>
               <p class="sched-location">The Terrace Le Château</p>
-              <p class="sched-note">Welcome the newlyweds, followed by the first dance and toasts from the wedding party.</p>
+              <p class="sched-note" data-i18n="sched_first_dance_note">Welcome the newlyweds, followed by the first dance and toasts from the wedding party.</p>
             </div>
           </div>
 
@@ -714,7 +714,7 @@
             <div class="sched-info">
               <h3 data-i18n="sched_dancing">Dancing &amp; Celebration</h3>
               <p class="sched-location">The Terrace Le Château</p>
-              <p class="sched-note">Live music, dancing, and wedding cake. The real party begins!</p>
+              <p class="sched-note" data-i18n="sched_dancing_note">Live music, dancing, and wedding cake. The real party begins!</p>
             </div>
           </div>
 
@@ -725,8 +725,8 @@
             </div>
             <div class="sched-info">
               <h3 data-i18n="sched_farewell">Grand Farewell</h3>
-              <p class="sched-location">Hacienda Entrance</p>
-              <p class="sched-note">One last dance, then we bid you goodnight. Safe travels to all!</p>
+              <p class="sched-location" data-i18n="sched_hacienda_entrance">Hacienda Entrance</p>
+              <p class="sched-note" data-i18n="sched_farewell_note">One last dance, then we bid you goodnight. Safe travels to all!</p>
             </div>
           </div>
 
@@ -738,8 +738,8 @@
         <div class="day-divider">
           <div class="day-divider-line"></div>
           <div class="day-divider-text">
-            <small>Day Three</small>
-            The Morning After
+            <small data-i18n="sched_day3_label">Day Three</small>
+            <span data-i18n="sched_day3_title">The Morning After</span>
           </div>
           <div class="day-divider-line right"></div>
         </div>
@@ -752,9 +752,9 @@
               <span class="sched-ampm">AM</span>
             </div>
             <div class="sched-info">
-              <h3>El Desayuno — Post-Wedding Breakfast</h3>
+              <h3 data-i18n="sched_desayuno_title">El Desayuno — Post-Wedding Breakfast</h3>
               <p class="sched-location">Hacienda Galindo</p>
-              <p class="sched-note">A beloved Mexican tradition — join the couple the morning after for a leisurely breakfast to relive the memories, say your goodbyes, and enjoy one last meal together before heading home.</p>
+              <p class="sched-note" data-i18n="sched_desayuno_note">A beloved Mexican tradition — join the couple the morning after for a leisurely breakfast to relive the memories, say your goodbyes, and enjoy one last meal together before heading home.</p>
             </div>
           </div>
 
@@ -864,16 +864,16 @@
 <footer class="site-footer">
   <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
-  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <p class="footer-date"><span data-i18n="footer_date_season">Fall 2027</span> · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, <span data-i18n="footer_date_country">Mexico</span></a></p>
   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="our-story.html">Our Story</a></li>
-    <li><a href="schedule.html">Schedule</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="registry.html">Registry</a></li>
-    <li><a href="guestbook.html">Guestbook</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+    <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+    <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+    <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+    <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+    <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+    <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a></li>
   </ul>
   <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>

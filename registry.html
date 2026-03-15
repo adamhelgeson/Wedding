@@ -627,8 +627,8 @@
       <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
       <li class="lang-toggle-item" style="display:flex;align-items:center">
         <div class="lang-toggle" role="group" aria-label="Language">
-          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+          <button class="lang-btn lang-active" id="lang-en" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="lang-es" data-lang="es" onclick="setLanguage('es')">ES</button>
         </div>
       </li>
       <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
@@ -646,9 +646,9 @@
 <section class="fund-intro-section">
   <div class="container">
     <div class="fund-intro-inner fade-in">
-      <p class="fund-intro-lead">Instead of a traditional registry, we're saving up for the honeymoon of our dreams.</p>
-      <p>Your presence at our wedding is the greatest gift we could ask for. But if you'd like to contribute something extra, we would be so touched if you helped us build memories on our trip to Japan — from a quiet night in a ryokan to a bullet train across the country.</p>
-      <p>Browse the experiences below, then fill out the short form to tell us which one you'd like to fund and how much you're sending. We'll show you exactly where to complete your payment — with the amount pre-filled.</p>
+      <p class="fund-intro-lead" data-i18n="registry_intro_lead">Instead of a traditional registry, we're saving up for the honeymoon of our dreams.</p>
+      <p data-i18n="registry_intro_p1">Your presence at our wedding is the greatest gift we could ask for. But if you'd like to contribute something extra, we would be so touched if you helped us build memories on our trip to Japan — from a quiet night in a ryokan to a bullet train across the country.</p>
+      <p data-i18n="registry_intro_p2">Browse the experiences below, then fill out the short form to tell us which one you'd like to fund and how much you're sending. We'll show you exactly where to complete your payment — with the amount pre-filled.</p>
     </div>
   </div>
 </section>
@@ -667,181 +667,181 @@
       <div class="exp-card fade-in" data-exp="Night in a Traditional Ryokan Inn" data-goal="400">
         <div class="exp-card-header">
           <span class="exp-emoji">🏯</span>
-          <span class="exp-name">Night in a Traditional Ryokan Inn</span>
+          <span class="exp-name" data-i18n="reg_exp_ryokan_name">Night in a Traditional Ryokan Inn</span>
           <span class="exp-goal-badge">$400</span>
         </div>
-        <p class="exp-desc">Sleep on a futon in a centuries-old inn, soak in a private hot spring, and wake to a Japanese breakfast served by candlelight.</p>
+        <p class="exp-desc" data-i18n="reg_exp_ryokan_desc">Sleep on a futon in a centuries-old inn, soak in a private hot spring, and wake to a Japanese breakfast served by candlelight.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://boutiquejapan.com/wp-content/uploads/2019/08/Asaba-Ryokan-Shuzenji-Onsen-Japan-1140x855.jpg.webp" alt="Traditional Japanese Ryokan Inn" loading="lazy" />
-          <p class="exp-dream">Picture us curled up in silk yukata robes, listening to rain on the garden while the scent of cedar drifts through paper walls — a night outside of time.</p>
+          <p class="exp-dream" data-i18n="reg_exp_ryokan_dream">Picture us curled up in silk yukata robes, listening to rain on the garden while the scent of cedar drifts through paper walls — a night outside of time.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Shinkansen Bullet Train Rail Pass" data-goal="500">
         <div class="exp-card-header">
           <span class="exp-emoji">🚄</span>
-          <span class="exp-name">Shinkansen Bullet Train Rail Pass</span>
+          <span class="exp-name" data-i18n="reg_exp_shinkansen_name">Shinkansen Bullet Train Rail Pass</span>
           <span class="exp-goal-badge">$500</span>
         </div>
-        <p class="exp-desc">Race across Japan at 200 mph — from Tokyo to Kyoto, Osaka to Hiroshima — watching Mount Fuji blur past the window.</p>
+        <p class="exp-desc" data-i18n="reg_exp_shinkansen_desc">Race across Japan at 200 mph — from Tokyo to Kyoto, Osaka to Hiroshima — watching Mount Fuji blur past the window.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Series-N700S-J2.jpg/960px-Series-N700S-J2.jpg" alt="Shinkansen bullet train" loading="lazy" />
-          <p class="exp-dream">Imagine flying past snow-capped mountains and terraced rice fields, green tea in hand, the whole country unspooling outside the window.</p>
+          <p class="exp-dream" data-i18n="reg_exp_shinkansen_dream">Imagine flying past snow-capped mountains and terraced rice fields, green tea in hand, the whole country unspooling outside the window.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Private Tea Ceremony in Kyoto" data-goal="150">
         <div class="exp-card-header">
           <span class="exp-emoji">🍵</span>
-          <span class="exp-name">Private Tea Ceremony in Kyoto</span>
+          <span class="exp-name" data-i18n="reg_exp_tea_name">Private Tea Ceremony in Kyoto</span>
           <span class="exp-goal-badge">$150</span>
         </div>
-        <p class="exp-desc">A serene, private ceremony in a tatami-floored teahouse — the perfect ritual of slowness on a trip built for two.</p>
+        <p class="exp-desc" data-i18n="reg_exp_tea_desc">A serene, private ceremony in a tatami-floored teahouse — the perfect ritual of slowness on a trip built for two.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://www.en-kyoto.yumeyakata.com/common/img/teaexperience/s_0K8A8677-p.webp" alt="Japanese tea ceremony" loading="lazy" />
-          <p class="exp-dream">We'll sit in stillness together, watching a master's hands fold silk and ladle steam — finding beauty in every deliberate, unhurried gesture.</p>
+          <p class="exp-dream" data-i18n="reg_exp_tea_dream">We'll sit in stillness together, watching a master's hands fold silk and ladle steam — finding beauty in every deliberate, unhurried gesture.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Sushi Omakase Dinner in Tokyo" data-goal="400">
         <div class="exp-card-header">
           <span class="exp-emoji">🍣</span>
-          <span class="exp-name">Sushi Omakase Dinner in Tokyo</span>
+          <span class="exp-name" data-i18n="reg_exp_sushi_name">Sushi Omakase Dinner in Tokyo</span>
           <span class="exp-goal-badge">$400</span>
         </div>
-        <p class="exp-desc">An unforgettable chef's-choice feast at the counter of a Tokyo sushi master — the meal of a lifetime, together.</p>
+        <p class="exp-desc" data-i18n="reg_exp_sushi_desc">An unforgettable chef's-choice feast at the counter of a Tokyo sushi master — the meal of a lifetime, together.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://i.redd.it/aumi02ggqfv91.jpg" alt="Sushi omakase" loading="lazy" />
-          <p class="exp-dream">Imagine watching a chef's hands place each piece before us like a gift — fish so fresh it barely needs seasoning, sake poured in silence.</p>
+          <p class="exp-dream" data-i18n="reg_exp_sushi_dream">Imagine watching a chef's hands place each piece before us like a gift — fish so fresh it barely needs seasoning, sake poured in silence.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Day Trip to Mount Fuji" data-goal="200">
         <div class="exp-card-header">
           <span class="exp-emoji">🗻</span>
-          <span class="exp-name">Day Trip to Mount Fuji</span>
+          <span class="exp-name" data-i18n="reg_exp_fuji_name">Day Trip to Mount Fuji</span>
           <span class="exp-goal-badge">$200</span>
         </div>
-        <p class="exp-desc">Stand at the foot of Japan's most iconic peak together — a sunrise hike or lakeside view that neither of us will ever forget.</p>
+        <p class="exp-desc" data-i18n="reg_exp_fuji_desc">Stand at the foot of Japan's most iconic peak together — a sunrise hike or lakeside view that neither of us will ever forget.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://www.wamazing.com/media/wp-content/uploads/sites/7/2023/06/fujisantrivia_pixta_77370238_L.jpg.webp" alt="Mount Fuji Japan" loading="lazy" />
-          <p class="exp-dream">We'll stand at the edge of the world together, watching the sun climb over the crater rim, all of Japan laid out below us in silence.</p>
+          <p class="exp-dream" data-i18n="reg_exp_fuji_dream">We'll stand at the edge of the world together, watching the sun climb over the crater rim, all of Japan laid out below us in silence.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Arashiyama Bamboo Forest & Boat Ride" data-goal="100">
         <div class="exp-card-header">
           <span class="exp-emoji">🎋</span>
-          <span class="exp-name">Arashiyama Bamboo Forest &amp; Boat Ride</span>
+          <span class="exp-name" data-i18n="reg_exp_bamboo_name">Arashiyama Bamboo Forest &amp; Boat Ride</span>
           <span class="exp-goal-badge">$100</span>
         </div>
-        <p class="exp-desc">Wander through soaring green tunnels of bamboo, then drift together down the Oi River as the forest sways above.</p>
+        <p class="exp-desc" data-i18n="reg_exp_bamboo_desc">Wander through soaring green tunnels of bamboo, then drift together down the Oi River as the forest sways above.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://www.ninjafoodtours.com/wp-content/uploads/2025/04/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan-scaled-e1745725654288.jpg" alt="Arashiyama Bamboo Forest Kyoto" loading="lazy" />
-          <p class="exp-dream">We'll drift downriver in a wooden boat while a thousand bamboo stalks creak softly above us — quiet, impossibly green, and ours alone.</p>
+          <p class="exp-dream" data-i18n="reg_exp_bamboo_dream">We'll drift downriver in a wooden boat while a thousand bamboo stalks creak softly above us — quiet, impossibly green, and ours alone.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
-<div class="exp-card fade-in" data-exp="Couples Spa Day at an Onsen Resort" data-goal="200">
+      <div class="exp-card fade-in" data-exp="Couples Spa Day at an Onsen Resort" data-goal="200">
         <div class="exp-card-header">
           <span class="exp-emoji">♨️</span>
-          <span class="exp-name">Couples Spa Day at an Onsen Resort</span>
+          <span class="exp-name" data-i18n="reg_exp_onsen_name">Couples Spa Day at an Onsen Resort</span>
           <span class="exp-goal-badge">$200</span>
         </div>
-        <p class="exp-desc">A full day of relaxation in natural volcanic hot springs — the ultimate way to unwind after weeks of adventure across Japan.</p>
+        <p class="exp-desc" data-i18n="reg_exp_onsen_desc">A full day of relaxation in natural volcanic hot springs — the ultimate way to unwind after weeks of adventure across Japan.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://bks-prd-5-global-wp-new-blog.storage.googleapis.com/wp-content/uploads/2023/04/13130628/products-please-senses-shot-mature-couple-enjoying-hot-stone-treatment-995x576-1.jpg" alt="Couples spa day at onsen resort" loading="lazy" />
-          <p class="exp-dream">Imagine sinking into steaming mineral water side by side as the mountains turn gold at sunset — every muscle finally letting go.</p>
+          <p class="exp-dream" data-i18n="reg_exp_onsen_dream">Imagine sinking into steaming mineral water side by side as the mountains turn gold at sunset — every muscle finally letting go.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Flight Upgrade Fund" data-goal="1000">
         <div class="exp-card-header">
           <span class="exp-emoji">✈️</span>
-          <span class="exp-name">Flight Upgrade Fund</span>
+          <span class="exp-name" data-i18n="reg_exp_flight_name">Flight Upgrade Fund</span>
           <span class="exp-goal-badge">$1,000</span>
         </div>
-        <p class="exp-desc">Help us start the honeymoon right — a little extra comfort on that long flight across the Pacific means the adventure begins the moment we board.</p>
+        <p class="exp-desc" data-i18n="reg_exp_flight_desc">Help us start the honeymoon right — a little extra comfort on that long flight across the Pacific means the adventure begins the moment we board.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800" alt="Airplane window seat" loading="lazy" />
-          <p class="exp-dream">Flat-bed seats, champagne at 35,000 feet, and Japan waiting on the other side — the honeymoon that starts before we even land.</p>
+          <p class="exp-dream" data-i18n="reg_exp_flight_dream">Flat-bed seats, champagne at 35,000 feet, and Japan waiting on the other side — the honeymoon that starts before we even land.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Mario Kart Street Go-Karting in Tokyo" data-goal="250">
         <div class="exp-card-header">
           <span class="exp-emoji">🏎️</span>
-          <span class="exp-name">Mario Kart Street Go-Karting in Tokyo</span>
+          <span class="exp-name" data-i18n="reg_exp_mario_name">Mario Kart Street Go-Karting in Tokyo</span>
           <span class="exp-goal-badge">$250</span>
         </div>
-        <p class="exp-desc">Race through the streets of Tokyo in a real-life Mario Kart — dressed in costume, weaving through traffic with the city skyline as your backdrop.</p>
+        <p class="exp-desc" data-i18n="reg_exp_mario_desc">Race through the streets of Tokyo in a real-life Mario Kart — dressed in costume, weaving through traffic with the city skyline as your backdrop.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://tokyobay.streetkart.com/_/shop/tokyobay/main02.webp" alt="Mario Kart street go-karting Tokyo" loading="lazy" />
-          <p class="exp-dream">Imagine us in full Mario and Princess Peach costumes, racing through Akihabara at golden hour — the most absurdly perfect honeymoon adventure.</p>
+          <p class="exp-dream" data-i18n="reg_exp_mario_dream">Imagine us in full Mario and Princess Peach costumes, racing through Akihabara at golden hour — the most absurdly perfect honeymoon adventure.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
       <div class="exp-card fade-in" data-exp="Surprise Us! General Fund" data-goal="500">
         <div class="exp-card-header">
           <span class="exp-emoji">💝</span>
-          <span class="exp-name">Surprise Us! General Fund</span>
+          <span class="exp-name" data-i18n="reg_exp_surprise_name">Surprise Us! General Fund</span>
           <span class="exp-goal-badge">$500</span>
         </div>
-        <p class="exp-desc">Trust us to find something wonderful. Every honeymoon has a spontaneous moment that becomes the best story — help us find ours.</p>
+        <p class="exp-desc" data-i18n="reg_exp_surprise_desc">Trust us to find something wonderful. Every honeymoon has a spontaneous moment that becomes the best story — help us find ours.</p>
         <div class="exp-expandable">
           <img class="exp-photo" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800" alt="Japan street at night" loading="lazy" />
-          <p class="exp-dream">The hidden bar down a paper-lantern alley, the perfect meal stumbled upon by accident, the moment neither of us could have planned — help us find it.</p>
+          <p class="exp-dream" data-i18n="reg_exp_surprise_dream">The hidden bar down a paper-lantern alley, the perfect meal stumbled upon by accident, the moment neither of us could have planned — help us find it.</p>
         </div>
         <div class="exp-progress-wrap">
           <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
-          <span class="progress-text progress-loading">Loading…</span>
+          <span class="progress-text progress-loading" data-i18n="registry_progress_loading">Loading…</span>
         </div>
-        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> <span class="toggle-text" data-i18n="registry_learn_more">Learn more</span></div>
       </div>
 
     </div>
@@ -858,9 +858,9 @@
       <!-- Payment completion panel (shown after form submit) -->
       <div id="pledge-success" role="alert">
         <div style="font-size:2rem;margin-bottom:1rem">🇯🇵</div>
-        <h2 id="pledge-success-heading">Almost done!</h2>
-        <p class="pledge-success-msg" id="pledge-success-message">Your gift has been noted. Now complete your payment below:</p>
-        <a id="pledge-pay-link" href="#" target="_blank" rel="noopener noreferrer" class="pledge-pay-btn-final">
+        <h2 id="pledge-success-heading" data-i18n="registry_success_heading">Almost done!</h2>
+        <p class="pledge-success-msg" id="pledge-success-message" data-i18n="registry_success_message">Your gift has been noted. Now complete your payment below:</p>
+        <a id="pledge-pay-link" href="#" target="_blank" rel="noopener noreferrer" class="pledge-pay-btn-final" data-i18n="registry_complete_payment">
           Complete Payment
         </a>
         <p class="pledge-pay-note" id="pledge-pay-note"></p>
@@ -908,18 +908,18 @@
           <label for="p-experience" data-i18n="registry_label_experience">Which Experience? <span aria-hidden="true">*</span></label>
           <div class="select-wrapper">
             <select id="p-experience" name="experience" required>
-              <option value="" disabled selected>Select an experience…</option>
-              <option value="Night in a Traditional Ryokan Inn">🏯 Night in a Traditional Ryokan Inn</option>
-              <option value="Shinkansen Bullet Train Rail Pass">🚄 Shinkansen Bullet Train Rail Pass</option>
-              <option value="Private Tea Ceremony in Kyoto">🍵 Private Tea Ceremony in Kyoto</option>
-              <option value="Sushi Omakase Dinner in Tokyo">🍣 Sushi Omakase Dinner in Tokyo</option>
-              <option value="Day Trip to Mount Fuji">🗻 Day Trip to Mount Fuji</option>
-              <option value="Arashiyama Bamboo Forest & Boat Ride">🎋 Arashiyama Bamboo Forest &amp; Boat Ride</option>
-<option value="Couples Spa Day at an Onsen Resort">♨️ Couples Spa Day at an Onsen Resort</option>
-              <option value="Flight Upgrade Fund">✈️ Flight Upgrade Fund</option>
-              <option value="Mario Kart Street Go-Karting in Tokyo">🏎️ Mario Kart Street Go-Karting in Tokyo</option>
-              <option value="Surprise Us! General Fund">💝 Surprise Us! General Fund</option>
-              <option value="Multiple / General">Multiple / General</option>
+              <option value="" disabled selected data-i18n="registry_placeholder_experience">Select an experience…</option>
+              <option value="Night in a Traditional Ryokan Inn" data-i18n="reg_opt_ryokan">🏯 Night in a Traditional Ryokan Inn</option>
+              <option value="Shinkansen Bullet Train Rail Pass" data-i18n="reg_opt_shinkansen">🚄 Shinkansen Bullet Train Rail Pass</option>
+              <option value="Private Tea Ceremony in Kyoto" data-i18n="reg_opt_tea">🍵 Private Tea Ceremony in Kyoto</option>
+              <option value="Sushi Omakase Dinner in Tokyo" data-i18n="reg_opt_sushi">🍣 Sushi Omakase Dinner in Tokyo</option>
+              <option value="Day Trip to Mount Fuji" data-i18n="reg_opt_fuji">🗻 Day Trip to Mount Fuji</option>
+              <option value="Arashiyama Bamboo Forest & Boat Ride" data-i18n="reg_opt_bamboo">🎋 Arashiyama Bamboo Forest &amp; Boat Ride</option>
+              <option value="Couples Spa Day at an Onsen Resort" data-i18n="reg_opt_onsen">♨️ Couples Spa Day at an Onsen Resort</option>
+              <option value="Flight Upgrade Fund" data-i18n="reg_opt_flight">✈️ Flight Upgrade Fund</option>
+              <option value="Mario Kart Street Go-Karting in Tokyo" data-i18n="reg_opt_mario">🏎️ Mario Kart Street Go-Karting in Tokyo</option>
+              <option value="Surprise Us! General Fund" data-i18n="reg_opt_surprise">💝 Surprise Us! General Fund</option>
+              <option value="Multiple / General" data-i18n="reg_opt_multiple">Multiple / General</option>
             </select>
           </div>
         </div>
@@ -961,7 +961,7 @@
 
       </form>
 
-      <p class="pledge-small-note">
+      <p class="pledge-small-note" data-i18n="registry_progress_note">
         Progress bars reflect verified contributions only and may take 1–2 days<br>to update after your payment is received.
       </p>
 
@@ -973,16 +973,16 @@
 <footer class="site-footer">
   <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
-  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <p class="footer-date"><span data-i18n="footer_date_season">Fall 2027</span> · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, <span data-i18n="footer_date_country">Mexico</span></a></p>
   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="our-story.html">Our Story</a></li>
-    <li><a href="schedule.html">Schedule</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="registry.html">Registry</a></li>
-    <li><a href="guestbook.html">Guestbook</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+    <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+    <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+    <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+    <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+    <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+    <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a></li>
   </ul>
   <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
@@ -1024,13 +1024,19 @@
 
       if (pct >= 100) {
         // Fully funded — replace progress bar with badge
-        wrap.innerHTML = '<span class="funded-badge">Fully Funded! 🎉</span>';
+        const lang = localStorage.getItem('preferredLanguage') || 'en';
+        const t = (window.translations && window.translations[lang]) || {};
+        wrap.innerHTML = '<span class="funded-badge">' + (t.registry_fully_funded || 'Fully Funded! 🎉') + '</span>';
       } else {
         // Animate fill after a short stagger based on card position
         const idx = Array.from(document.querySelectorAll('.exp-card')).indexOf(card);
         fill.dataset.target = pct;
         label.classList.remove('progress-loading');
-        label.textContent = '$' + verified.toLocaleString() + ' of $' + goal.toLocaleString() + ' funded';
+        label.dataset.verified = verified;
+        label.dataset.goal = goal;
+        const lang = localStorage.getItem('preferredLanguage') || 'en';
+        const t = (window.translations && window.translations[lang]) || {};
+        label.textContent = '$' + verified.toLocaleString() + ' ' + (t.registry_funded_of || 'of') + ' $' + goal.toLocaleString() + ' ' + (t.registry_funded_label || 'funded');
 
         // Small stagger per card so bars animate in sequence
         setTimeout(() => { fill.style.width = pct + '%'; }, 100 + idx * 60);
@@ -1047,8 +1053,18 @@
   document.querySelectorAll('.exp-card').forEach(card => {
     card.addEventListener('click', () => {
       const isOpen = card.classList.contains('open');
-      document.querySelectorAll('.exp-card').forEach(c => c.classList.remove('open'));
-      if (!isOpen) card.classList.add('open');
+      const lang = localStorage.getItem('preferredLanguage') || 'en';
+      const t = (window.translations && window.translations[lang]) || {};
+      document.querySelectorAll('.exp-card').forEach(c => {
+        c.classList.remove('open');
+        const ts = c.querySelector('.toggle-text');
+        if (ts) ts.textContent = t.registry_learn_more || 'Learn more';
+      });
+      if (!isOpen) {
+        card.classList.add('open');
+        const ts = card.querySelector('.toggle-text');
+        if (ts) ts.textContent = t.registry_show_less || 'Show less';
+      }
     });
   });
 

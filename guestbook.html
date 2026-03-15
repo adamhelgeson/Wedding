@@ -200,8 +200,8 @@
       <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
       <li class="lang-toggle-item" style="display:flex;align-items:center">
         <div class="lang-toggle" role="group" aria-label="Language">
-          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+          <button class="lang-btn lang-active" id="lang-en" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="lang-es" data-lang="es" onclick="setLanguage('es')">ES</button>
         </div>
       </li>
       <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
@@ -294,16 +294,16 @@
 <footer class="site-footer">
   <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
-  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <p class="footer-date"><span data-i18n="footer_date_season">Fall 2027</span> · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, <span data-i18n="footer_date_country">Mexico</span></a></p>
   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="our-story.html">Our Story</a></li>
-    <li><a href="schedule.html">Schedule</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="registry.html">Registry</a></li>
-    <li><a href="guestbook.html">Guestbook</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+    <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+    <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+    <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+    <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+    <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+    <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a></li>
   </ul>
   <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>

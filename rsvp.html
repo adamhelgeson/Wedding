@@ -300,8 +300,8 @@
       <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
       <li class="lang-toggle-item" style="display:flex;align-items:center">
         <div class="lang-toggle" role="group" aria-label="Language">
-          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
-          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+          <button class="lang-btn lang-active" id="lang-en" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="lang-es" data-lang="es" onclick="setLanguage('es')">ES</button>
         </div>
       </li>
       <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
@@ -334,7 +334,7 @@
         </div>
         <h2 id="success-heading">Thank you!</h2>
         <p id="success-message">We can't wait to celebrate with you.</p>
-        <a href="faq.html" class="btn btn-outline">View Travel &amp; FAQ</a>
+        <a href="faq.html" class="btn btn-outline" data-i18n="rsvp_faq_btn">View Travel &amp; FAQ</a>
       </div>
 
       <!-- Dress code reminder -->
@@ -369,7 +369,7 @@
       <form id="rsvp-form" class="rsvp-form-box fade-in" novalidate>
 
         <h2 class="form-heading" data-i18n="rsvp_form_title">Kindly Reply</h2>
-        <p class="form-subheading">Fall 2027 · Hacienda Galindo, Mexico</p>
+        <p class="form-subheading" data-i18n="rsvp_form_subtitle">Fall 2027 · Hacienda Galindo, Mexico</p>
 
         <div class="form-gold-divider" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
@@ -516,7 +516,7 @@
           Send RSVP
         </button>
 
-        <div class="rsvp-error" id="rsvp-error" role="alert">
+        <div class="rsvp-error" id="rsvp-error" role="alert" data-i18n="rsvp_error_msg">
           Something went wrong — please check your connection and try again.
         </div>
 
@@ -529,16 +529,16 @@
 <footer class="site-footer">
   <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
-  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <p class="footer-date"><span data-i18n="footer_date_season">Fall 2027</span> · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, <span data-i18n="footer_date_country">Mexico</span></a></p>
   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="our-story.html">Our Story</a></li>
-    <li><a href="schedule.html">Schedule</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="registry.html">Registry</a></li>
-    <li><a href="guestbook.html">Guestbook</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="rsvp.html">RSVP</a></li>
+    <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+    <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+    <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+    <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+    <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+    <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+    <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a></li>
   </ul>
   <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
