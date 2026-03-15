@@ -133,7 +133,6 @@ a digest to Adam and Estefania only when new entries exist.
 - [ ] Consider custom domain (e.g. estefania-and-adam.com)
 - [ ] Replace E and A initial placeholders in "Meet the Couple" section (our-story.html) with real individual photos of Estefania and Adam — circular, gold border ring, ~200px diameter
 - [ ] Investigate converting photo slideshows to GIFs or animated carousels to show more photos in less space (engagement gallery, Our Story section photos)
-- [ ] Add a thin secondary navigation bar below the main nav on every page that shows anchor links to each section on that page — acts as a page-level table of contents so guests can jump directly to any section
 
 ---
 
