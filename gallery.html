@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery · Estefania &amp; Adam</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #faf4f1;
+    }
+
+    /* ── Page intro ── */
+    .gallery-intro {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .gallery-intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--text-light);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* ── Masonry grid ── */
+    .masonry-grid {
+      columns: 3;
+      column-gap: 1.1rem;
+      padding: 0 0 3rem;
+    }
+    @media (max-width: 860px) {
+      .masonry-grid { columns: 2; }
+    }
+    @media (max-width: 520px) {
+      .masonry-grid { columns: 1; }
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.1rem;
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(60, 30, 35, 0.10);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .masonry-item.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .masonry-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      transition: transform 0.4s ease;
+    }
+
+    /* ── Hover overlay ── */
+    .masonry-item .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(201, 168, 76, 0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 4px;
+    }
+    .masonry-item:hover .photo-overlay {
+      opacity: 1;
+    }
+    .masonry-item:hover img {
+      transform: scale(1.03);
+    }
+    .photo-overlay-icon {
+      font-size: 2rem;
+      color: var(--ivory);
+      text-shadow: 0 1px 6px rgba(40, 25, 30, 0.4);
+      line-height: 1;
+    }
+
+    /* ── Ornamental divider ── */
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 1rem 0 2.5rem;
+    }
+    .ornament-line {
+      height: 1px;
+      width: 120px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .ornament-icon {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* ── Full album CTA ── */
+    .full-album-section {
+      text-align: center;
+      padding: 1rem 1.5rem 5rem;
+    }
+    .full-album-section p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ivory);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.6rem;
+      border: 1px solid var(--gold);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-gold:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(22, 12, 15, 0.94);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 92vw;
+      max-height: 92vh;
+    }
+    .lightbox-img {
+      max-width: min(88vw, 1100px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+      display: block;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      transition: color 0.2s;
+      z-index: 2010;
+    }
+    .lightbox-close:hover { color: var(--gold); }
+
+    .lightbox-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 2.4rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s;
+      z-index: 2010;
+      line-height: 1;
+      user-select: none;
+    }
+    .lightbox-arrow:hover { color: var(--gold); }
+    .lightbox-arrow.prev { left: 0.6rem; }
+    .lightbox-arrow.next { right: 0.6rem; }
+
+    @media (max-width: 600px) {
+      .lightbox-arrow { font-size: 1.8rem; padding: 0.4rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1 class="fade-in">Our Story in Photos</h1>
+  <p class="fade-in">Estefania &amp; Adam &mdash; Engagement Day, Stillwater to Minneapolis Minnesota</p>
+</div>
+
+<div class="gallery-intro fade-in">
+  <p>From the golden light on the bridge to the quiet moments in between &mdash; here is where our forever began.</p>
+</div>
+
+<section style="padding: 0 0 2rem;">
+  <div class="container">
+
+    <div class="masonry-grid" id="masonry-grid">
+
+      <div class="masonry-item" data-index="0">
+        <img src="photos/Bridge engagement photo at sunset without ring - 1 smiling.jpg"
+             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="1">
+        <img src="photos/Bridge engagement photo at sunset without ring - 2 smiling.jpg"
+             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="2">
+        <img src="photos/Bridge engagement photo at sunset without ring - 3 smiling.jpg"
+             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="3">
+        <img src="photos/Bridge engagement photo at sunset without ring - 4 smiling.jpg"
+             alt="Bridge engagement photo at sunset" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="4">
+        <img src="photos/charcuterie board engagement day photo at lunch.jpg"
+             alt="Charcuterie board engagement day photo" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="5">
+        <img src="photos/Downtown Engagement with ring - 2 excited funny face.jpg"
+             alt="Downtown engagement photo with ring" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="6">
+        <img src="photos/Downtown Engagement with ring - 3 me kissing fannies face with ring.jpg"
+             alt="Downtown engagement photo with ring" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="7">
+        <img src="photos/Engagement photos day after - kissing fannie's leg up.jpg"
+             alt="Engagement photos day after" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="8">
+        <img src="photos/Engagement photos day after - Showing her hand and my back.jpg"
+             alt="Engagement photos showing ring" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="9">
+        <img src="photos/Engagement photos day after - with nova.jpg"
+             alt="Engagement photos day after" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="10">
+        <img src="photos/Ring Photo.jpg"
+             alt="Engagement ring photo" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+      <div class="masonry-item" data-index="11">
+        <img src="photos/Stillwater bridge in background engagement day photo.jpg"
+             alt="Stillwater bridge engagement photo" loading="lazy" />
+        <div class="photo-overlay"><span class="photo-overlay-icon">✦</span></div>
+      </div>
+
+    </div>
+
+    <!-- Ornamental divider -->
+    <div class="ornament-divider fade-in">
+      <div class="ornament-line"></div>
+      <span class="ornament-icon">✦</span>
+      <div class="ornament-line"></div>
+    </div>
+
+    <!-- Full album CTA -->
+    <div class="full-album-section fade-in">
+      <p>Want to see all 114 photos from our engagement day?</p>
+      <a href="https://photos.app.goo.gl/wgUp9zzkAhZKgVbE7"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn-gold">View Our Full Album</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+  <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Previous photo">&#8249;</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+  <button class="lightbox-arrow next" id="lightbox-next" aria-label="Next photo">&#8250;</button>
+</div>
+
+<footer class="site-footer">
+  <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
+  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="registry.html">Registry</a></li>
+    <li><a href="guestbook.html">Guestbook</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="rsvp.html">RSVP</a></li>
+  </ul>
+  <p class="footer-copy">Made with love &hearts;</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  /* ── Masonry fade-in on scroll ── */
+  const masonryObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // Stagger each item slightly
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        masonryObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.masonry-item').forEach(item => masonryObserver.observe(item));
+
+  /* ── Lightbox ── */
+  const photos = Array.from(document.querySelectorAll('.masonry-item img'));
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const img  = document.getElementById('lightbox-img');
+    img.src    = photos[currentIndex].src;
+    img.alt    = photos[currentIndex].alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showPhoto(index) {
+    currentIndex = (index + photos.length) % photos.length;
+    const img = document.getElementById('lightbox-img');
+    img.src   = photos[currentIndex].src;
+    img.alt   = photos[currentIndex].alt;
+  }
+
+  // Attach click to each masonry item
+  document.querySelectorAll('.masonry-item').forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev').addEventListener('click', () => showPhoto(currentIndex - 1));
+  document.getElementById('lightbox-next').addEventListener('click', () => showPhoto(currentIndex + 1));
+
+  // Click backdrop to close
+  document.getElementById('lightbox').addEventListener('click', function (e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   showPhoto(currentIndex - 1);
+    if (e.key === 'ArrowRight')  showPhoto(currentIndex + 1);
+  });
+</script>
+</body>
+</html>

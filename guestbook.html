@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guestbook · Estefania &amp; Adam</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page background ── */
+    body { background: #faf4f1; }
+
+    /* ── Form section ── */
+    .gb-section {
+      padding: 4rem 0 2rem;
+    }
+
+    .gb-form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+      padding: 3rem;
+    }
+    @media (max-width: 500px) {
+      .gb-form-wrapper { padding: 2rem 1.5rem; }
+    }
+
+    .gb-form-wrapper h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      color: var(--rose);
+      margin-bottom: 0.4rem;
+    }
+    .gb-form-subtitle {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Character counter */
+    .char-counter {
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+      letter-spacing: 0.03em;
+    }
+    .char-counter.near-limit { color: var(--rose); }
+
+    /* Success panel */
+    .gb-success {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .gb-success p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--rose);
+      line-height: 1.65;
+    }
+
+    /* ── Ornamental divider ── */
+    .gb-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 3.5rem 0 2.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .gb-divider-line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .gb-divider-icon {
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Messages section ── */
+    .gb-messages-section {
+      padding: 0 0 5rem;
+    }
+
+    .gb-messages-title {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+    }
+
+    .gb-messages-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Loading */
+    .gb-loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Empty state */
+    .gb-empty {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--text-light);
+    }
+
+    /* Message card */
+    .gb-card {
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+      border-left: 4px solid var(--gold);
+      padding: 2rem 2rem 1.6rem 2rem;
+      margin-bottom: 1.4rem;
+      box-shadow: 0 2px 14px rgba(60, 30, 35, 0.06);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .gb-card.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .gb-card-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 0.6;
+      margin-bottom: 0.8rem;
+      display: block;
+      opacity: 0.7;
+    }
+
+    .gb-card-message {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .gb-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .gb-card-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .gb-card-date {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1 class="fade-in">Sign Our Guestbook</h1>
+  <p class="fade-in">Leave us a message, a wish, or a piece of advice for the road ahead</p>
+</div>
+
+<!-- ── Form ── -->
+<section class="gb-section">
+  <div class="container">
+    <div class="gb-form-wrapper fade-in">
+
+      <!-- Form view -->
+      <div id="gb-form-view">
+        <h2>Write a Message</h2>
+        <p class="gb-form-subtitle">Your words mean the world to us.</p>
+
+        <form id="guestbook-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gb-first-name">First Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="gb-first-name" name="firstName" required
+                     autocomplete="given-name" placeholder="Jane" />
+            </div>
+            <div class="form-group">
+              <label for="gb-last-name">Last Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="gb-last-name" name="lastName" required
+                     autocomplete="family-name" placeholder="Smith" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="gb-email">Email Address <span aria-hidden="true">*</span></label>
+            <input type="email" id="gb-email" name="email" required
+                   autocomplete="email" placeholder="jane@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="gb-message">Your Message <span aria-hidden="true">*</span></label>
+            <textarea id="gb-message" name="message" required maxlength="500"
+                      placeholder="Write your heartfelt message here…"
+                      style="min-height:150px"></textarea>
+            <div class="char-counter" id="char-counter">0 / 500 characters</div>
+          </div>
+
+          <div id="gb-error" style="display:none;color:#9B4A5A;font-size:0.85rem;margin-bottom:1rem;text-align:center"></div>
+
+          <button type="submit" class="btn btn-primary" id="gb-submit-btn"
+                  style="width:100%;padding:0.9rem">
+            Leave a Message ✦
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Success view -->
+      <div class="gb-success" id="gb-success">
+        <p id="gb-success-text"></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Divider ── -->
+<div class="gb-divider fade-in">
+  <div class="gb-divider-line"></div>
+  <span class="gb-divider-icon">✦</span>
+  <div class="gb-divider-line"></div>
+</div>
+
+<!-- ── Messages ── -->
+<section class="gb-messages-section">
+  <div class="container">
+    <h2 class="gb-messages-title fade-in">Messages from Our Loved Ones</h2>
+
+    <div class="gb-messages-list" id="gb-messages-list">
+      <div class="gb-loading" id="gb-loading" aria-live="polite">Loading messages…</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
+  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="registry.html">Registry</a></li>
+    <li><a href="guestbook.html">Guestbook</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="rsvp.html">RSVP</a></li>
+  </ul>
+  <p class="footer-copy">Made with love &hearts;</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  const GUESTBOOK_URL = 'https://script.google.com/macros/s/AKfycbzgRhSCmNVM4k6rXQGQ0_ylHAZGa6KC41HSV0B0SBUuxLT0Qam_bexYk8FO1FIcYaDH/exec';
+
+  /* ── Character counter ── */
+  const msgArea    = document.getElementById('gb-message');
+  const charCount  = document.getElementById('char-counter');
+
+  msgArea.addEventListener('input', () => {
+    const len = msgArea.value.length;
+    charCount.textContent = len + ' / 500 characters';
+    charCount.classList.toggle('near-limit', len >= 450);
+  });
+
+  /* ── Form submission ── */
+  document.getElementById('guestbook-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const firstName = document.getElementById('gb-first-name').value.trim();
+    const lastName  = document.getElementById('gb-last-name').value.trim();
+    const email     = document.getElementById('gb-email').value.trim();
+    const message   = document.getElementById('gb-message').value.trim();
+    const errorBox  = document.getElementById('gb-error');
+    const submitBtn = document.getElementById('gb-submit-btn');
+
+    errorBox.style.display = 'none';
+
+    // Required field checks
+    if (!firstName) { document.getElementById('gb-first-name').focus(); return; }
+    if (!lastName)  { document.getElementById('gb-last-name').focus();  return; }
+
+    // Email validation via shared utility
+    if (!email || !window.emailValidation.isValid(email)) {
+      window.emailValidation.showError(document.getElementById('gb-email'));
+      return;
+    }
+
+    if (!message) { msgArea.focus(); return; }
+
+    // Loading state
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      await fetch(GUESTBOOK_URL, {
+        method: 'POST',
+        mode:   'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, message }),
+      });
+
+      // no-cors gives opaque response — reaching here means request was sent
+      document.getElementById('gb-form-view').style.display = 'none';
+      const successEl = document.getElementById('gb-success');
+      document.getElementById('gb-success-text').innerHTML =
+        `Thank you, ${escapeHtml(firstName)}! Your message has been added to our guestbook.<br>We'll treasure it always. 💛`;
+      successEl.style.display = 'block';
+
+    } catch (err) {
+      submitBtn.disabled    = false;
+      submitBtn.textContent = 'Leave a Message ✦';
+      errorBox.textContent  = 'Something went wrong. Please try again.';
+      errorBox.style.display = 'block';
+    }
+  });
+
+  /* ── Load messages on page load ── */
+  async function loadMessages() {
+    const list    = document.getElementById('gb-messages-list');
+    const loading = document.getElementById('gb-loading');
+
+    try {
+      const res  = await fetch(GUESTBOOK_URL, { method: 'GET', mode: 'cors' });
+      const data = await res.json();
+
+      loading.remove();
+
+      if (!Array.isArray(data) || data.length === 0) {
+        list.innerHTML = '<div class="gb-empty">Be the first to sign our guestbook! ✦</div>';
+        return;
+      }
+
+      data.forEach((entry, i) => {
+        const card = document.createElement('div');
+        card.className = 'gb-card fade-in';
+
+        const displayName = formatName(entry.firstName, entry.lastName);
+        const dateStr     = formatDate(entry.date || entry.timestamp);
+
+        card.innerHTML = `
+          <span class="gb-card-quote" aria-hidden="true">\u201C</span>
+          <p class="gb-card-message">${escapeHtml(entry.message || '')}</p>
+          <div class="gb-card-meta">
+            <span class="gb-card-author">${escapeHtml(displayName)}</span>
+            <span class="gb-card-date">${escapeHtml(dateStr)}</span>
+          </div>`;
+
+        list.appendChild(card);
+
+        // Staggered fade-in
+        setTimeout(() => card.classList.add('visible'), 80 + i * 70);
+      });
+
+    } catch (err) {
+      // Silently hide the messages section on fetch failure
+      loading.remove();
+      document.querySelector('.gb-messages-section').style.display = 'none';
+      document.querySelector('.gb-divider').style.display = 'none';
+    }
+  }
+
+  function formatName(first, last) {
+    const f = (first || '').trim();
+    const l = (last  || '').trim();
+    if (!f && !l) return 'Anonymous';
+    if (!l) return f;
+    return f + ' ' + l.charAt(0).toUpperCase() + '.';
+  }
+
+  function formatDate(raw) {
+    if (!raw) return '';
+    const d = new Date(raw);
+    if (isNaN(d.getTime())) return raw;
+    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  loadMessages();
+</script>
+</body>
+</html>

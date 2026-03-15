@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story · Estefania &amp; Adam</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ---- Intro ---- */
+    .story-intro {
+      padding: 4.5rem 0 3rem;
+      background: var(--warm-white);
+    }
+    .story-intro-text {
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--text-light);
+      line-height: 1.9;
+    }
+    .story-intro-text em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15em;
+      color: var(--rose);
+    }
+
+    /* ---- Story Timeline ---- */
+    .story-timeline-section {
+      padding: 4rem 0 6rem;
+      background: var(--ivory);
+    }
+
+    .story-timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* Vertical gold line */
+    .story-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+      transform: translateX(-50%);
+    }
+
+    /* ---- Each story item ---- */
+    .story-item {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      align-items: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .story-item:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Center column: dot */
+    .story-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .story-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--ivory);
+      box-shadow: 0 0 0 2px var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* Photo placeholder */
+    .story-photo {
+      aspect-ratio: 4 / 3;
+      background: var(--blush);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: var(--rose);
+    }
+
+    .story-photo svg {
+      opacity: 0.4;
+    }
+
+    .story-photo-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--rose);
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+
+    /* Text content */
+    .story-text {
+      padding: 0 2rem;
+    }
+
+    .story-text .story-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .story-text h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--rose);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .story-text p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.85;
+      font-style: italic;
+    }
+
+    /* Alternating: odd items = photo left, text right */
+    .story-item:nth-child(odd)  .story-col-a { order: 1; }
+    .story-item:nth-child(odd)  .story-dot-col { order: 2; }
+    .story-item:nth-child(odd)  .story-col-b { order: 3; }
+
+    /* Even items = text left, photo right */
+    .story-item:nth-child(even) .story-col-a { order: 3; }
+    .story-item:nth-child(even) .story-dot-col { order: 2; }
+    .story-item:nth-child(even) .story-col-b { order: 1; }
+
+    /* text alignment mirrors the layout */
+    .story-item:nth-child(odd)  .story-text { text-align: left; }
+    .story-item:nth-child(even) .story-text { text-align: right; }
+
+    /* Mobile: single column */
+    @media (max-width: 700px) {
+      .story-timeline::before { left: 20px; }
+
+      .story-item {
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto;
+        margin-bottom: 3.5rem;
+      }
+
+      .story-item:nth-child(odd)  .story-col-a,
+      .story-item:nth-child(even) .story-col-a,
+      .story-item:nth-child(odd)  .story-col-b,
+      .story-item:nth-child(even) .story-col-b {
+        order: unset;
+      }
+
+      .story-item:nth-child(odd)  .story-dot-col,
+      .story-item:nth-child(even) .story-dot-col {
+        order: unset;
+        grid-column: 1;
+        grid-row: 1 / 3;
+        align-self: start;
+        padding-top: 0.3rem;
+      }
+
+      .story-col-a {
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 0.8rem;
+      }
+
+      .story-col-b {
+        grid-column: 2;
+        grid-row: 2;
+      }
+
+      .story-item:nth-child(odd)  .story-text,
+      .story-item:nth-child(even) .story-text {
+        text-align: left;
+        padding: 0 0 0 1rem;
+      }
+
+      .story-item:nth-child(odd)  .story-photo,
+      .story-item:nth-child(even) .story-photo {
+        margin-left: 1rem;
+      }
+    }
+
+    /* ---- Quote ---- */
+    .quote-section {
+      background: var(--warm-white);
+      padding: 5rem 1rem;
+      text-align: center;
+    }
+
+    .story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 300;
+      color: var(--rose);
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto 1.2rem;
+      position: relative;
+      padding: 0 2.5rem;
+    }
+
+    .story-quote::before {
+      content: '\201C';
+      position: absolute;
+      left: 0;
+      top: -0.2em;
+      font-size: 3em;
+      color: var(--blush);
+      line-height: 1;
+    }
+
+    .quote-attribution {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ---- Meet the Couple ---- */
+    .couple-section {
+      padding: 5rem 0;
+      background: var(--ivory);
+    }
+
+    .couple-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      max-width: 860px;
+      margin: 3rem auto 0;
+    }
+
+    @media (max-width: 580px) {
+      .couple-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    .person-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: var(--warm-white);
+      border: 1px solid var(--blush);
+    }
+
+    .person-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--blush);
+      margin: 0 auto 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--rose);
+      border: 2px solid var(--gold);
+    }
+
+    .person-card h3 {
+      font-size: 1.6rem;
+      color: var(--rose);
+      margin-bottom: 0.7rem;
+    }
+
+    .person-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1 class="fade-in">Our Story</h1>
+  <p class="fade-in">How it all began</p>
+</div>
+
+<!-- Intro -->
+<section class="story-intro">
+  <div class="container">
+    <div class="story-intro-text fade-in">
+      <p>Some love stories begin with a glance across a crowded room. Others unfold slowly, like a favorite book you keep returning to. Ours is a story of laughter, adventure, and the quiet certainty that <em>this is the person I want by my side</em> — through every chapter, in every season.</p>
+      <div class="floral-divider" style="margin:2rem auto">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <circle cx="10" cy="10" r="3"/>
+          <circle cx="10" cy="3" r="2"/>
+          <circle cx="10" cy="17" r="2"/>
+          <circle cx="3" cy="10" r="2"/>
+          <circle cx="17" cy="10" r="2"/>
+          <circle cx="4.4" cy="4.4" r="1.5"/>
+          <circle cx="15.6" cy="4.4" r="1.5"/>
+          <circle cx="4.4" cy="15.6" r="1.5"/>
+          <circle cx="15.6" cy="15.6" r="1.5"/>
+        </svg>
+      </div>
+      <p>From Mexico to Minnesota and everywhere in between, Estefania and Adam found in each other a home — one that has nothing to do with geography and everything to do with belonging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Story Timeline -->
+<section class="story-timeline-section">
+  <div class="container">
+    <h2 class="section-title fade-in">Our Story</h2>
+    <p class="section-subtitle fade-in">The moments that brought us here</p>
+
+    <div class="story-timeline">
+
+      <!-- 1: How We Met — photo left, text right -->
+      <div class="story-item fade-in">
+        <div class="story-col-a">
+          <div class="story-photo">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="story-photo-label">Photo coming soon</span>
+          </div>
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <div class="story-text">
+            <div class="story-label">Chapter One</div>
+            <h2>How We Met</h2>
+            <p>Your story begins here — tell your guests how you two first crossed paths. Where were you? What was the first thing you noticed about each other? What made that moment unforgettable?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Our First Date — text left, photo right -->
+      <div class="story-item fade-in">
+        <div class="story-col-a">
+          <div class="story-text">
+            <div class="story-label">Chapter Two</div>
+            <h2>Our First Date</h2>
+            <p>Describe that first date and what made it so special. Where did you go? How did it feel? Was there a moment when you knew this person was different from anyone you'd met before?</p>
+          </div>
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <div class="story-photo">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="story-photo-label">Photo coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: The Proposal — photo left, text right -->
+      <div class="story-item fade-in">
+        <div class="story-col-a">
+          <div class="story-photo">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="story-photo-label">Photo coming soon</span>
+          </div>
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <div class="story-text">
+            <div class="story-label">Chapter Three</div>
+            <h2>The Proposal</h2>
+            <p>Share the story of how Adam proposed to Estefania. Paint the picture — the setting, the moment, the words. How did she react? What did it feel like to say yes?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: Planning Our Day — text left, photo right -->
+      <div class="story-item fade-in">
+        <div class="story-col-a">
+          <div class="story-text">
+            <div class="story-label">Chapter Four</div>
+            <h2>Planning Our Day</h2>
+            <p>A note about choosing Hacienda Galindo and what this destination means to you both. Why Mexico? Why this incredible hacienda? What does it mean to bring your two worlds together in this place?</p>
+          </div>
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <div class="story-photo">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="story-photo-label">Photo coming soon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Quote -->
+<section class="quote-section">
+  <div class="container">
+    <blockquote class="story-quote fade-in">
+      I have found the one whom my soul loves.
+    </blockquote>
+    <p class="quote-attribution fade-in">Song of Solomon 3:4</p>
+  </div>
+</section>
+
+<!-- Meet the Couple -->
+<section class="couple-section">
+  <div class="container">
+    <h2 class="section-title fade-in">Meet the Couple</h2>
+    <p class="section-subtitle fade-in">Two lives, one love story</p>
+
+    <div class="couple-grid">
+      <div class="person-card fade-in">
+        <div class="person-avatar">E</div>
+        <h3>Estefania</h3>
+        <p>Born and raised in Mexico, Estefania brings warmth, passion, and an infectious joy to every room she enters. She loves exploring new cultures, creating beautiful things, and the smell of freshly brewed coffee in the morning.</p>
+      </div>
+
+      <div class="person-card fade-in">
+        <div class="person-avatar">A</div>
+        <h3>Adam</h3>
+        <p>A Minnesota native with a wanderer's heart, Adam is at home in the outdoors as much as he is over a great meal with good friends. His calm, steady presence and quick wit make every day an adventure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
+  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="registry.html">Registry</a></li>
+    <li><a href="guestbook.html">Guestbook</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="rsvp.html">RSVP</a></li>
+  </ul>
+  <p class="footer-copy">Made with love &hearts;</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

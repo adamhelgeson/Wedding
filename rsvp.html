@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP · Estefania &amp; Adam</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .rsvp-section {
+      padding: 5rem 0 6rem;
+      background: var(--warm-white);
+    }
+
+    .rsvp-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ---- Intro block ---- */
+    .rsvp-intro {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .rsvp-intro p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .rsvp-deadline {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--rose);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 0.5rem 1.6rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ---- Form box ---- */
+    .rsvp-form-box {
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+      padding: 3rem 3rem 2.5rem;
+    }
+
+    @media (max-width: 520px) {
+      .rsvp-form-box { padding: 2rem 1.5rem 2rem; }
+    }
+
+    .form-heading {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      color: var(--rose);
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-subheading {
+      text-align: center;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+
+    /* Decorative gold divider below heading */
+    .form-gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.4rem 0 2rem;
+    }
+
+    .form-gold-divider::before,
+    .form-gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.45;
+    }
+
+    .form-gold-divider svg {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ---- Gold-bordered inputs ---- */
+    .rsvp-form-box .form-group input,
+    .rsvp-form-box .form-group select,
+    .rsvp-form-box .form-group textarea {
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      background: var(--warm-white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .rsvp-form-box .form-group input:focus,
+    .rsvp-form-box .form-group select:focus,
+    .rsvp-form-box .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      outline: none;
+    }
+
+    /* ---- Section divider inside form ---- */
+    .form-section-rule {
+      border: none;
+      border-top: 1px solid var(--blush);
+      margin: 1.8rem 0;
+    }
+
+    /* ---- Attending toggle buttons ---- */
+    .attend-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .attend-btn {
+      padding: 0.85rem 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      background: var(--warm-white);
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .attend-btn:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+    }
+
+    .attend-btn.selected-yes {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--warm-white);
+    }
+
+    .attend-btn.selected-no {
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--warm-white);
+    }
+
+    /* ---- Guest count dropdown ---- */
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '›';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      color: var(--gold);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+
+    .select-wrapper select {
+      padding-right: 2.5rem;
+    }
+
+    /* ---- Meal options ---- */
+    .meal-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+    }
+
+    .meal-option {
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 1rem 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--warm-white);
+      display: block;
+    }
+
+    .meal-option input[type="radio"] {
+      display: none;
+    }
+
+    .meal-option:has(input:checked) {
+      border-color: var(--rose);
+      background: var(--blush);
+    }
+
+    .meal-option:hover:not(:has(input:checked)) {
+      border-color: var(--gold);
+    }
+
+    .meal-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .meal-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    /* ---- Submit button ---- */
+    .rsvp-submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      margin-top: 0.5rem;
+      background: var(--rose);
+      color: var(--warm-white);
+      border: none;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .rsvp-submit-btn:hover:not(:disabled) {
+      background: var(--rose-dark);
+      transform: translateY(-1px);
+    }
+
+    .rsvp-submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    /* ---- Error message ---- */
+    .rsvp-error {
+      display: none;
+      background: #fff0f0;
+      border: 1px solid rgba(155, 74, 90, 0.3);
+      color: var(--rose);
+      padding: 0.85rem 1.2rem;
+      font-size: 0.88rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* ---- Success panel ---- */
+    #rsvp-success {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 2rem;
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+    }
+
+    .success-icon {
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    #rsvp-success h2 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      color: var(--rose);
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+    }
+
+    #rsvp-success p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1 class="fade-in">RSVP</h1>
+  <p class="fade-in">Please let us know if you'll be joining us</p>
+</div>
+
+<section class="rsvp-section">
+  <div class="container">
+    <div class="rsvp-wrapper">
+
+      <!-- Intro -->
+      <div class="rsvp-intro fade-in">
+        <p>We truly hope you can join us to celebrate our special day in the beautiful setting of Hacienda Galindo. Please fill out the form below — one response per party is fine.</p>
+        <span class="rsvp-deadline">Kindly reply by March 2027</span>
+      </div>
+
+      <!-- Success panel (hidden until submit) -->
+      <div id="rsvp-success" role="alert">
+        <div class="success-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M12 21C12 21 3 15 3 9a9 9 0 0 1 18 0c0 6-9 12-9 12z"/>
+            <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 id="success-heading">Thank you!</h2>
+        <p id="success-message">We can't wait to celebrate with you.</p>
+        <a href="faq.html" class="btn btn-outline">View Travel &amp; FAQ</a>
+      </div>
+
+      <!-- Dress code reminder -->
+      <div class="fade-in" style="
+        background: var(--ivory);
+        border: 1px solid var(--blush);
+        border-left: 4px solid var(--gold);
+        padding: 1rem 1.4rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      ">
+        <span style="font-size:1.5rem;line-height:1;flex-shrink:0" aria-hidden="true">🤵👗</span>
+        <div style="flex:1;min-width:0">
+          <strong style="font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.2rem">Dress Code</strong>
+          <span style="font-size:0.92rem;color:var(--rose);font-weight:700">Formal / Black Tie Optional</span>
+        </div>
+        <a href="schedule.html#dress-code" style="
+          font-size:0.75rem;
+          letter-spacing:0.1em;
+          color:var(--rose);
+          text-decoration:none;
+          white-space:nowrap;
+          border-bottom:1px solid rgba(155,74,90,0.3);
+          padding-bottom:1px;
+          flex-shrink:0;
+        ">See full details →</a>
+      </div>
+
+      <!-- RSVP Form -->
+      <form id="rsvp-form" class="rsvp-form-box fade-in" novalidate>
+
+        <h2 class="form-heading">Kindly Reply</h2>
+        <p class="form-subheading">Fall 2027 · Hacienda Galindo, Mexico</p>
+
+        <div class="form-gold-divider" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+            <circle cx="10" cy="10" r="3"/>
+            <circle cx="10" cy="3" r="2"/>
+            <circle cx="10" cy="17" r="2"/>
+            <circle cx="3" cy="10" r="2"/>
+            <circle cx="17" cy="10" r="2"/>
+            <circle cx="4.4" cy="4.4" r="1.5"/>
+            <circle cx="15.6" cy="4.4" r="1.5"/>
+            <circle cx="4.4" cy="15.6" r="1.5"/>
+            <circle cx="15.6" cy="15.6" r="1.5"/>
+          </svg>
+        </div>
+
+        <!-- Name -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="first-name" name="firstName" required autocomplete="given-name" placeholder="Jane" />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="last-name" name="lastName" required autocomplete="family-name" placeholder="Smith" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com" />
+        </div>
+
+        <hr class="form-section-rule" />
+
+        <!-- Attending -->
+        <div class="form-group">
+          <label>Will you be attending? <span aria-hidden="true">*</span></label>
+          <div class="attend-btns" role="group" aria-label="Attendance">
+            <button type="button" class="attend-btn" id="btn-yes" aria-pressed="false">Joyfully Accepts</button>
+            <button type="button" class="attend-btn" id="btn-no"  aria-pressed="false">Regretfully Declines</button>
+          </div>
+          <input type="hidden" id="attending-val" name="attending" value="" />
+        </div>
+
+        <!-- Conditional: shown only when attending = yes -->
+        <div id="yes-fields" style="display:none">
+
+          <!-- Guest count -->
+          <div class="form-group">
+            <label for="guest-count">Number of Guests</label>
+            <div class="select-wrapper">
+              <select id="guest-count" name="guests">
+                <option value="Just me">Just me</option>
+                <option value="1 guest">Me + 1 guest</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Guest name fields + guest meal — shown when bringing a guest -->
+          <div id="guest-fields" style="display:none">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guest-first-name">Guest First Name</label>
+                <input type="text" id="guest-first-name" name="guestFirstName" autocomplete="off" placeholder="Guest first name" />
+              </div>
+              <div class="form-group">
+                <label for="guest-last-name">Guest Last Name</label>
+                <input type="text" id="guest-last-name" name="guestLastName" autocomplete="off" placeholder="Guest last name" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Guest Meal Preference</label>
+              <div class="meal-options" style="grid-template-columns:repeat(2,1fr)">
+                <label class="meal-option">
+                  <input type="radio" name="guestMeal" value="Beef" />
+                  <div class="meal-icon">🥩</div>
+                  <div class="meal-label">Beef</div>
+                </label>
+                <label class="meal-option">
+                  <input type="radio" name="guestMeal" value="Chicken" />
+                  <div class="meal-icon">🍗</div>
+                  <div class="meal-label">Chicken</div>
+                </label>
+                <label class="meal-option">
+                  <input type="radio" name="guestMeal" value="Fish" />
+                  <div class="meal-icon">🐟</div>
+                  <div class="meal-label">Fish</div>
+                </label>
+                <label class="meal-option">
+                  <input type="radio" name="guestMeal" value="Vegetarian" />
+                  <div class="meal-icon">🥦</div>
+                  <div class="meal-label">Vegetarian</div>
+                </label>
+              </div>
+            </div>
+          </div><!-- end guest-fields -->
+
+          <!-- Your meal preference -->
+          <div class="form-group">
+            <label>Your Meal Preference</label>
+            <div class="meal-options" style="grid-template-columns:repeat(2,1fr)">
+              <label class="meal-option">
+                <input type="radio" name="meal" value="Beef" />
+                <div class="meal-icon">🥩</div>
+                <div class="meal-label">Beef</div>
+              </label>
+              <label class="meal-option">
+                <input type="radio" name="meal" value="Chicken" />
+                <div class="meal-icon">🍗</div>
+                <div class="meal-label">Chicken</div>
+              </label>
+              <label class="meal-option">
+                <input type="radio" name="meal" value="Fish" />
+                <div class="meal-icon">🐟</div>
+                <div class="meal-label">Fish</div>
+              </label>
+              <label class="meal-option">
+                <input type="radio" name="meal" value="Vegetarian" />
+                <div class="meal-icon">🥦</div>
+                <div class="meal-label">Vegetarian</div>
+              </label>
+            </div>
+          </div>
+
+        </div><!-- end yes-fields -->
+
+        <hr class="form-section-rule" />
+
+        <!-- Song request -->
+        <div class="form-group">
+          <label for="song-request">Song Request <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
+          <input type="text" id="song-request" name="songRequest" placeholder="What song will get you on the dance floor?" />
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+          <label for="message">Message to the Couple <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
+          <textarea id="message" name="message" placeholder="Share a wish, a memory, or a few words of love…"></textarea>
+        </div>
+
+        <button type="submit" class="rsvp-submit-btn" id="submit-btn">
+          Send RSVP
+        </button>
+
+        <div class="rsvp-error" id="rsvp-error" role="alert">
+          Something went wrong — please check your connection and try again.
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
+  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="registry.html">Registry</a></li>
+    <li><a href="guestbook.html">Guestbook</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="rsvp.html">RSVP</a></li>
+  </ul>
+  <p class="footer-copy">Made with love &hearts;</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxlKzMQ4ta_C-qeGhgX9_xF6M3OPLCMrUcq0HI_UzUlvN7wKy1YCc2BGgU5l8CRFC5o/exec';
+
+  /* --- Attending toggle --- */
+  let attendingValue = '';
+
+  function setAttending(val) {
+    attendingValue = val;
+    document.getElementById('attending-val').value = val;
+
+    const btnYes    = document.getElementById('btn-yes');
+    const btnNo     = document.getElementById('btn-no');
+    const yesFields = document.getElementById('yes-fields');
+
+    btnYes.className = 'attend-btn' + (val === 'yes' ? ' selected-yes' : '');
+    btnNo.className  = 'attend-btn' + (val === 'no'  ? ' selected-no'  : '');
+    btnYes.setAttribute('aria-pressed', val === 'yes');
+    btnNo.setAttribute('aria-pressed',  val === 'no');
+
+    yesFields.style.display = val === 'yes' ? 'block' : 'none';
+  }
+
+  document.getElementById('btn-yes').addEventListener('click', () => setAttending('yes'));
+  document.getElementById('btn-no').addEventListener('click',  () => setAttending('no'));
+
+  /* --- Guest fields show/hide based on guest count --- */
+  document.getElementById('guest-count').addEventListener('change', function () {
+    const hasGuest = this.value !== 'Just me';
+    document.getElementById('guest-fields').style.display = hasGuest ? 'block' : 'none';
+  });
+
+  /* --- Form submission --- */
+  document.getElementById('rsvp-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form      = this;
+    const submitBtn = document.getElementById('submit-btn');
+    const errorBox  = document.getElementById('rsvp-error');
+
+    // Basic validation
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName  = document.getElementById('last-name').value.trim();
+    const email     = document.getElementById('email').value.trim();
+
+    if (!firstName) {
+      document.getElementById('first-name').focus();
+      return;
+    }
+    if (!lastName) {
+      document.getElementById('last-name').focus();
+      return;
+    }
+    if (!email || !window.emailValidation.isValid(email)) {
+      window.emailValidation.showError(document.getElementById('email'));
+      return;
+    }
+    if (!attendingValue) {
+      document.getElementById('btn-yes').focus();
+      return;
+    }
+
+    // Loading state
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'Sending…';
+    errorBox.style.display = 'none';
+
+    // Collect data
+    const attending  = attendingValue === 'yes';
+    const guests     = attending ? document.getElementById('guest-count').value : '';
+    const hasGuest   = attending && guests !== 'Just me';
+    const meal       = form.querySelector('input[name="meal"]:checked');
+    const guestMeal  = form.querySelector('input[name="guestMeal"]:checked');
+
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      attending:      attending ? 'Joyfully Accepts' : 'Regretfully Declines',
+      guests,
+      guestFirstName: hasGuest ? document.getElementById('guest-first-name').value.trim() : '',
+      guestLastName:  hasGuest ? document.getElementById('guest-last-name').value.trim()  : '',
+      meal:           (attending && meal)      ? meal.value      : '',
+      guestMeal:      (hasGuest  && guestMeal) ? guestMeal.value : '',
+      song:           document.getElementById('song-request').value.trim(),
+      message:        document.getElementById('message').value.trim(),
+    };
+
+    try {
+      await fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',           // Google Apps Script requires no-cors
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      // no-cors always returns opaque response — treat reaching here as success
+      showSuccess(firstName, attending);
+
+    } catch (err) {
+      submitBtn.disabled    = false;
+      submitBtn.textContent = 'Send RSVP';
+      errorBox.style.display = 'block';
+    }
+  });
+
+  function showSuccess(firstName, attending) {
+    document.getElementById('rsvp-form').style.display  = 'none';
+    document.querySelector('.rsvp-intro').style.display = 'none';
+
+    const panel   = document.getElementById('rsvp-success');
+    const heading = document.getElementById('success-heading');
+    const message = document.getElementById('success-message');
+
+    if (attending) {
+      heading.textContent = 'Thank you, ' + firstName + '!';
+      message.textContent = 'We\'re so glad you\'ll be joining us. We can\'t wait to celebrate with you in Mexico. Check the FAQ for travel and accommodation details.';
+    } else {
+      heading.textContent = 'We\'ll miss you, ' + firstName + '.';
+      message.textContent = 'Thank you for letting us know. You\'ll be in our hearts on our special day, and we hope to celebrate with you soon.';
+    }
+
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>

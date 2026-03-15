@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Honeymoon Fund · Estefania &amp; Adam</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* =============================================
+       HONEYMOON FUND PAGE
+       ============================================= */
+
+    /* ---- Payment section ---- */
+    .fund-intro-section {
+      padding: 4rem 0 3.5rem;
+      background: var(--warm-white);
+    }
+
+    .fund-intro-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .fund-intro-inner p {
+      color: var(--text-light);
+      font-size: 0.97rem;
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+
+    .fund-intro-inner .fund-intro-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    /* Payment buttons */
+    .payment-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .pay-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.6rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+      border: 1px solid;
+    }
+
+    .pay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(155, 74, 90, 0.12);
+    }
+
+    .pay-btn-venmo {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--warm-white);
+    }
+
+    .pay-btn-venmo:hover {
+      background: var(--rose-dark);
+      color: var(--warm-white);
+    }
+
+    .pay-btn-paypal {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--warm-white);
+    }
+
+    .pay-btn-paypal:hover {
+      background: #a8883a;
+      color: var(--warm-white);
+    }
+
+    .pay-btn-paypal-alt {
+      background: transparent;
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .pay-btn-paypal-alt:hover {
+      background: var(--gold);
+      color: var(--warm-white);
+    }
+
+    .pay-btn svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    .fund-after-payment {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      font-style: italic;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ---- Experiences section ---- */
+    .experiences-section {
+      padding: 4.5rem 0;
+      background: var(--ivory);
+    }
+
+    .experiences-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .experiences-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Experience card */
+    .exp-card {
+      background: var(--warm-white);
+      border: 1px solid var(--blush);
+      padding: 1.6rem 1.8rem 0;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .exp-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+
+    .exp-card:hover:not(.open) {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(155, 74, 90, 0.09);
+    }
+
+    .exp-card:hover::after,
+    .exp-card.open::after {
+      transform: scaleX(1);
+    }
+
+    /* Open state */
+    .exp-card.open {
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+    }
+
+    /* Expandable area */
+    .exp-expandable {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .exp-card.open .exp-expandable {
+      max-height: 500px;
+    }
+
+    /* Photo inside expandable */
+    .exp-photo {
+      display: block;
+      width: calc(100% + 3.6rem);
+      margin: 0.8rem -1.8rem 0;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Dream sentence */
+    .exp-dream {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      padding: 1rem 0 0.5rem;
+    }
+
+    /* Toggle indicator */
+    .exp-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.6rem 0 0.7rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: none;
+      border: none;
+      border-top: 1px solid var(--blush);
+      width: 100%;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      margin-top: 1rem;
+      transition: color 0.2s;
+      pointer-events: none; /* card click handles toggle */
+    }
+
+    .exp-toggle .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+      font-style: normal;
+      line-height: 1;
+    }
+
+    .exp-card.open .exp-toggle .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .exp-card.open .exp-toggle {
+      border-top-color: rgba(201, 168, 76, 0.4);
+    }
+
+    .exp-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-emoji {
+      font-size: 1.6rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .exp-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--rose);
+      flex: 1;
+      line-height: 1.25;
+    }
+
+    .exp-goal-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .exp-desc {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+
+    /* Progress bar */
+    .exp-progress-wrap {
+      margin-top: 0.5rem;
+      padding-bottom: 0.8rem;
+    }
+
+    .progress-track {
+      height: 5px;
+      background: var(--blush);
+      border-radius: 0;
+      overflow: hidden;
+      margin-bottom: 0.45rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      width: 0%;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 0;
+    }
+
+    .progress-text {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      letter-spacing: 0.03em;
+    }
+
+    .progress-loading {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    /* Fully funded badge */
+    .funded-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--warm-white);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    /* Fetch error note */
+    .fetch-error-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    /* ---- Pledge form ---- */
+    .pledge-section {
+      padding: 5rem 0 5.5rem;
+      background: var(--warm-white);
+    }
+
+    .pledge-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .pledge-form-box {
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+      padding: 3rem 3rem 2.5rem;
+    }
+
+    @media (max-width: 520px) {
+      .pledge-form-box { padding: 2rem 1.5rem; }
+    }
+
+    .pledge-form-box .form-group input,
+    .pledge-form-box .form-group select,
+    .pledge-form-box .form-group textarea {
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      background: var(--warm-white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pledge-form-box .form-group input:focus,
+    .pledge-form-box .form-group select:focus,
+    .pledge-form-box .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      outline: none;
+    }
+
+    .pledge-heading {
+      font-size: clamp(1.6rem, 4vw, 2rem);
+      color: var(--rose);
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .pledge-subheading {
+      text-align: center;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+
+    .form-gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.4rem 0 2rem;
+    }
+
+    .form-gold-divider::before,
+    .form-gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    .form-gold-divider svg {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .form-section-rule {
+      border: none;
+      border-top: 1px solid var(--blush);
+      margin: 1.8rem 0;
+    }
+
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '›';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      color: var(--gold);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+
+    .select-wrapper select {
+      padding-right: 2.5rem;
+    }
+
+    /* Payment method radios */
+    .payment-radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+    }
+
+    .payment-radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      cursor: pointer;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 0.5rem 1rem;
+      transition: all 0.2s;
+      background: var(--warm-white);
+    }
+
+    .payment-radio-option input[type="radio"] {
+      accent-color: var(--rose);
+      flex-shrink: 0;
+    }
+
+    .payment-radio-option:has(input:checked) {
+      border-color: var(--rose);
+      background: var(--blush);
+    }
+
+    /* Submit */
+    .pledge-submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      margin-top: 0.5rem;
+      background: var(--rose);
+      color: var(--warm-white);
+      border: none;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .pledge-submit-btn:hover:not(:disabled) {
+      background: var(--rose-dark);
+      transform: translateY(-1px);
+    }
+
+    .pledge-submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    /* Success / error */
+    #pledge-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+    }
+
+    #pledge-success h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--rose);
+      margin-bottom: 0.8rem;
+    }
+
+    #pledge-success p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .pledge-error {
+      display: none;
+      background: #fff0f0;
+      border: 1px solid rgba(155, 74, 90, 0.3);
+      color: var(--rose);
+      padding: 0.85rem 1.2rem;
+      font-size: 0.88rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .pledge-small-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* ---- Payment completion panel ---- */
+    #pledge-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2.5rem;
+      background: var(--ivory);
+      border: 1px solid var(--blush);
+    }
+
+    #pledge-success h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--rose);
+      margin-bottom: 0.8rem;
+    }
+
+    .pledge-success-msg {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto 2rem;
+    }
+
+    .pledge-pay-btn-final {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--warm-white);
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+      margin-bottom: 1.2rem;
+    }
+
+    .pledge-pay-btn-final:hover {
+      background: #a8883a;
+      color: var(--warm-white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+    }
+
+    .pledge-pay-note {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-style: italic;
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* Amount input prefix */
+    .amount-input-wrap {
+      position: relative;
+    }
+
+    .amount-input-wrap::before {
+      content: '$';
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .amount-input-wrap input {
+      padding-left: 2rem !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======================== NAV ======================== -->
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="registry.html">Registry</a></li>
+      <li><a href="guestbook.html">Guestbook</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<div class="page-hero">
+  <h1 class="fade-in">Our Honeymoon Fund</h1>
+  <p class="fade-in">Help us make unforgettable memories in Japan 🇯🇵</p>
+</div>
+
+<!-- ======================== FUND INTRO ======================== -->
+<section class="fund-intro-section">
+  <div class="container">
+    <div class="fund-intro-inner fade-in">
+      <p class="fund-intro-lead">Instead of a traditional registry, we're saving up for the honeymoon of our dreams.</p>
+      <p>Your presence at our wedding is the greatest gift we could ask for. But if you'd like to contribute something extra, we would be so touched if you helped us build memories on our trip to Japan — from a quiet night in a ryokan to a bullet train across the country.</p>
+      <p>Browse the experiences below, then fill out the short form to tell us which one you'd like to fund and how much you're sending. We'll show you exactly where to complete your payment — with the amount pre-filled.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== EXPERIENCES ======================== -->
+<section class="experiences-section">
+  <div class="container">
+    <h2 class="section-title fade-in">Honeymoon Experiences</h2>
+    <p class="section-subtitle fade-in">Choose an adventure to fund — or surprise us!</p>
+
+    <div class="experiences-grid" id="experiences-grid">
+
+      <!-- Cards are rendered by JS with live progress data,
+           but we pre-render them here for no-JS / pre-load visibility -->
+
+      <div class="exp-card fade-in" data-exp="Night in a Traditional Ryokan Inn" data-goal="400">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🏯</span>
+          <span class="exp-name">Night in a Traditional Ryokan Inn</span>
+          <span class="exp-goal-badge">$400</span>
+        </div>
+        <p class="exp-desc">Sleep on a futon in a centuries-old inn, soak in a private hot spring, and wake to a Japanese breakfast served by candlelight.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://boutiquejapan.com/wp-content/uploads/2019/08/Asaba-Ryokan-Shuzenji-Onsen-Japan-1140x855.jpg.webp" alt="Traditional Japanese Ryokan Inn" loading="lazy" />
+          <p class="exp-dream">Picture us curled up in silk yukata robes, listening to rain on the garden while the scent of cedar drifts through paper walls — a night outside of time.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Shinkansen Bullet Train Rail Pass" data-goal="500">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🚄</span>
+          <span class="exp-name">Shinkansen Bullet Train Rail Pass</span>
+          <span class="exp-goal-badge">$500</span>
+        </div>
+        <p class="exp-desc">Race across Japan at 200 mph — from Tokyo to Kyoto, Osaka to Hiroshima — watching Mount Fuji blur past the window.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Series-N700S-J2.jpg/960px-Series-N700S-J2.jpg" alt="Shinkansen bullet train" loading="lazy" />
+          <p class="exp-dream">Imagine flying past snow-capped mountains and terraced rice fields, green tea in hand, the whole country unspooling outside the window.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Private Tea Ceremony in Kyoto" data-goal="150">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🍵</span>
+          <span class="exp-name">Private Tea Ceremony in Kyoto</span>
+          <span class="exp-goal-badge">$150</span>
+        </div>
+        <p class="exp-desc">A serene, private ceremony in a tatami-floored teahouse — the perfect ritual of slowness on a trip built for two.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://www.en-kyoto.yumeyakata.com/common/img/teaexperience/s_0K8A8677-p.webp" alt="Japanese tea ceremony" loading="lazy" />
+          <p class="exp-dream">We'll sit in stillness together, watching a master's hands fold silk and ladle steam — finding beauty in every deliberate, unhurried gesture.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Sushi Omakase Dinner in Tokyo" data-goal="400">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🍣</span>
+          <span class="exp-name">Sushi Omakase Dinner in Tokyo</span>
+          <span class="exp-goal-badge">$400</span>
+        </div>
+        <p class="exp-desc">An unforgettable chef's-choice feast at the counter of a Tokyo sushi master — the meal of a lifetime, together.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://i.redd.it/aumi02ggqfv91.jpg" alt="Sushi omakase" loading="lazy" />
+          <p class="exp-dream">Imagine watching a chef's hands place each piece before us like a gift — fish so fresh it barely needs seasoning, sake poured in silence.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Day Trip to Mount Fuji" data-goal="200">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🗻</span>
+          <span class="exp-name">Day Trip to Mount Fuji</span>
+          <span class="exp-goal-badge">$200</span>
+        </div>
+        <p class="exp-desc">Stand at the foot of Japan's most iconic peak together — a sunrise hike or lakeside view that neither of us will ever forget.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://www.wamazing.com/media/wp-content/uploads/sites/7/2023/06/fujisantrivia_pixta_77370238_L.jpg.webp" alt="Mount Fuji Japan" loading="lazy" />
+          <p class="exp-dream">We'll stand at the edge of the world together, watching the sun climb over the crater rim, all of Japan laid out below us in silence.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Arashiyama Bamboo Forest & Boat Ride" data-goal="100">
+        <div class="exp-card-header">
+          <span class="exp-emoji">🎋</span>
+          <span class="exp-name">Arashiyama Bamboo Forest &amp; Boat Ride</span>
+          <span class="exp-goal-badge">$100</span>
+        </div>
+        <p class="exp-desc">Wander through soaring green tunnels of bamboo, then drift together down the Oi River as the forest sways above.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://www.ninjafoodtours.com/wp-content/uploads/2025/04/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan-scaled-e1745725654288.jpg" alt="Arashiyama Bamboo Forest Kyoto" loading="lazy" />
+          <p class="exp-dream">We'll drift downriver in a wooden boat while a thousand bamboo stalks creak softly above us — quiet, impossibly green, and ours alone.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+<div class="exp-card fade-in" data-exp="Couples Spa Day at an Onsen Resort" data-goal="200">
+        <div class="exp-card-header">
+          <span class="exp-emoji">♨️</span>
+          <span class="exp-name">Couples Spa Day at an Onsen Resort</span>
+          <span class="exp-goal-badge">$200</span>
+        </div>
+        <p class="exp-desc">A full day of relaxation in natural volcanic hot springs — the ultimate way to unwind after weeks of adventure across Japan.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://bks-prd-5-global-wp-new-blog.storage.googleapis.com/wp-content/uploads/2023/04/13130628/products-please-senses-shot-mature-couple-enjoying-hot-stone-treatment-995x576-1.jpg" alt="Couples spa day at onsen resort" loading="lazy" />
+          <p class="exp-dream">Imagine sinking into steaming mineral water side by side as the mountains turn gold at sunset — every muscle finally letting go.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Flight Upgrade Fund" data-goal="1000">
+        <div class="exp-card-header">
+          <span class="exp-emoji">✈️</span>
+          <span class="exp-name">Flight Upgrade Fund</span>
+          <span class="exp-goal-badge">$1,000</span>
+        </div>
+        <p class="exp-desc">Help us start the honeymoon right — a little extra comfort on that long flight across the Pacific means the adventure begins the moment we board.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800" alt="Airplane window seat" loading="lazy" />
+          <p class="exp-dream">Flat-bed seats, champagne at 35,000 feet, and Japan waiting on the other side — the honeymoon that starts before we even land.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+      <div class="exp-card fade-in" data-exp="Surprise Us! General Fund" data-goal="500">
+        <div class="exp-card-header">
+          <span class="exp-emoji">💝</span>
+          <span class="exp-name">Surprise Us! General Fund</span>
+          <span class="exp-goal-badge">$500</span>
+        </div>
+        <p class="exp-desc">Trust us to find something wonderful. Every honeymoon has a spontaneous moment that becomes the best story — help us find ours.</p>
+        <div class="exp-expandable">
+          <img class="exp-photo" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800" alt="Japan street at night" loading="lazy" />
+          <p class="exp-dream">The hidden bar down a paper-lantern alley, the perfect meal stumbled upon by accident, the moment neither of us could have planned — help us find it.</p>
+        </div>
+        <div class="exp-progress-wrap">
+          <div class="progress-track"><div class="progress-fill" data-target="0"></div></div>
+          <span class="progress-text progress-loading">Loading…</span>
+        </div>
+        <div class="exp-toggle" aria-hidden="true"><span class="toggle-arrow">▾</span> Learn more</div>
+      </div>
+
+    </div>
+
+    <p class="fetch-error-note" id="fetch-error-note">Totals updating soon — progress will reflect verified contributions within 1–2 days.</p>
+  </div>
+</section>
+
+<!-- ======================== PLEDGE FORM ======================== -->
+<section class="pledge-section">
+  <div class="container">
+    <div class="pledge-wrapper">
+
+      <!-- Payment completion panel (shown after form submit) -->
+      <div id="pledge-success" role="alert">
+        <div style="font-size:2rem;margin-bottom:1rem">🇯🇵</div>
+        <h2 id="pledge-success-heading">Almost done!</h2>
+        <p class="pledge-success-msg" id="pledge-success-message">Your gift has been noted. Now complete your payment below:</p>
+        <a id="pledge-pay-link" href="#" target="_blank" rel="noopener noreferrer" class="pledge-pay-btn-final">
+          Complete Payment
+        </a>
+        <p class="pledge-pay-note" id="pledge-pay-note"></p>
+      </div>
+
+      <!-- Form -->
+      <form id="pledge-form" class="pledge-form-box fade-in" novalidate>
+
+        <h2 class="pledge-heading">Let Us Know You Sent a Gift</h2>
+        <p class="pledge-subheading">So we can thank you &amp; track your experience</p>
+
+        <div class="form-gold-divider" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+            <circle cx="10" cy="10" r="3"/>
+            <circle cx="10" cy="3" r="2"/>
+            <circle cx="10" cy="17" r="2"/>
+            <circle cx="3" cy="10" r="2"/>
+            <circle cx="17" cy="10" r="2"/>
+            <circle cx="4.4" cy="4.4" r="1.5"/>
+            <circle cx="15.6" cy="4.4" r="1.5"/>
+            <circle cx="4.4" cy="15.6" r="1.5"/>
+            <circle cx="15.6" cy="15.6" r="1.5"/>
+          </svg>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="p-first-name">First Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="p-first-name" name="firstName" required autocomplete="given-name" placeholder="Jane" />
+          </div>
+          <div class="form-group">
+            <label for="p-last-name">Last Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="p-last-name" name="lastName" required autocomplete="family-name" placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="p-email">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="p-email" name="email" required autocomplete="email" placeholder="jane@example.com" />
+        </div>
+
+        <hr class="form-section-rule" />
+
+        <div class="form-group">
+          <label for="p-experience">Which Experience? <span aria-hidden="true">*</span></label>
+          <div class="select-wrapper">
+            <select id="p-experience" name="experience" required>
+              <option value="" disabled selected>Select an experience…</option>
+              <option value="Night in a Traditional Ryokan Inn">🏯 Night in a Traditional Ryokan Inn</option>
+              <option value="Shinkansen Bullet Train Rail Pass">🚄 Shinkansen Bullet Train Rail Pass</option>
+              <option value="Private Tea Ceremony in Kyoto">🍵 Private Tea Ceremony in Kyoto</option>
+              <option value="Sushi Omakase Dinner in Tokyo">🍣 Sushi Omakase Dinner in Tokyo</option>
+              <option value="Day Trip to Mount Fuji">🗻 Day Trip to Mount Fuji</option>
+              <option value="Arashiyama Bamboo Forest & Boat Ride">🎋 Arashiyama Bamboo Forest &amp; Boat Ride</option>
+<option value="Couples Spa Day at an Onsen Resort">♨️ Couples Spa Day at an Onsen Resort</option>
+              <option value="Flight Upgrade Fund">✈️ Flight Upgrade Fund</option>
+              <option value="Surprise Us! General Fund">💝 Surprise Us! General Fund</option>
+              <option value="Multiple / General">Multiple / General</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="p-amount">Amount You're Sending <span aria-hidden="true">*</span></label>
+          <div class="amount-input-wrap">
+            <input type="number" id="p-amount" name="pledgeAmount" required min="1" placeholder="50" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Payment Method Used <span aria-hidden="true">*</span></label>
+          <div class="payment-radio-group" role="group">
+            <label class="payment-radio-option">
+              <input type="radio" name="paymentMethod" value="Venmo" required /> Venmo
+            </label>
+            <label class="payment-radio-option">
+              <input type="radio" name="paymentMethod" value="PayPal - Adam" /> PayPal — Adam
+            </label>
+            <label class="payment-radio-option">
+              <input type="radio" name="paymentMethod" value="PayPal - Estefania" /> PayPal — Estefania
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="p-message">A Sweet Message <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
+          <textarea id="p-message" name="message" placeholder="Write a note for the couple…"></textarea>
+        </div>
+
+        <button type="submit" class="pledge-submit-btn" id="pledge-submit-btn">
+          Record My Gift
+        </button>
+
+        <div class="pledge-error" id="pledge-error" role="alert">
+          Something went wrong — please check your connection and try again.
+        </div>
+
+      </form>
+
+      <p class="pledge-small-note">
+        Progress bars reflect verified contributions only and may take 1–2 days<br>to update after your payment is received.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="site-footer">
+  <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
+  <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="registry.html">Registry</a></li>
+    <li><a href="guestbook.html">Guestbook</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="rsvp.html">RSVP</a></li>
+  </ul>
+  <p class="footer-copy">Made with love &hearts;</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  /* =========================================================
+     HONEYMOON FUND — Live progress + pledge form
+     ========================================================= */
+
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxy9HG8dtZW4Ab7dX6cIS_tQikekTXbPyKYLa7B0doJlITHINxiD1iaPF7g2O2rKU5E/exec';
+
+  /* ---------------------------------------------------------
+     1. Fetch live progress totals from Google Sheets
+     --------------------------------------------------------- */
+  async function loadProgress() {
+    try {
+      const res  = await fetch(SHEETS_URL, { method: 'GET', mode: 'cors' });
+      const data = await res.json();
+      applyProgress(data);
+    } catch (err) {
+      // Fetch failed — zero out bars gracefully and show note
+      applyProgress({});
+      document.getElementById('fetch-error-note').style.display = 'block';
+    }
+  }
+
+  function applyProgress(data) {
+    document.querySelectorAll('.exp-card').forEach(card => {
+      const expName  = card.dataset.exp;
+      const goal     = parseFloat(card.dataset.goal);
+      const verified = parseFloat(data[expName]) || 0;
+      const pct      = Math.min((verified / goal) * 100, 100);
+
+      const fill     = card.querySelector('.progress-fill');
+      const label    = card.querySelector('.progress-text');
+      const wrap     = card.querySelector('.exp-progress-wrap');
+
+      if (pct >= 100) {
+        // Fully funded — replace progress bar with badge
+        wrap.innerHTML = '<span class="funded-badge">Fully Funded! 🎉</span>';
+      } else {
+        // Animate fill after a short stagger based on card position
+        const idx = Array.from(document.querySelectorAll('.exp-card')).indexOf(card);
+        fill.dataset.target = pct;
+        label.classList.remove('progress-loading');
+        label.textContent = '$' + verified.toLocaleString() + ' of $' + goal.toLocaleString() + ' funded';
+
+        // Small stagger per card so bars animate in sequence
+        setTimeout(() => { fill.style.width = pct + '%'; }, 100 + idx * 60);
+      }
+    });
+  }
+
+  // Kick off fetch on page load
+  loadProgress();
+
+  /* ---------------------------------------------------------
+     Experience card expand / collapse (one open at a time)
+     --------------------------------------------------------- */
+  document.querySelectorAll('.exp-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const isOpen = card.classList.contains('open');
+      document.querySelectorAll('.exp-card').forEach(c => c.classList.remove('open'));
+      if (!isOpen) card.classList.add('open');
+    });
+  });
+
+  /* ---------------------------------------------------------
+     2. Pledge form submission
+     --------------------------------------------------------- */
+  document.getElementById('pledge-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form      = this;
+    const submitBtn = document.getElementById('pledge-submit-btn');
+    const errorBox  = document.getElementById('pledge-error');
+
+    // Validation
+    const firstName     = document.getElementById('p-first-name').value.trim();
+    const lastName      = document.getElementById('p-last-name').value.trim();
+    const email         = document.getElementById('p-email').value.trim();
+    const experience    = document.getElementById('p-experience').value;
+    const pledgeAmount  = document.getElementById('p-amount').value.trim();
+    const paymentMethod = form.querySelector('input[name="paymentMethod"]:checked');
+
+    if (!firstName) { document.getElementById('p-first-name').focus(); return; }
+    if (!lastName)  { document.getElementById('p-last-name').focus();  return; }
+    if (!email || !window.emailValidation.isValid(email)) { window.emailValidation.showError(document.getElementById('p-email')); return; }
+    if (!experience)   { document.getElementById('p-experience').focus(); return; }
+    if (!pledgeAmount || parseFloat(pledgeAmount) < 1) { document.getElementById('p-amount').focus(); return; }
+    if (!paymentMethod) return;
+
+    // Loading
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'Sending…';
+    errorBox.style.display = 'none';
+
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      experience,
+      pledgeAmount: parseFloat(pledgeAmount),
+      paymentMethod: paymentMethod.value,
+      message: document.getElementById('p-message').value.trim(),
+    };
+
+    try {
+      await fetch(SHEETS_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+
+      // no-cors → opaque response; reaching here means request was sent
+      showPledgeSuccess(firstName, parseFloat(pledgeAmount), experience, paymentMethod.value);
+
+    } catch (err) {
+      submitBtn.disabled    = false;
+      submitBtn.textContent = 'Record My Gift';
+      errorBox.style.display = 'block';
+    }
+  });
+
+  function showPledgeSuccess(firstName, amount, experience, method) {
+    document.getElementById('pledge-form').style.display = 'none';
+
+    const panel   = document.getElementById('pledge-success');
+    const heading = document.getElementById('pledge-success-heading');
+    const message = document.getElementById('pledge-success-message');
+    const payLink = document.getElementById('pledge-pay-link');
+    const payNote = document.getElementById('pledge-pay-note');
+
+    // Personalized heading + message
+    heading.textContent = 'Almost done, ' + firstName + '!';
+    message.textContent = 'Your gift of $' + amount.toLocaleString() + ' toward "' + experience + '" has been noted. Now complete your payment below:';
+
+    // Build payment URL with pre-filled amount
+    const encodedExp = encodeURIComponent('Honeymoon Fund - ' + experience);
+    let href, btnLabel, noteText;
+
+    if (method === 'Venmo') {
+      href      = 'https://venmo.com/Adam-Burt-6?txn=pay&amount=' + amount + '&note=' + encodedExp;
+      btnLabel  = 'Complete Payment on Venmo';
+      noteText  = 'This link opens Venmo with the amount pre-filled. After paying, you\'re all set — we\'ll verify and update your experience progress within 1–2 days. Arigato! 🇯🇵';
+    } else if (method === 'PayPal - Adam') {
+      href      = 'https://paypal.me/adamburt07/' + amount;
+      btnLabel  = 'Complete Payment on PayPal';
+      noteText  = 'This link opens PayPal with the amount pre-filled. After paying, you\'re all set — we\'ll verify and update your experience progress within 1–2 days. Arigato! 🇯🇵';
+    } else {
+      href      = 'https://paypal.me/EstefaniaGarduno13/' + amount;
+      btnLabel  = 'Complete Payment on PayPal';
+      noteText  = 'This link opens PayPal with the amount pre-filled. After paying, you\'re all set — we\'ll verify and update your experience progress within 1–2 days. Arigato! 🇯🇵';
+    }
+
+    payLink.href        = href;
+    payLink.textContent = btnLabel;
+    payNote.textContent = noteText;
+
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>
