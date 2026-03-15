@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="monogram_transparent.png">
   <title>Gallery · Estefania &amp; Adam</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -67,7 +68,7 @@
     .masonry-item .photo-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(201, 168, 76, 0.32);
+      background: rgba(163, 132, 79, 0.32);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,30 +209,36 @@
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <a href="index.html" class="nav-logo"><img src="monogram.svg" alt="Estefania &amp; Adam" height="45" style="display:block"></a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="guestbook.html">Guestbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+      <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+      <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+      <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li class="lang-toggle-item" style="display:flex;align-items:center">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+      </li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="page-hero">
-  <h1 class="fade-in">Our Story in Photos</h1>
-  <p class="fade-in">Estefania &amp; Adam &mdash; Engagement Day, Stillwater to Minneapolis Minnesota</p>
+  <h1 class="fade-in" data-i18n="gallery_hero_title">Our Story in Photos</h1>
+  <p class="fade-in" data-i18n="gallery_hero_subtitle">Estefania &amp; Adam &mdash; Engagement Day, Stillwater to Minneapolis Minnesota</p>
 </div>
 
 <div class="gallery-intro fade-in">
-  <p>From the golden light on the bridge to the quiet moments in between &mdash; here is where our forever began.</p>
+  <p data-i18n="gallery_intro">From the golden light on the bridge to the quiet moments in between &mdash; here is where our forever began.</p>
 </div>
 
 <section style="padding: 0 0 2rem;">
@@ -322,11 +329,12 @@
 
     <!-- Full album CTA -->
     <div class="full-album-section fade-in">
-      <p>Want to see all 114 photos from our engagement day?</p>
+      <p data-i18n="gallery_full_text">Want to see all 114 photos from our engagement day?</p>
       <a href="https://photos.app.goo.gl/wgUp9zzkAhZKgVbE7"
          target="_blank"
          rel="noopener noreferrer"
-         class="btn-gold">View Our Full Album</a>
+         class="btn-gold"
+         data-i18n="gallery_full_btn">View Our Full Album</a>
     </div>
 
   </div>
@@ -343,6 +351,7 @@
 </div>
 
 <footer class="site-footer">
+  <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
   <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
   <ul class="footer-links">
@@ -355,9 +364,10 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="rsvp.html">RSVP</a></li>
   </ul>
-  <p class="footer-copy">Made with love &hearts;</p>
+  <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 <script>
   /* ── Masonry fade-in on scroll ── */

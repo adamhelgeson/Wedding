@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="monogram_transparent.png">
   <title>Guestbook · Estefania &amp; Adam</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -185,26 +186,32 @@
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <a href="index.html" class="nav-logo"><img src="monogram.svg" alt="Estefania &amp; Adam" height="45" style="display:block"></a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="guestbook.html">Guestbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+      <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+      <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+      <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li class="lang-toggle-item" style="display:flex;align-items:center">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+      </li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="page-hero">
-  <h1 class="fade-in">Sign Our Guestbook</h1>
-  <p class="fade-in">Leave us a message, a wish, or a piece of advice for the road ahead</p>
+  <h1 class="fade-in" data-i18n="gb_hero_title">Sign Our Guestbook</h1>
+  <p class="fade-in" data-i18n="gb_hero_subtitle">Leave us a message, a wish, or a piece of advice for the road ahead</p>
 </div>
 
 <!-- ── Form ── -->
@@ -214,42 +221,43 @@
 
       <!-- Form view -->
       <div id="gb-form-view">
-        <h2>Write a Message</h2>
-        <p class="gb-form-subtitle">Your words mean the world to us.</p>
+        <h2 data-i18n="gb_form_title">Write a Message</h2>
+        <p class="gb-form-subtitle" data-i18n="gb_form_subtitle">Your words mean the world to us.</p>
 
         <form id="guestbook-form" novalidate>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="gb-first-name">First Name <span aria-hidden="true">*</span></label>
+              <label for="gb-first-name" data-i18n="gb_label_first">First Name <span aria-hidden="true">*</span></label>
               <input type="text" id="gb-first-name" name="firstName" required
-                     autocomplete="given-name" placeholder="Jane" />
+                     autocomplete="given-name" placeholder="Jane" data-i18n-placeholder="gb_placeholder_first" />
             </div>
             <div class="form-group">
-              <label for="gb-last-name">Last Name <span aria-hidden="true">*</span></label>
+              <label for="gb-last-name" data-i18n="gb_label_last">Last Name <span aria-hidden="true">*</span></label>
               <input type="text" id="gb-last-name" name="lastName" required
-                     autocomplete="family-name" placeholder="Smith" />
+                     autocomplete="family-name" placeholder="Smith" data-i18n-placeholder="gb_placeholder_last" />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="gb-email">Email Address <span aria-hidden="true">*</span></label>
+            <label for="gb-email" data-i18n="gb_label_email">Email Address <span aria-hidden="true">*</span></label>
             <input type="email" id="gb-email" name="email" required
-                   autocomplete="email" placeholder="jane@example.com" />
+                   autocomplete="email" placeholder="jane@example.com" data-i18n-placeholder="gb_placeholder_email" />
           </div>
 
           <div class="form-group">
-            <label for="gb-message">Your Message <span aria-hidden="true">*</span></label>
+            <label for="gb-message" data-i18n="gb_label_message">Your Message <span aria-hidden="true">*</span></label>
             <textarea id="gb-message" name="message" required maxlength="500"
                       placeholder="Write your heartfelt message here…"
+                      data-i18n-placeholder="gb_placeholder_message"
                       style="min-height:150px"></textarea>
-            <div class="char-counter" id="char-counter">0 / 500 characters</div>
+            <div class="char-counter" id="char-counter" data-i18n="gb_char_counter">0 / 500 characters</div>
           </div>
 
           <div id="gb-error" style="display:none;color:#2D5016;font-size:0.85rem;margin-bottom:1rem;text-align:center"></div>
 
           <button type="submit" class="btn btn-primary" id="gb-submit-btn"
-                  style="width:100%;padding:0.9rem">
+                  style="width:100%;padding:0.9rem" data-i18n="gb_submit_btn">
             Leave a Message ✦
           </button>
 
@@ -275,15 +283,16 @@
 <!-- ── Messages ── -->
 <section class="gb-messages-section">
   <div class="container">
-    <h2 class="gb-messages-title fade-in">Messages from Our Loved Ones</h2>
+    <h2 class="gb-messages-title fade-in" data-i18n="gb_messages_title">Messages from Our Loved Ones</h2>
 
     <div class="gb-messages-list" id="gb-messages-list">
-      <div class="gb-loading" id="gb-loading" aria-live="polite">Loading messages…</div>
+      <div class="gb-loading" id="gb-loading" aria-live="polite" data-i18n="gb_loading">Loading messages…</div>
     </div>
   </div>
 </section>
 
 <footer class="site-footer">
+  <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
   <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
   <ul class="footer-links">
@@ -296,9 +305,10 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="rsvp.html">RSVP</a></li>
   </ul>
-  <p class="footer-copy">Made with love &hearts;</p>
+  <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 <script>
   const GUESTBOOK_URL = 'https://script.google.com/macros/s/AKfycbzgRhSCmNVM4k6rXQGQ0_ylHAZGa6KC41HSV0B0SBUuxLT0Qam_bexYk8FO1FIcYaDH/exec';

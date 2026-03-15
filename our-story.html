@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="monogram_transparent.png">
   <title>Our Story · Estefania &amp; Adam</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -109,6 +110,16 @@
       letter-spacing: 0.05em;
     }
 
+    /* Real photos */
+    .story-img {
+      display: block;
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(30, 45, 20, 0.13);
+    }
+
     /* Text content */
     .story-text {
       padding: 0 2rem;
@@ -134,6 +145,19 @@
       color: var(--text-light);
       line-height: 1.85;
       font-style: italic;
+      margin-bottom: 0.9rem;
+    }
+
+    .story-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-text a.map-link {
+      color: inherit;
+    }
+
+    .story-text a.map-link:hover {
+      color: var(--gold);
     }
 
     /* Alternating: odd items = photo left, text right */
@@ -149,6 +173,34 @@
     /* text alignment mirrors the layout */
     .story-item:nth-child(odd)  .story-text { text-align: left; }
     .story-item:nth-child(even) .story-text { text-align: right; }
+
+    /* Long-form item override (proposal) */
+    .story-item--long {
+      align-items: start;
+    }
+    .story-item--long .story-dot-col {
+      padding-top: 0.6rem;
+    }
+    .story-item--long .story-text {
+      text-align: left !important;
+    }
+    .story-item--long .story-photo {
+      aspect-ratio: unset;
+      min-height: 420px;
+    }
+
+    /* Pull quote inside story text */
+    .story-pull-quote {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-style: italic !important;
+      font-size: 1.2rem !important;
+      color: var(--rose) !important;
+      text-align: center !important;
+      padding: 0.6rem 1.5rem !important;
+      margin: 1rem 0 !important;
+      border-left: none !important;
+      line-height: 1.7 !important;
+    }
 
     /* Mobile: single column */
     @media (max-width: 700px) {
@@ -196,6 +248,10 @@
       .story-item:nth-child(odd)  .story-photo,
       .story-item:nth-child(even) .story-photo {
         margin-left: 1rem;
+      }
+
+      .story-item--long .story-photo {
+        min-height: 220px;
       }
     }
 
@@ -285,6 +341,12 @@
       font-size: 0.9rem;
       color: var(--text-light);
       line-height: 1.8;
+      margin-bottom: 0.8rem;
+      text-align: left;
+    }
+
+    .person-card p:last-child {
+      margin-bottom: 0;
     }
   </style>
 </head>
@@ -292,33 +354,39 @@
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <a href="index.html" class="nav-logo"><img src="monogram.svg" alt="Estefania &amp; Adam" height="45" style="display:block"></a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="guestbook.html">Guestbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+      <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+      <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+      <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li class="lang-toggle-item" style="display:flex;align-items:center">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+      </li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="page-hero">
-  <h1 class="fade-in">Our Story</h1>
-  <p class="fade-in">How it all began</p>
+  <h1 class="fade-in" data-i18n="story_hero_title">Our Story</h1>
+  <p class="fade-in" data-i18n="story_hero_subtitle">How it all began</p>
 </div>
 
 <!-- Intro -->
 <section class="story-intro">
   <div class="container">
     <div class="story-intro-text fade-in">
-      <p>Some love stories begin with a glance across a crowded room. Others unfold slowly, like a favorite book you keep returning to. Ours is a story of laughter, adventure, and the quiet certainty that <em>this is the person I want by my side</em> — through every chapter, in every season.</p>
+      <p>Some love stories begin with a glance across a crowded room. Others start with a system error, a surprise meeting, and a woman with glasses who made a man forget everything he was supposed to be doing. Ours is a story of laughter, distance, adventure, and the quiet certainty that <em>this is the person I want by my side</em> — through every chapter, in every season.</p>
       <div class="floral-divider" style="margin:2rem auto">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <circle cx="10" cy="10" r="3"/>
@@ -332,7 +400,7 @@
           <circle cx="15.6" cy="15.6" r="1.5"/>
         </svg>
       </div>
-      <p>From Mexico to Minnesota and everywhere in between, Estefania and Adam found in each other a home — one that has nothing to do with geography and everything to do with belonging.</p>
+      <p>From Querétaro to Minneapolis and everywhere in between, Estefania and Adam found in each other a home — one that has nothing to do with geography and everything to do with belonging.</p>
     </div>
   </div>
 </section>
@@ -345,82 +413,103 @@
 
     <div class="story-timeline">
 
-      <!-- 1: How We Met — photo left, text right -->
+      <!-- Chapter One: How We Met — photo left, text right -->
       <div class="story-item fade-in">
         <div class="story-col-a">
-          <div class="story-photo">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span class="story-photo-label">Photo coming soon</span>
-          </div>
+          <img src="photos/How we met - Microsoft-Teams-Logo.png" alt="How We Met" class="story-img">
         </div>
         <div class="story-dot-col">
           <div class="story-dot"></div>
         </div>
         <div class="story-col-b">
           <div class="story-text">
-            <div class="story-label">Chapter One</div>
+            <div class="story-label">July 1st, 2024</div>
             <h2>How We Met</h2>
-            <p>Your story begins here — tell your guests how you two first crossed paths. Where were you? What was the first thing you noticed about each other? What made that moment unforgettable?</p>
+            <p>It started with a system error and a meeting neither of them expected. On July 1st, 2024, Fannie's team discovered an issue in the Orders system Adam managed — which meant Fannie, her bosses, and a very nervous Adam were suddenly in a room together. Adam was focused on the problem. Mostly. Mostly he was distracted by the curious, glasses-wearing woman across the table who had just upended his afternoon and made him forget — briefly — everything about the issue he was supposed to be fixing.</p>
           </div>
         </div>
       </div>
 
-      <!-- 2: Our First Date — text left, photo right -->
+      <!-- Chapter Two: Our Unofficial First Date — text right, photo left -->
       <div class="story-item fade-in">
         <div class="story-col-a">
           <div class="story-text">
-            <div class="story-label">Chapter Two</div>
+            <div class="story-label">August 1st, 2024</div>
+            <h2>Our Unofficial First Date</h2>
+            <p>A follow-up meeting was called to produce a summary document explaining the issue to leadership. On August 1st, 2024, Fannie and Adam sat down with the best of intentions and produced approximately zero words of it. What they did produce was three hours of conversation about their lives, their interests, and whatever that fluttery thing was happening between them. The document could wait. This, apparently, could not.</p>
+          </div>
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <img src="photos/Unofficial first date - Microsoft-Word-Logo.png" alt="Our Unofficial First Date" class="story-img">
+        </div>
+      </div>
+
+      <!-- Chapter Three: Our First Date — photo left, text right -->
+      <div class="story-item fade-in">
+        <div class="story-col-a">
+          <img src="photos/First Date - Cervecería Hércules.jpg" alt="Our First Date" class="story-img">
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <div class="story-text">
+            <div class="story-label">September 21st, 2024</div>
             <h2>Our First Date</h2>
-            <p>Describe that first date and what made it so special. Where did you go? How did it feel? Was there a moment when you knew this person was different from anyone you'd met before?</p>
-          </div>
-        </div>
-        <div class="story-dot-col">
-          <div class="story-dot"></div>
-        </div>
-        <div class="story-col-b">
-          <div class="story-photo">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span class="story-photo-label">Photo coming soon</span>
+            <p>After weeks of messaging daily, they finally scheduled the real thing — September 21st, 2024. Adam flew to Querétaro and they went to <a href="https://maps.app.goo.gl/eegKD321FdE9XDaz5" class="map-link" target="_blank" rel="noopener noreferrer">Cervecería Hércules</a>, a beloved local brewery in the heart of Santiago de Querétaro. Pizza, a couple of beers to calm the nerves, and two people whose faces hurt by the end of the night from smiling and laughing too much. There may have been some kissing too.</p>
           </div>
         </div>
       </div>
 
-      <!-- 3: The Proposal — photo left, text right -->
-      <div class="story-item fade-in">
+      <!-- Chapter Four: The Proposal — long form, text left, photo right -->
+      <div class="story-item story-item--long fade-in">
         <div class="story-col-a">
-          <div class="story-photo">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span class="story-photo-label">Photo coming soon</span>
-          </div>
-        </div>
-        <div class="story-dot-col">
-          <div class="story-dot"></div>
-        </div>
-        <div class="story-col-b">
           <div class="story-text">
-            <div class="story-label">Chapter Three</div>
+            <div class="story-label">September 13th, 2025</div>
             <h2>The Proposal</h2>
-            <p>Share the story of how Adam proposed to Estefania. Paint the picture — the setting, the moment, the words. How did she react? What did it feel like to say yes?</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4: Planning Our Day — text left, photo right -->
-      <div class="story-item fade-in">
-        <div class="story-col-a">
-          <div class="story-text">
-            <div class="story-label">Chapter Four</div>
-            <h2>Planning Our Day</h2>
-            <p>A note about choosing Hacienda Galindo and what this destination means to you both. Why Mexico? Why this incredible hacienda? What does it mean to bring your two worlds together in this place?</p>
+            <p>Every trip Adam and Fannie take together is meticulously planned — they like to make the most of their time. So when Fannie came to visit for their one-year anniversary and one Saturday was left open, Adam volunteered to plan it. Fannie did not suspect a thing. Or so we're told.</p>
+            <p>The day was perfect — breakfast in bed, a drive to Stillwater, a beautiful lunch along the river, ice cream, and a lift bridge crossing. On the drive home, Fannie told Adam it was a perfect day and that he should always plan their time together. He responded, jokingly, that he still had time to mess it up. Neither of them knew how right he was.</p>
+            <p>Back home they put together a charcuterie board and headed to Father Hennepin Bluff Park. While packing it up, Adam quietly reached into his backpack for the ring box. Then he excused himself to check the ring was set and ready.</p>
+            <p>He opened the box.</p>
+            <p>It was empty.</p>
+            <p>The ring was at home. Very much at home. After what felt like a small eternity in a park bathroom, Adam walked out, sat down next to Fannie, and said he needed a moment. He decided to go through with it anyway.</p>
+            <p>They walked across the Stone Arch Bridge as the city glowed around them. Fannie looked beautiful in her white dress. He finally found the right moment and said:</p>
+            <p class="story-pull-quote">"Fannie, will you marry me? I know there isn't a ring in the box — but I have it back home."</p>
+            <p>She looked at him and said:</p>
+            <p class="story-pull-quote">"Yeah. Yeah, I don't care."</p>
+            <p class="story-pull-quote">"So that's a yes?"</p>
+            <p class="story-pull-quote">"YES."</p>
+            <p>They hugged, laughed, and took pictures on the bridge. An older gentleman passing asked what she said. Adam told him she said yes. They raced home, grabbed the actual ring, and slipped it on her finger — just in time for Tom, Adam's roommate, to witness the moment on his way in. He was the first person to know they were engaged, and the first to hear the story of the empty box.</p>
+            <p>Then they raced back downtown to celebrate over dinner at <a href="https://maps.app.goo.gl/VNMytKsi1SR7gtft6" class="map-link" target="_blank" rel="noopener noreferrer">Mara Restaurant and Bar</a>.</p>
           </div>
         </div>
         <div class="story-dot-col">
           <div class="story-dot"></div>
         </div>
         <div class="story-col-b">
+          <img src="photos/Proposal - Bridge with no ring.jpg" alt="The Proposal" class="story-img">
+        </div>
+      </div>
+
+      <!-- Chapter Five: Planning Our Day — photo left, text right -->
+      <div class="story-item fade-in">
+        <div class="story-col-a">
           <div class="story-photo">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             <span class="story-photo-label">Photo coming soon</span>
+          </div>
+        </div>
+        <div class="story-dot-col">
+          <div class="story-dot"></div>
+        </div>
+        <div class="story-col-b">
+          <div class="story-text">
+            <div class="story-label">Coming Fall 2027</div>
+            <h2>Planning Our Day</h2>
+            <p>[A note about choosing Hacienda Galindo and what this destination means to Estefania and Adam. Why Mexico? Why this incredible hacienda? What does it mean to bring their two worlds together in this place? — Coming soon]</p>
           </div>
         </div>
       </div>
@@ -449,19 +538,24 @@
       <div class="person-card fade-in">
         <div class="person-avatar">E</div>
         <h3>Estefania</h3>
-        <p>Born and raised in Mexico, Estefania brings warmth, passion, and an infectious joy to every room she enters. She loves exploring new cultures, creating beautiful things, and the smell of freshly brewed coffee in the morning.</p>
+        <p>Querétaro born and raised, Estefania brings warmth, creativity, and an infectious joy to every room she enters. She's deeply faithful, fiercely driven, and somehow also the person who will hand-draw you an illustrated recap of your entire year together as an anniversary gift. She painted Adam his favorite national park — Zion.</p>
+        <p>When she's not creating something beautiful — paintings, pottery, photo books, or elaborate anniversary illustrations — she's taking excellent care of Bruno, her dog, who has strong opinions about most things. She sees her family every Sunday at church and lunch, a tradition that says everything about who she is.</p>
+        <p>She is also, for the record, a devoted Harry Potter fan. The sorting hat knows what it did.</p>
       </div>
 
       <div class="person-card fade-in">
         <div class="person-avatar">A</div>
         <h3>Adam</h3>
-        <p>A Minnesota native with a wanderer's heart, Adam is at home in the outdoors as much as he is over a great meal with good friends. His calm, steady presence and quick wit make every day an adventure.</p>
+        <p>A Minnesota native with a wanderer's heart, Adam is equally at home paddling a canoe through the Boundary Waters, hiking a mountain out west, or cheering on the Minnesota Vikings from his season tickets — which he has held, through thick and thin, since 2013. Mostly thin.</p>
+        <p>He maintains a media server, works out at his CrossFit gym with a crew of close friends, and takes Nova on daily walks — which she demands and deserves.</p>
+        <p>Adam works hard at what he does, shows up for the people he loves, and has a remarkable ability to stay calm under pressure. Except, apparently, when packing engagement rings.</p>
       </div>
     </div>
   </div>
 </section>
 
 <footer class="site-footer">
+  <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
   <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
   <ul class="footer-links">
@@ -474,9 +568,10 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="rsvp.html">RSVP</a></li>
   </ul>
-  <p class="footer-copy">Made with love &hearts;</p>
+  <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

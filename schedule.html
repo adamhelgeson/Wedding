@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="monogram_transparent.png">
   <title>Schedule · Estefania &amp; Adam</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -108,7 +109,7 @@
       font-size: 0.75em;
       letter-spacing: 0.1em;
       display: block;
-      color: rgba(201,168,76,0.7);
+      color: rgba(163,132,79,0.7);
     }
 
     .sched-info h3 {
@@ -480,32 +481,38 @@
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <a href="index.html" class="nav-logo"><img src="monogram.svg" alt="Estefania &amp; Adam" height="45" style="display:block"></a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="guestbook.html">Guestbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+      <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+      <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+      <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li class="lang-toggle-item" style="display:flex;align-items:center">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+      </li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="page-hero">
-  <h1 class="fade-in">Schedule of Events</h1>
-  <p class="fade-in">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">Hacienda Galindo, Mexico</a></p>
+  <h1 class="fade-in" data-i18n="sched_hero_title">Schedule of Events</h1>
+  <p class="fade-in" data-i18n="sched_hero_subtitle">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">Hacienda Galindo, Mexico</a></p>
 </div>
 
 <!-- Notice + venue -->
 <section style="padding:3.5rem 0 0;background:var(--warm-white)">
   <div class="container">
-    <div class="tbd-banner fade-in">
+    <div class="tbd-banner fade-in" data-i18n="sched_tbd_banner">
       Full schedule details coming soon — times are approximate and subject to change.
     </div>
     <div class="venue-info-box fade-in">
@@ -524,7 +531,7 @@
       <!-- Morning -->
       <div class="schedule-group fade-in">
         <div class="schedule-group-header">
-          <h2>Morning</h2>
+          <h2 data-i18n="sched_morning">Morning</h2>
         </div>
 
         <!-- Parallel: Bridal + Groom prep same time -->
@@ -535,12 +542,12 @@
           </div>
           <div class="sched-parallel-events">
             <div class="sched-parallel-item">
-              <h3>Bridal Preparation</h3>
-              <p class="sched-location">[Location TBD]</p>
+              <h3 data-i18n="sched_bridal_prep">Bridal Preparation</h3>
+              <p class="sched-location" data-i18n="sched_location_tbd">[Location TBD]</p>
             </div>
             <div class="sched-parallel-item">
-              <h3>Groom's Preparation</h3>
-              <p class="sched-location">[Location TBD]</p>
+              <h3 data-i18n="sched_groom_prep">Groom's Preparation</h3>
+              <p class="sched-location" data-i18n="sched_location_tbd">[Location TBD]</p>
             </div>
           </div>
         </div>
@@ -549,7 +556,7 @@
       <!-- Ceremony -->
       <div class="schedule-group fade-in">
         <div class="schedule-group-header">
-          <h2>Ceremony</h2>
+          <h2 data-i18n="sched_ceremony">Ceremony</h2>
         </div>
 
         <div class="sched-event fade-in">
@@ -558,7 +565,7 @@
             <span class="sched-ampm">PM</span>
           </div>
           <div class="sched-info">
-            <h3>Wedding Ceremony</h3>
+            <h3 data-i18n="sched_ceremony_event">Wedding Ceremony</h3>
             <p class="sched-location">Gardens at Hacienda Galindo</p>
             <p class="sched-note">Please be seated by 3:45 PM. Seating is open.</p>
           </div>
@@ -570,7 +577,7 @@
             <span class="sched-ampm">PM</span>
           </div>
           <div class="sched-info">
-            <h3>Cocktail Hour</h3>
+            <h3 data-i18n="sched_cocktail">Cocktail Hour</h3>
             <p class="sched-location">Hacienda Courtyard</p>
             <p class="sched-note">Champagne, cocktails, and light refreshments while the newlyweds take photographs.</p>
           </div>
@@ -580,7 +587,7 @@
       <!-- Evening -->
       <div class="schedule-group fade-in">
         <div class="schedule-group-header">
-          <h2>Evening</h2>
+          <h2 data-i18n="sched_evening">Evening</h2>
         </div>
 
         <div class="sched-event fade-in">
@@ -589,7 +596,7 @@
             <span class="sched-ampm">PM</span>
           </div>
           <div class="sched-info">
-            <h3>Reception Dinner</h3>
+            <h3 data-i18n="sched_reception">Reception Dinner</h3>
             <p class="sched-location">Grand Ballroom, Hacienda Galindo</p>
             <p class="sched-note">Dinner seating is assigned — find your place card at the entrance.</p>
           </div>
@@ -601,7 +608,7 @@
             <span class="sched-ampm">PM</span>
           </div>
           <div class="sched-info">
-            <h3>First Dance &amp; Toasts</h3>
+            <h3 data-i18n="sched_first_dance">First Dance &amp; Toasts</h3>
             <p class="sched-location">Grand Ballroom</p>
             <p class="sched-note">Welcome the newlyweds, followed by the first dance and toasts from the wedding party.</p>
           </div>
@@ -613,7 +620,7 @@
             <span class="sched-ampm">PM</span>
           </div>
           <div class="sched-info">
-            <h3>Dancing &amp; Celebration</h3>
+            <h3 data-i18n="sched_dancing">Dancing &amp; Celebration</h3>
             <p class="sched-location">Grand Ballroom</p>
             <p class="sched-note">Live music, dancing, and the wedding cake. The real party begins!</p>
           </div>
@@ -625,7 +632,7 @@
             <span class="sched-ampm">PM</span>
           </div>
           <div class="sched-info">
-            <h3>Farewell Send-Off</h3>
+            <h3 data-i18n="sched_farewell">Farewell Send-Off</h3>
             <p class="sched-location">Hacienda Entrance</p>
             <p class="sched-note">One last dance, then we bid you goodnight. Safe travels to all!</p>
           </div>
@@ -650,62 +657,62 @@
 
       <!-- Header -->
       <div class="dress-code-header fade-in">
-        <span class="dress-code-label">Formal / Black Tie Optional</span>
-        <h2>Dress Code</h2>
-        <p class="dress-code-tagline">"Think elegant garden party meets Mexican hacienda — dressed to dance under the stars."</p>
-        <p class="dress-code-intro">We kindly ask all guests to adhere to a formal dress code to help us create a magical and cohesive atmosphere.</p>
+        <span class="dress-code-label" data-i18n="sched_dress_label">Formal / Black Tie Optional</span>
+        <h2 data-i18n="sched_dress_title">Dress Code</h2>
+        <p class="dress-code-tagline" data-i18n="sched_dress_tagline">"Think elegant garden party meets Mexican hacienda — dressed to dance under the stars."</p>
+        <p class="dress-code-intro" data-i18n="sched_dress_intro">We kindly ask all guests to adhere to a formal dress code to help us create a magical and cohesive atmosphere.</p>
       </div>
 
       <!-- Ladies & Gentlemen cards -->
       <div class="dress-code-cards">
 
         <div class="dc-card fade-in">
-          <div class="dc-card-title"><span aria-hidden="true">👗</span> Ladies</div>
-          <span class="dc-do-label">Do wear</span>
-          <p class="dc-do-text">Floor-length gowns in any color — florals, jewel tones, and earth tones are especially welcome.</p>
-          <span class="dc-avoid-label">Please avoid</span>
+          <div class="dc-card-title"><span aria-hidden="true">👗</span> <span data-i18n="sched_ladies_title">Ladies</span></div>
+          <span class="dc-do-label" data-i18n="sched_ladies_do_label">Do wear</span>
+          <p class="dc-do-text" data-i18n="sched_ladies_do">Floor-length gowns in any color — florals, jewel tones, and earth tones are especially welcome.</p>
+          <span class="dc-avoid-label" data-i18n="sched_ladies_avoid_label">Please avoid</span>
           <ul class="dc-avoid-list">
-            <li>Cocktail dresses or anything above the knee</li>
-            <li>Red in any shade</li>
-            <li>Sequins or heavy embellishment</li>
-            <li>White, ivory, or cream</li>
+            <li data-i18n="sched_ladies_avoid1">Cocktail dresses or anything above the knee</li>
+            <li data-i18n="sched_ladies_avoid2">Red in any shade</li>
+            <li data-i18n="sched_ladies_avoid3">Sequins or heavy embellishment</li>
+            <li data-i18n="sched_ladies_avoid4">White, ivory, or cream</li>
           </ul>
-          <p class="dc-note">👠 The ceremony is partially outdoors — block heels or flats are highly recommended for the garden.</p>
+          <p class="dc-note" data-i18n="sched_ladies_note">👠 The ceremony is partially outdoors — block heels or flats are highly recommended for the garden.</p>
         </div>
 
         <div class="dc-card fade-in">
-          <div class="dc-card-title"><span aria-hidden="true">🤵</span> Gentlemen</div>
-          <span class="dc-do-label">Do wear</span>
-          <p class="dc-do-text">Dark suits or tuxedos.</p>
-          <span class="dc-avoid-label">Please avoid</span>
+          <div class="dc-card-title"><span aria-hidden="true">🤵</span> <span data-i18n="sched_gents_title">Gentlemen</span></div>
+          <span class="dc-do-label" data-i18n="sched_gents_do_label">Do wear</span>
+          <p class="dc-do-text" data-i18n="sched_gents_do">Dark suits or tuxedos.</p>
+          <span class="dc-avoid-label" data-i18n="sched_gents_avoid_label">Please avoid</span>
           <ul class="dc-avoid-list">
-            <li>Casual suits or sport coats</li>
-            <li>Jeans, sneakers, or open-toed shoes</li>
+            <li data-i18n="sched_gents_avoid1">Casual suits or sport coats</li>
+            <li data-i18n="sched_gents_avoid2">Jeans, sneakers, or open-toed shoes</li>
           </ul>
-          <p class="dc-note">🌿 Light linen suits are acceptable given the warm Mexican climate.</p>
+          <p class="dc-note" data-i18n="sched_gents_note">🌿 Light linen suits are acceptable given the warm Mexican climate.</p>
         </div>
 
       </div>
 
       <!-- Inspiration photos -->
       <div class="dress-inspiration fade-in">
-        <h3>Need Inspiration?</h3>
-        <p class="dress-inspiration-subtitle">Estefania has put together some style guides to help you find the perfect look.</p>
+        <h3 data-i18n="sched_inspo_title">Need Inspiration?</h3>
+        <p class="dress-inspiration-subtitle" data-i18n="sched_inspo_subtitle">Estefania has put together some style guides to help you find the perfect look.</p>
 
         <div class="inspo-cards">
 
           <div class="inspo-card">
             <!-- FANNIE: Replace this src with your ladies inspiration photo -->
             <div class="inspo-img-placeholder" aria-hidden="true">👗</div>
-            <h4>Ladies Inspiration</h4>
-            <p>Style guide coming soon — check back closer to the date!</p>
+            <h4 data-i18n="sched_inspo_ladies_title">Ladies Inspiration</h4>
+            <p data-i18n="sched_inspo_ladies_text">Style guide coming soon — check back closer to the date!</p>
           </div>
 
           <div class="inspo-card">
             <!-- FANNIE: Replace this src with your gentlemen inspiration photo -->
             <div class="inspo-img-placeholder" aria-hidden="true">🤵</div>
-            <h4>Gentlemen Inspiration</h4>
-            <p>Style guide coming soon — check back closer to the date!</p>
+            <h4 data-i18n="sched_inspo_gents_title">Gentlemen Inspiration</h4>
+            <p data-i18n="sched_inspo_gents_text">Style guide coming soon — check back closer to the date!</p>
           </div>
 
         </div>
@@ -720,19 +727,20 @@
   <div class="container">
     <div class="weather-card" id="weather-card">
       <div class="weather-card-header">
-        <span class="weather-section-label">Live Conditions</span>
-        <h2 class="weather-card-title">Weather at Hacienda Galindo</h2>
-        <p class="weather-card-subtitle">Current conditions at your venue &mdash; updated live</p>
+        <span class="weather-section-label" data-i18n="sched_weather_label">Live Conditions</span>
+        <h2 class="weather-card-title" data-i18n="sched_weather_title">Weather at Hacienda Galindo</h2>
+        <p class="weather-card-subtitle" data-i18n="sched_weather_subtitle">Current conditions at your venue &mdash; updated live</p>
       </div>
 
       <div id="weather-body">
-        <div class="weather-loading" id="weather-loading" aria-live="polite">Loading weather&hellip;</div>
+        <div class="weather-loading" id="weather-loading" aria-live="polite" data-i18n="sched_weather_loading">Loading weather&hellip;</div>
       </div>
     </div>
   </div>
 </section>
 
 <footer class="site-footer">
+  <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
   <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
   <ul class="footer-links">
@@ -745,9 +753,10 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="rsvp.html">RSVP</a></li>
   </ul>
-  <p class="footer-copy">Made with love &hearts;</p>
+  <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 <script>
   /* ── Weather widget ── */

@@ -15,8 +15,8 @@
 :root {
   --blush:     #E8EDE8;
   --ivory:     #FAF7F2;
-  --gold:      #C9A84C;
-  --gold-light:#e4c97a;
+  --gold:      #a3844f;
+  --gold-light:#c4a270;
   --rose:      #2D5016;
   --rose-dark: #1A3009;
   --warm-white:#FDFBF8;
@@ -110,14 +110,11 @@ main {
 }
 
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
-  font-weight: 500;
-  color: var(--rose);
-  letter-spacing: 0.03em;
-  white-space: nowrap;
   flex-shrink: 0;
   margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
 
 .nav-logo span {
@@ -143,7 +140,7 @@ main {
 
 /* Tighten nav further before hamburger kicks in */
 @media (max-width: 1060px) {
-  .nav-logo { font-size: 1.1rem; margin-right: 1.2rem; }
+  .nav-logo { margin-right: 1.2rem; }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.7rem; letter-spacing: 0.08em; }
 }
@@ -163,6 +160,42 @@ main {
 
 .nav-rsvp-btn:hover {
   background: var(--rose-dark) !important;
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--blush);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  padding: 0.3rem 0.7rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+.lang-btn.lang-active {
+  background: var(--gold);
+  color: var(--ivory);
+}
+.lang-btn:hover:not(.lang-active) {
+  color: var(--rose);
+}
+@media (max-width: 860px) {
+  .lang-toggle {
+    margin: 0.5rem auto;
+    width: fit-content;
+  }
 }
 
 /* Hamburger */

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="monogram_transparent.png">
   <title>Honeymoon Fund · Estefania &amp; Adam</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -166,7 +167,7 @@
     /* Open state */
     .exp-card.open {
       border-color: var(--gold);
-      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+      box-shadow: 0 4px 20px rgba(163, 132, 79, 0.15);
     }
 
     /* Expandable area */
@@ -232,7 +233,7 @@
     }
 
     .exp-card.open .exp-toggle {
-      border-top-color: rgba(201, 168, 76, 0.4);
+      border-top-color: rgba(163, 132, 79, 0.4);
     }
 
     .exp-card-header {
@@ -353,7 +354,7 @@
     .pledge-form-box .form-group input,
     .pledge-form-box .form-group select,
     .pledge-form-box .form-group textarea {
-      border: 1px solid rgba(201, 168, 76, 0.45);
+      border: 1px solid rgba(163, 132, 79, 0.45);
       background: var(--warm-white);
       transition: border-color 0.2s, box-shadow 0.2s;
     }
@@ -362,7 +363,7 @@
     .pledge-form-box .form-group select:focus,
     .pledge-form-box .form-group textarea:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      box-shadow: 0 0 0 3px rgba(163, 132, 79, 0.1);
       outline: none;
     }
 
@@ -442,7 +443,7 @@
       font-size: 0.88rem;
       color: var(--text);
       cursor: pointer;
-      border: 1px solid rgba(201, 168, 76, 0.4);
+      border: 1px solid rgba(163, 132, 79, 0.4);
       padding: 0.5rem 1rem;
       transition: all 0.2s;
       background: var(--warm-white);
@@ -573,7 +574,7 @@
       background: #a8883a;
       color: var(--warm-white);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+      box-shadow: 0 8px 24px rgba(163, 132, 79, 0.3);
     }
 
     .pledge-pay-note {
@@ -612,27 +613,33 @@
 <!-- ======================== NAV ======================== -->
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <a href="index.html" class="nav-logo"><img src="monogram.svg" alt="Estefania &amp; Adam" height="45" style="display:block"></a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="guestbook.html">Guestbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+      <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+      <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+      <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li class="lang-toggle-item" style="display:flex;align-items:center">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+      </li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- ======================== HERO ======================== -->
 <div class="page-hero">
-  <h1 class="fade-in">Our Honeymoon Fund</h1>
-  <p class="fade-in">Help us make unforgettable memories in Japan 🇯🇵</p>
+  <h1 class="fade-in" data-i18n="registry_hero_title">Our Honeymoon Fund</h1>
+  <p class="fade-in" data-i18n="registry_hero_subtitle">Help us make unforgettable memories in Japan 🇯🇵</p>
 </div>
 
 <!-- ======================== FUND INTRO ======================== -->
@@ -649,8 +656,8 @@
 <!-- ======================== EXPERIENCES ======================== -->
 <section class="experiences-section">
   <div class="container">
-    <h2 class="section-title fade-in">Honeymoon Experiences</h2>
-    <p class="section-subtitle fade-in">Choose an adventure to fund — or surprise us!</p>
+    <h2 class="section-title fade-in" data-i18n="registry_exp_title">Honeymoon Experiences</h2>
+    <p class="section-subtitle fade-in" data-i18n="registry_exp_subtitle">Choose an adventure to fund — or surprise us!</p>
 
     <div class="experiences-grid" id="experiences-grid">
 
@@ -862,8 +869,8 @@
       <!-- Form -->
       <form id="pledge-form" class="pledge-form-box fade-in" novalidate>
 
-        <h2 class="pledge-heading">Let Us Know You Sent a Gift</h2>
-        <p class="pledge-subheading">So we can thank you &amp; track your experience</p>
+        <h2 class="pledge-heading" data-i18n="registry_form_title">Let Us Know You Sent a Gift</h2>
+        <p class="pledge-subheading" data-i18n="registry_form_subtitle">So we can thank you &amp; track your experience</p>
 
         <div class="form-gold-divider" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
@@ -881,24 +888,24 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="p-first-name">First Name <span aria-hidden="true">*</span></label>
-            <input type="text" id="p-first-name" name="firstName" required autocomplete="given-name" placeholder="Jane" />
+            <label for="p-first-name" data-i18n="registry_label_first">First Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="p-first-name" name="firstName" required autocomplete="given-name" placeholder="Jane" data-i18n-placeholder="registry_placeholder_first" />
           </div>
           <div class="form-group">
-            <label for="p-last-name">Last Name <span aria-hidden="true">*</span></label>
-            <input type="text" id="p-last-name" name="lastName" required autocomplete="family-name" placeholder="Smith" />
+            <label for="p-last-name" data-i18n="registry_label_last">Last Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="p-last-name" name="lastName" required autocomplete="family-name" placeholder="Smith" data-i18n-placeholder="registry_placeholder_last" />
           </div>
         </div>
 
         <div class="form-group">
-          <label for="p-email">Email Address <span aria-hidden="true">*</span></label>
-          <input type="email" id="p-email" name="email" required autocomplete="email" placeholder="jane@example.com" />
+          <label for="p-email" data-i18n="registry_label_email">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="p-email" name="email" required autocomplete="email" placeholder="jane@example.com" data-i18n-placeholder="registry_placeholder_email" />
         </div>
 
         <hr class="form-section-rule" />
 
         <div class="form-group">
-          <label for="p-experience">Which Experience? <span aria-hidden="true">*</span></label>
+          <label for="p-experience" data-i18n="registry_label_experience">Which Experience? <span aria-hidden="true">*</span></label>
           <div class="select-wrapper">
             <select id="p-experience" name="experience" required>
               <option value="" disabled selected>Select an experience…</option>
@@ -918,14 +925,14 @@
         </div>
 
         <div class="form-group">
-          <label for="p-amount">Amount You're Sending <span aria-hidden="true">*</span></label>
+          <label for="p-amount" data-i18n="registry_label_amount">Amount You're Sending <span aria-hidden="true">*</span></label>
           <div class="amount-input-wrap">
             <input type="number" id="p-amount" name="pledgeAmount" required min="1" placeholder="50" />
           </div>
         </div>
 
         <div class="form-group">
-          <label>Payment Method Used <span aria-hidden="true">*</span></label>
+          <label data-i18n="registry_label_payment">Payment Method Used <span aria-hidden="true">*</span></label>
           <div class="payment-radio-group" role="group">
             <label class="payment-radio-option">
               <input type="radio" name="paymentMethod" value="Venmo" required /> Venmo
@@ -940,11 +947,11 @@
         </div>
 
         <div class="form-group">
-          <label for="p-message">A Sweet Message <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
-          <textarea id="p-message" name="message" placeholder="Write a note for the couple…"></textarea>
+          <label for="p-message" data-i18n="registry_label_note">A Sweet Message <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
+          <textarea id="p-message" name="message" placeholder="Write a note for the couple…" data-i18n-placeholder="registry_placeholder_note"></textarea>
         </div>
 
-        <button type="submit" class="pledge-submit-btn" id="pledge-submit-btn">
+        <button type="submit" class="pledge-submit-btn" id="pledge-submit-btn" data-i18n="registry_submit_btn">
           Record My Gift
         </button>
 
@@ -964,6 +971,7 @@
 
 <!-- ======================== FOOTER ======================== -->
 <footer class="site-footer">
+  <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
   <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
   <ul class="footer-links">
@@ -976,9 +984,10 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="rsvp.html">RSVP</a></li>
   </ul>
-  <p class="footer-copy">Made with love &hearts;</p>
+  <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 <script>
   /* =========================================================

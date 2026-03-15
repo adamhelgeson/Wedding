@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="monogram_transparent.png">
   <title>RSVP · Estefania &amp; Adam</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -35,7 +36,7 @@
       font-size: 1rem;
       font-style: italic;
       color: var(--rose);
-      border: 1px solid rgba(201, 168, 76, 0.4);
+      border: 1px solid rgba(163, 132, 79, 0.4);
       padding: 0.5rem 1.6rem;
       letter-spacing: 0.06em;
     }
@@ -92,7 +93,7 @@
     .rsvp-form-box .form-group input,
     .rsvp-form-box .form-group select,
     .rsvp-form-box .form-group textarea {
-      border: 1px solid rgba(201, 168, 76, 0.45);
+      border: 1px solid rgba(163, 132, 79, 0.45);
       background: var(--warm-white);
       transition: border-color 0.2s, box-shadow 0.2s;
     }
@@ -101,7 +102,7 @@
     .rsvp-form-box .form-group select:focus,
     .rsvp-form-box .form-group textarea:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      box-shadow: 0 0 0 3px rgba(163, 132, 79, 0.1);
       outline: none;
     }
 
@@ -127,7 +128,7 @@
       font-weight: 400;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      border: 1px solid rgba(201, 168, 76, 0.4);
+      border: 1px solid rgba(163, 132, 79, 0.4);
       background: var(--warm-white);
       color: var(--text-light);
       cursor: pointer;
@@ -180,7 +181,7 @@
     }
 
     .meal-option {
-      border: 1px solid rgba(201, 168, 76, 0.4);
+      border: 1px solid rgba(163, 132, 79, 0.4);
       padding: 1rem 0.8rem;
       text-align: center;
       cursor: pointer;
@@ -285,26 +286,32 @@
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Estefania <span>&amp;</span> Adam</a>
+    <a href="index.html" class="nav-logo"><img src="monogram.svg" alt="Estefania &amp; Adam" height="45" style="display:block"></a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="guestbook.html">Guestbook</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="rsvp.html" class="nav-rsvp-btn">RSVP</a></li>
+      <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+      <li><a href="our-story.html" data-i18n="nav_story">Our Story</a></li>
+      <li><a href="schedule.html" data-i18n="nav_schedule">Schedule</a></li>
+      <li><a href="gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
+      <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
+      <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li class="lang-toggle-item" style="display:flex;align-items:center">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button class="lang-btn lang-active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+      </li>
+      <li><a href="rsvp.html" class="nav-rsvp-btn" data-i18n="nav_rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="page-hero">
-  <h1 class="fade-in">RSVP</h1>
-  <p class="fade-in">Please let us know if you'll be joining us</p>
+  <h1 class="fade-in" data-i18n="rsvp_hero_title">RSVP</h1>
+  <p class="fade-in" data-i18n="rsvp_hero_subtitle">Please let us know if you'll be joining us</p>
 </div>
 
 <section class="rsvp-section">
@@ -313,8 +320,8 @@
 
       <!-- Intro -->
       <div class="rsvp-intro fade-in">
-        <p>We truly hope you can join us to celebrate our special day in the beautiful setting of Hacienda Galindo. Please fill out the form below — one response per party is fine.</p>
-        <span class="rsvp-deadline">Kindly reply by March 2027</span>
+        <p data-i18n="rsvp_intro">We truly hope you can join us to celebrate our special day in the beautiful setting of Hacienda Galindo. Please fill out the form below — one response per party is fine.</p>
+        <span class="rsvp-deadline" data-i18n="rsvp_deadline">Kindly reply by March 2027</span>
       </div>
 
       <!-- Success panel (hidden until submit) -->
@@ -341,8 +348,8 @@
         <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.5rem">
           <span style="font-size:1.5rem;line-height:1;flex-shrink:0" aria-hidden="true">🤵👗</span>
           <div style="flex:1;min-width:0">
-            <strong style="font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.2rem">Dress Code</strong>
-            <span style="font-size:0.92rem;color:var(--rose);font-weight:700">Formal / Black Tie Optional</span>
+            <strong style="font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.2rem" data-i18n="rsvp_dress_label">Dress Code</strong>
+            <span style="font-size:0.92rem;color:var(--rose);font-weight:700" data-i18n="rsvp_dress_code">Formal / Black Tie Optional</span>
           </div>
           <a href="schedule.html#dress-code" style="
             font-size:0.75rem;
@@ -353,15 +360,15 @@
             border-bottom:1px solid rgba(45,80,22,0.3);
             padding-bottom:1px;
             flex-shrink:0;
-          ">See full details →</a>
+          " data-i18n="rsvp_dress_link">See full details →</a>
         </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--text-light);margin:0;padding-left:2.5rem">"Think elegant garden party meets Mexican hacienda — dressed to dance under the stars."</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--text-light);margin:0;padding-left:2.5rem" data-i18n="rsvp_dress_tagline">"Think elegant garden party meets Mexican hacienda — dressed to dance under the stars."</p>
       </div>
 
       <!-- RSVP Form -->
       <form id="rsvp-form" class="rsvp-form-box fade-in" novalidate>
 
-        <h2 class="form-heading">Kindly Reply</h2>
+        <h2 class="form-heading" data-i18n="rsvp_form_title">Kindly Reply</h2>
         <p class="form-subheading">Fall 2027 · Hacienda Galindo, Mexico</p>
 
         <div class="form-gold-divider" aria-hidden="true">
@@ -381,18 +388,18 @@
         <!-- Name -->
         <div class="form-row">
           <div class="form-group">
-            <label for="first-name">First Name <span aria-hidden="true">*</span></label>
+            <label for="first-name" data-i18n="rsvp_label_first">First Name <span aria-hidden="true">*</span></label>
             <input type="text" id="first-name" name="firstName" required autocomplete="given-name" placeholder="Jane" />
           </div>
           <div class="form-group">
-            <label for="last-name">Last Name <span aria-hidden="true">*</span></label>
+            <label for="last-name" data-i18n="rsvp_label_last">Last Name <span aria-hidden="true">*</span></label>
             <input type="text" id="last-name" name="lastName" required autocomplete="family-name" placeholder="Smith" />
           </div>
         </div>
 
         <!-- Email -->
         <div class="form-group">
-          <label for="email">Email Address <span aria-hidden="true">*</span></label>
+          <label for="email" data-i18n="rsvp_label_email">Email Address <span aria-hidden="true">*</span></label>
           <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com" />
         </div>
 
@@ -400,10 +407,10 @@
 
         <!-- Attending -->
         <div class="form-group">
-          <label>Will you be attending? <span aria-hidden="true">*</span></label>
+          <label data-i18n="rsvp_label_attending">Will you be attending? <span aria-hidden="true">*</span></label>
           <div class="attend-btns" role="group" aria-label="Attendance">
-            <button type="button" class="attend-btn" id="btn-yes" aria-pressed="false">Joyfully Accepts</button>
-            <button type="button" class="attend-btn" id="btn-no"  aria-pressed="false">Regretfully Declines</button>
+            <button type="button" class="attend-btn" id="btn-yes" aria-pressed="false" data-i18n="rsvp_btn_yes">Joyfully Accepts</button>
+            <button type="button" class="attend-btn" id="btn-no"  aria-pressed="false" data-i18n="rsvp_btn_no">Regretfully Declines</button>
           </div>
           <input type="hidden" id="attending-val" name="attending" value="" />
         </div>
@@ -413,7 +420,7 @@
 
           <!-- Guest count -->
           <div class="form-group">
-            <label for="guest-count">Number of Guests</label>
+            <label for="guest-count" data-i18n="rsvp_label_guests">Number of Guests</label>
             <div class="select-wrapper">
               <select id="guest-count" name="guests">
                 <option value="Just me">Just me</option>
@@ -426,17 +433,17 @@
           <div id="guest-fields" style="display:none">
             <div class="form-row">
               <div class="form-group">
-                <label for="guest-first-name">Guest First Name</label>
+                <label for="guest-first-name" data-i18n="rsvp_label_guest_first">Guest First Name</label>
                 <input type="text" id="guest-first-name" name="guestFirstName" autocomplete="off" placeholder="Guest first name" />
               </div>
               <div class="form-group">
-                <label for="guest-last-name">Guest Last Name</label>
+                <label for="guest-last-name" data-i18n="rsvp_label_guest_last">Guest Last Name</label>
                 <input type="text" id="guest-last-name" name="guestLastName" autocomplete="off" placeholder="Guest last name" />
               </div>
             </div>
 
             <div class="form-group">
-              <label>Guest Meal Preference</label>
+              <label data-i18n="rsvp_label_guest_meal">Guest Meal Preference</label>
               <div class="meal-options" style="grid-template-columns:repeat(2,1fr)">
                 <label class="meal-option">
                   <input type="radio" name="guestMeal" value="Beef" />
@@ -464,7 +471,7 @@
 
           <!-- Your meal preference -->
           <div class="form-group">
-            <label>Your Meal Preference</label>
+            <label data-i18n="rsvp_label_meal">Your Meal Preference</label>
             <div class="meal-options" style="grid-template-columns:repeat(2,1fr)">
               <label class="meal-option">
                 <input type="radio" name="meal" value="Beef" />
@@ -495,17 +502,17 @@
 
         <!-- Song request -->
         <div class="form-group">
-          <label for="song-request">Song Request <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
-          <input type="text" id="song-request" name="songRequest" placeholder="What song will get you on the dance floor?" />
+          <label for="song-request" data-i18n="rsvp_label_song">Song Request <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
+          <input type="text" id="song-request" name="songRequest" placeholder="What song will get you on the dance floor?" data-i18n-placeholder="rsvp_placeholder_song" />
         </div>
 
         <!-- Message -->
         <div class="form-group">
-          <label for="message">Message to the Couple <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
-          <textarea id="message" name="message" placeholder="Share a wish, a memory, or a few words of love…"></textarea>
+          <label for="message" data-i18n="rsvp_label_message">Message to the Couple <span style="color:var(--text-light);font-size:0.85em">(optional)</span></label>
+          <textarea id="message" name="message" placeholder="Share a wish, a memory, or a few words of love…" data-i18n-placeholder="rsvp_placeholder_message"></textarea>
         </div>
 
-        <button type="submit" class="rsvp-submit-btn" id="submit-btn">
+        <button type="submit" class="rsvp-submit-btn" id="submit-btn" data-i18n="rsvp_submit_btn">
           Send RSVP
         </button>
 
@@ -520,6 +527,7 @@
 </section>
 
 <footer class="site-footer">
+  <img src="monogram.svg" alt="" aria-hidden="true" height="38" style="opacity:0.85;display:block;margin:0 auto 0.8rem">
   <p class="footer-names">Estefania <span class="footer-ampersand">&amp;</span> Adam</p>
   <p class="footer-date">Fall 2027 · <a href="https://maps.google.com/?q=Fiesta+Americana+Hacienda+Galindo+Resort+%26+Spa,+Carretera+Amealco+Km+5.5,+San+Juan+del+Rio,+Queretaro,+Mexico" class="map-link" target="_blank" rel="noopener noreferrer">San Juan del Río, Mexico</a></p>
   <ul class="footer-links">
@@ -532,9 +540,10 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="rsvp.html">RSVP</a></li>
   </ul>
-  <p class="footer-copy">Made with love &hearts;</p>
+  <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
 </footer>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 <script>
   const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxlKzMQ4ta_C-qeGhgX9_xF6M3OPLCMrUcq0HI_UzUlvN7wKy1YCc2BGgU5l8CRFC5o/exec';

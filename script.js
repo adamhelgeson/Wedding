@@ -78,27 +78,38 @@
     el.innerHTML = `
       <div class="countdown-unit">
         <span class="countdown-number" id="cd-days">${days}</span>
-        <span class="countdown-label">Days</span>
+        <span class="countdown-label" data-i18n="countdown_days">Days</span>
       </div>
       <span class="countdown-sep" aria-hidden="true">:</span>
       <div class="countdown-unit">
         <span class="countdown-number">${pad(hours)}</span>
-        <span class="countdown-label">Hours</span>
+        <span class="countdown-label" data-i18n="countdown_hours">Hours</span>
       </div>
       <span class="countdown-sep" aria-hidden="true">:</span>
       <div class="countdown-unit">
         <span class="countdown-number">${pad(minutes)}</span>
-        <span class="countdown-label">Minutes</span>
+        <span class="countdown-label" data-i18n="countdown_minutes">Minutes</span>
       </div>
       <span class="countdown-sep" aria-hidden="true">:</span>
       <div class="countdown-unit">
         <span class="countdown-number">${pad(seconds)}</span>
-        <span class="countdown-label">Seconds</span>
+        <span class="countdown-label" data-i18n="countdown_seconds">Seconds</span>
       </div>`;
   }
 
   update();
-  setInterval(update, 1000);
+
+  // Re-apply language after each tick so labels stay translated
+  const refreshLang = () => {
+    const lang = localStorage.getItem('preferredLanguage') || 'en';
+    if (window.TRANSLATIONS && window.TRANSLATIONS[lang]) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (TRANSLATIONS[lang][key] !== undefined) el.textContent = TRANSLATIONS[lang][key];
+      });
+    }
+  };
+  setInterval(() => { update(); refreshLang(); }, 1000);
 })();
 
 /* --- Accordion (FAQ) --- */
@@ -268,4 +279,40 @@
   function escapeHtml(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+})();
+
+/* --- Language / i18n --- */
+function setLanguage(lang) {
+  if (typeof TRANSLATIONS === 'undefined' || !TRANSLATIONS[lang]) return;
+  var t = TRANSLATIONS[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-value]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-value');
+    if (t[key] !== undefined) el.value = t[key];
+  });
+
+  localStorage.setItem('preferredLanguage', lang);
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
+  });
+}
+
+// Auto-apply on page load
+(function() {
+  var saved = localStorage.getItem('preferredLanguage');
+  var lang = (saved === 'en' || saved === 'es') ? saved
+    : ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en');
+  document.addEventListener('DOMContentLoaded', function() { setLanguage(lang); });
 })();
