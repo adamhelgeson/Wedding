@@ -125,6 +125,30 @@ MORNING AFTER:
   Dog: Nova (female)
   Vikings season ticket holder since 2013
 
+## Future Ideas
+
+### Photo/GIF Investigation
+Consider converting the Our Story photo placeholders and gallery
+sections to support animated GIFs or CSS carousels so multiple
+photos can be shown per section without cluttering the layout.
+Options to explore:
+- CSS-only carousel (no JS library needed)
+- Animated GIF created from multiple photos
+- JavaScript lightbox with auto-advance
+- Simple prev/next arrow navigation per photo slot
+
+### Per-Page Section Navigation
+Add a thin sticky sub-navigation bar below the main nav on every page.
+This bar shows anchor links to each major section on the current page.
+Examples:
+- schedule.html: Day Before | Wedding Day | Morning After | Dress Code | Weather
+- our-story.html: How We Met | First Date | The Proposal | Meet the Couple
+- faq.html: Travel | Venue | Dress Code | Gifts | Children | Transportation
+- registry.html: Experiences | Make a Pledge
+- gallery.html: Our Photos | Share Your Photos
+Design: thin bar, small caps text, gold underline on active section,
+updates automatically as user scrolls using IntersectionObserver.
+
 ## TODO / Pending
 - Our Story "Planning Our Day" chapter — content TBD
 - Our Story placeholder photos (Teams/Word logos) —

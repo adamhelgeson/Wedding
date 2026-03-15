@@ -131,6 +131,8 @@ a digest to Adam and Estefania only when new entries exist.
 - [ ] Spanish translations — final review by Fannie
 - [ ] Update countdown timer when real wedding date is confirmed
 - [ ] Consider custom domain (e.g. estefania-and-adam.com)
+- [ ] Investigate converting photo slideshows to GIFs or animated carousels to show more photos in less space (engagement gallery, Our Story section photos)
+- [ ] Add a thin secondary navigation bar below the main nav on every page that shows anchor links to each section on that page — acts as a page-level table of contents so guests can jump directly to any section
 
 ---
 
