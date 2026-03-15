@@ -239,6 +239,17 @@
         grid-row: 2;
       }
 
+      /* Even items have text in col-a and photo in col-b.
+         Swap their rows so photo always appears first on mobile. */
+      .story-item:nth-child(even) .story-col-b {
+        grid-row: 1;
+        margin-bottom: 0.8rem;
+      }
+      .story-item:nth-child(even) .story-col-a {
+        grid-row: 2;
+        margin-bottom: 0;
+      }
+
       .story-item:nth-child(odd)  .story-text,
       .story-item:nth-child(even) .story-text {
         text-align: left;
