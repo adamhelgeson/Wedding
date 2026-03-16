@@ -293,6 +293,12 @@ function applyLanguage(lang) {
     if (t[key] !== undefined) el.textContent = t[key];
   });
 
+  // <option> elements need explicit textContent assignment (select/option special handling)
+  document.querySelectorAll('option[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
     var key = el.getAttribute('data-i18n-html');
     if (t[key] !== undefined) el.innerHTML = t[key];
