@@ -494,17 +494,10 @@
       padding: 1.6rem;
       text-align: center;
     }
-    .inspo-img-placeholder {
-      width: 100%;
-      max-width: 300px;
-      height: 200px;
-      margin: 0 auto 1rem;
-      background: var(--blush);
-      border: 1px dashed var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
+    .inspo-card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      line-height: 1;
     }
     .inspo-card h4 {
       font-family: 'Cormorant Garamond', serif;
@@ -516,6 +509,33 @@
       font-size: 0.78rem;
       color: var(--text-light);
       letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+    }
+    .inspo-card p:last-child {
+      margin-bottom: 0;
+    }
+    .inspo-mood-btn {
+      display: inline-block;
+      margin: 0.8rem 0 0.6rem;
+      padding: 0.55rem 1.3rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .inspo-mood-btn:hover {
+      background: var(--gold);
+      color: var(--ivory);
+    }
+    .inspo-pinterest-note {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -837,17 +857,19 @@
         <div class="inspo-cards">
 
           <div class="inspo-card">
-            <!-- FANNIE (estefania.garduno13@gmail.com): Replace this src with your ladies inspiration photo -->
-            <div class="inspo-img-placeholder" aria-hidden="true">👗</div>
+            <div class="inspo-card-icon" aria-hidden="true">👗</div>
             <h4 data-i18n="sched_inspo_ladies_title">Ladies Inspiration</h4>
-            <p data-i18n="sched_inspo_ladies_text">Style guide coming soon — check back closer to the date!</p>
+            <p data-i18n="sched_inspo_ladies_text">Fannie has curated the perfect style guide for our wedding guests.</p>
+            <a href="https://pin.it/2EZmfeKM5" target="_blank" rel="noopener noreferrer" class="inspo-mood-btn" data-i18n="sched_inspo_ladies_btn">&#x1F4CC; View Ladies Mood Board →</a>
+            <p class="inspo-pinterest-note" data-i18n="sched_inspo_pinterest_note">You'll need a Pinterest account to view the full board.</p>
           </div>
 
           <div class="inspo-card">
-            <!-- FANNIE (estefania.garduno13@gmail.com): Replace this src with your gentlemen inspiration photo -->
-            <div class="inspo-img-placeholder" aria-hidden="true">🤵</div>
+            <div class="inspo-card-icon" aria-hidden="true">🤵</div>
             <h4 data-i18n="sched_inspo_gents_title">Gentlemen Inspiration</h4>
-            <p data-i18n="sched_inspo_gents_text">Style guide coming soon — check back closer to the date!</p>
+            <p data-i18n="sched_inspo_gents_text">Not sure what to wear? Fannie has you covered.</p>
+            <a href="https://pin.it/6hZzEf67R" target="_blank" rel="noopener noreferrer" class="inspo-mood-btn" data-i18n="sched_inspo_gents_btn">&#x1F4CC; View Gentlemen Mood Board →</a>
+            <p class="inspo-pinterest-note" data-i18n="sched_inspo_pinterest_note">You'll need a Pinterest account to view the full board.</p>
           </div>
 
         </div>

@@ -127,7 +127,7 @@ a digest to Adam and Estefania only when new entries exist.
 
 - [ ] Our Story — "Planning Our Day" chapter (content TBD)
 - [ ] Our Story — replace placeholder photos (waiting on Fannie)
-- [ ] Dress code inspiration photos (waiting on Fannie's mood boards)
+- [ ] Dress code inspiration photos — Pinterest boards linked (https://pin.it/2EZmfeKM5 ladies, https://pin.it/6hZzEf67R men). Future improvement: download 5–6 images from each board and display directly on site instead of linking to Pinterest. Options: download from Pinterest, find similar on Unsplash/Pexels, or keep Pinterest links as-is.
 - [ ] Spanish translations — final review by Fannie
 - [ ] Update countdown timer when real wedding date is confirmed
 - [ ] Consider custom domain (e.g. estefania-and-adam.com)
