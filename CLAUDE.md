@@ -264,86 +264,123 @@ function doGet(e) {
 ```
 
 ### 4. Wedding Summary Agent
-Separate Apps Script project. Run daily via time-driven trigger. Emails Adam and Estefania only when new entries exist across any of the 3 sheets.
+Separate Apps Script project. Run daily via time-driven trigger. Emails Adam and Estefania only when new entries exist across any of the 3 sheets. Uses ScriptProperties to track the last processed row per sheet.
 
 ```javascript
 var CONFIG = {
-  sheetIds: {
-    rsvp:      '1VQNpAub4CShWOgjUGLdOrjoqUKkQIzh1Tuqw0y5i8zA',
-    honeymoon: '19PI2-FIG2fbPYTyC0Ju3AZA4AhYVEFfMH99Yl9fXO1k',
-    guestbook: '1dsZ0skXfX7Xwh8e3Rxijn7IIOaQDuGWVo8qnuXDIYxI'
-  },
-  recipients: ['adambhelgeson@gmail.com', 'estefania.garduno13@gmail.com']
+  yourEmail: "adambhelgeson@gmail.com",
+  fanniesEmail: "estefania.garduno13@gmail.com",
+  rsvpSheetId: "1VQNpAub4CShWOgjUGLdOrjoqUKkQIzh1Tuqw0y5i8zA",
+  fundSheetId: "19PI2-FIG2fbPYTyC0Ju3AZA4AhYVEFfMH99Yl9fXO1k",
+  guestbookSheetId: "1dsZ0skXfX7Xwh8e3Rxijn7IIOaQDuGWVo8qnuXDIYxI"
 };
 
 function sendWeddingSummary() {
-  var props = PropertiesService.getScriptProperties();
+  var rsvpData = getNewRows(CONFIG.rsvpSheetId, "lastRSVPRow");
+  var fundData = getNewRows(CONFIG.fundSheetId, "lastFundRow");
+  var guestbookData = getNewRows(CONFIG.guestbookSheetId, "lastGuestbookRow");
 
-  var newRsvp      = getNewRows(CONFIG.sheetIds.rsvp,      'lastRsvpRow');
-  var newHoneymoon = getNewRows(CONFIG.sheetIds.honeymoon, 'lastHoneymoonRow');
-  var newGuestbook = getNewRows(CONFIG.sheetIds.guestbook, 'lastGuestbookRow');
-
-  if (newRsvp.length === 0 && newHoneymoon.length === 0 && newGuestbook.length === 0) {
-    return; // nothing new — skip email
+  if (rsvpData.length === 0 && fundData.length === 0 && guestbookData.length === 0) {
+    return; // nothing new, skip email
   }
 
-  var subject = '💒 Wedding Update — ' + Utilities.formatDate(new Date(), 'America/Chicago', 'MMM d, yyyy');
-  var body    = buildEmailBody(newRsvp, newHoneymoon, newGuestbook);
+  var subject = "Wedding Update — " + formatDate(new Date());
+  var body = buildEmailBody(rsvpData, fundData, guestbookData);
 
-  CONFIG.recipients.forEach(function(email) {
-    MailApp.sendEmail({ to: email, subject: subject, htmlBody: body });
-  });
+  GmailApp.sendEmail(CONFIG.yourEmail, subject, "", {htmlBody: body});
+  if (CONFIG.fanniesEmail) {
+    GmailApp.sendEmail(CONFIG.fanniesEmail, subject, "", {htmlBody: body});
+  }
 }
 
-function getNewRows(sheetId, propKey) {
-  var sheet     = SpreadsheetApp.openById(sheetId).getActiveSheet();
-  var lastRow   = sheet.getLastRow();
-  var props     = PropertiesService.getScriptProperties();
-  var lastSeen  = parseInt(props.getProperty(propKey) || '1', 10);
-  var newRows   = [];
+function getNewRows(sheetId, trackingKey) {
+  try {
+    var sheet = SpreadsheetApp.openById(sheetId).getActiveSheet();
+    var lastRow = sheet.getLastRow();
+    var props = PropertiesService.getScriptProperties();
+    var lastProcessed = parseInt(props.getProperty(trackingKey) || "1");
 
-  if (lastRow > lastSeen) {
-    var range = sheet.getRange(lastSeen + 1, 1, lastRow - lastSeen, sheet.getLastColumn());
-    newRows   = range.getValues();
-    props.setProperty(propKey, String(lastRow));
+    if (lastRow <= lastProcessed) return [];
+
+    var newRows = sheet.getRange(lastProcessed + 1, 1, lastRow - lastProcessed, sheet.getLastColumn()).getValues();
+    props.setProperty(trackingKey, lastRow.toString());
+    return newRows;
+  } catch(e) {
+    return [];
   }
-
-  return newRows;
 }
 
-function buildEmailBody(rsvpRows, honeymoonRows, guestbookRows) {
-  var html = '<h2 style="font-family:sans-serif;color:#2D5016;">💒 Wedding Daily Summary</h2>';
+function buildEmailBody(rsvpData, fundData, guestbookData) {
+  var html = '';
+  html += '<div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #3d2b2b;">';
+  html += '<div style="background: linear-gradient(135deg, #F2D4D0, #FAF7F2); padding: 30px; text-align: center; border-bottom: 2px solid #C9A84C;">';
+  html += '<h1 style="color: #9B4A5A; font-size: 28px; margin: 0;">Estefania & Adam</h1>';
+  html += '<p style="color: #C9A84C; margin: 5px 0; font-size: 14px; letter-spacing: 2px;">WEDDING UPDATE · ' + formatDate(new Date()).toUpperCase() + '</p>';
+  html += '</div>';
 
-  if (rsvpRows.length > 0) {
-    html += '<h3 style="color:#2D5016;">New RSVPs (' + rsvpRows.length + ')</h3><ul>';
-    rsvpRows.forEach(function(r) {
-      html += '<li><strong>' + r[1] + '</strong> — ' + r[3] + ' (' + r[4] + ' guests)</li>';
+  // RSVPs
+  // RSVP columns: [0]timestamp [1]firstName [2]lastName [3]email [4]attending
+  //               [5]guests [6]guestFirstName [7]guestLastName [8]meal [9]guestMeal
+  //               [10]song [11]message
+  if (rsvpData.length > 0) {
+    html += '<div style="padding: 25px; border-bottom: 1px solid #F2D4D0;">';
+    html += '<h2 style="color: #9B4A5A; border-bottom: 1px solid #C9A84C; padding-bottom: 8px;">New RSVPs (' + rsvpData.length + ')</h2>';
+    rsvpData.forEach(function(row) {
+      var attending = row[4] === "Joyfully Accepts" ? "✅" : "❌";
+      html += '<div style="background: #FAF7F2; border-left: 3px solid #C9A84C; padding: 12px; margin: 10px 0; border-radius: 4px;">';
+      html += '<strong>' + row[1] + ' ' + row[2] + '</strong> ' + attending + ' ' + row[4] + '<br>';
+      if (row[4] === "Joyfully Accepts") {
+        html += '<span style="color: #666; font-size: 13px;">Guests: ' + row[5] + ' · My Meal: ' + row[8] + '</span><br>';
+        if (row[6]) html += '<span style="color: #666; font-size: 13px;">Guest: ' + row[6] + ' ' + row[7] + ' · Guest Meal: ' + row[9] + '</span><br>';
+        if (row[10]) html += '<span style="color: #666; font-size: 13px;">Song request: ' + row[10] + '</span><br>';
+      }
+      if (row[11]) html += '<em style="color: #9B4A5A; font-size: 13px;">"' + row[11] + '"</em>';
+      html += '</div>';
     });
-    html += '</ul>';
+    html += '</div>';
   }
 
-  if (honeymoonRows.length > 0) {
-    html += '<h3 style="color:#2D5016;">New Honeymoon Contributions (' + honeymoonRows.length + ')</h3><ul>';
-    honeymoonRows.forEach(function(r) {
-      html += '<li><strong>' + r[1] + '</strong> — $' + r[4] + ' toward ' + r[3] + '</li>';
+  // Honeymoon Fund
+  // Fund columns: [0]timestamp [1]firstName [2]lastName [3]email [4]experience [5]amount [6]message
+  if (fundData.length > 0) {
+    html += '<div style="padding: 25px; border-bottom: 1px solid #F2D4D0;">';
+    html += '<h2 style="color: #9B4A5A; border-bottom: 1px solid #C9A84C; padding-bottom: 8px;">New Honeymoon Pledges (' + fundData.length + ')</h2>';
+    var totalPledged = 0;
+    fundData.forEach(function(row) {
+      totalPledged += parseFloat(row[5]) || 0;
+      html += '<div style="background: #FAF7F2; border-left: 3px solid #C9A84C; padding: 12px; margin: 10px 0; border-radius: 4px;">';
+      html += '<strong>' + row[1] + ' ' + row[2] + '</strong> pledged <strong style="color: #C9A84C;">$' + row[5] + '</strong> toward ' + row[4] + '<br>';
+      if (row[6]) html += '<em style="color: #9B4A5A; font-size: 13px;">"' + row[6] + '"</em>';
+      html += '</div>';
     });
-    html += '</ul>';
+    html += '<p style="color: #C9A84C; font-weight: bold;">Total new pledges: $' + totalPledged.toFixed(2) + '</p>';
+    html += '</div>';
   }
 
-  if (guestbookRows.length > 0) {
-    html += '<h3 style="color:#2D5016;">New Guestbook Messages (' + guestbookRows.length + ')</h3><ul>';
-    guestbookRows.forEach(function(r) {
-      html += '<li><strong>' + r[1] + '</strong> (' + r[2] + '): ' + r[3] + '</li>';
+  // Guestbook
+  // Guestbook columns: [0]timestamp [1]firstName [2]lastName [3]location [4]message [5]language
+  if (guestbookData.length > 0) {
+    html += '<div style="padding: 25px; border-bottom: 1px solid #F2D4D0;">';
+    html += '<h2 style="color: #9B4A5A; border-bottom: 1px solid #C9A84C; padding-bottom: 8px;">New Guestbook Messages (' + guestbookData.length + ')</h2>';
+    guestbookData.forEach(function(row) {
+      html += '<div style="background: #FAF7F2; border-left: 3px solid #C9A84C; padding: 12px; margin: 10px 0; border-radius: 4px;">';
+      html += '<strong>' + row[1] + ' ' + row[2] + '</strong><br>';
+      html += '<em style="color: #9B4A5A;">"' + row[4] + '"</em>';
+      html += '</div>';
     });
-    html += '</ul>';
+    html += '</div>';
   }
 
-  html += '<p style="color:#888;font-size:12px;">Sent by Wedding Summary Agent · ' + formatDate(new Date()) + '</p>';
+  html += '<div style="padding: 20px; text-align: center; color: #999; font-size: 12px;">';
+  html += 'Sent with love by your Wedding Summary Agent<br>';
+  html += 'Fall 2027 · Hacienda Galindo · San Juan del Río, Mexico';
+  html += '</div></div>';
+
   return html;
 }
 
 function formatDate(date) {
-  return Utilities.formatDate(date, 'America/Chicago', 'MMMM d, yyyy');
+  return date.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'});
 }
 ```
 
