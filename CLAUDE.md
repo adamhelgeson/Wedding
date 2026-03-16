@@ -69,7 +69,7 @@ In order they appear on gallery page:
 9. Engagement photos day after - with nova.jpg
 
 Our Story page photos:
-- How We Met: photos/How we met - Microsoft-Teams-Logo.png (placeholder)
+- How We Met: photos/first meeting together.jpeg
 - Unofficial First Date: photos/Unofficial first date - Microsoft-Word-Logo.png (placeholder)
 - First Date: photos/First Date - Cervecería Hércules.jpg
 - Proposal: photos/Proposal - Bridge with no ring.jpg
@@ -90,11 +90,12 @@ Our Story page photos:
 - Reception/Dinner/Dancing: The Terrace Le Château (outdoor)
 - Airport: QRO only (shuttles day before and day after)
 - Dress Code: Formal / Black Tie Optional
-  - Ladies: floor-length gowns, no cocktail dresses, no red,
-    no sequins, no white/ivory/cream
-  - Gentlemen: dark suits or tuxedos
-  - Clean dressy sneakers acceptable (outdoor venue)
-  - Light wrap recommended (evening air)
+  - Ladies: floor-length gowns in any color (florals, jewel tones, earth tones welcome)
+    Avoid: cocktail dresses, red, sequins, sheer/corset-style pieces, white/ivory/cream
+  - Gentlemen: dark suits or tuxedos with formal shoes or clean dressy sneakers
+    Avoid: casual suits, light-colored suits, jeans, open-toed shoes
+  - Entire evening is outdoors (vineyard/garden) — block heels, flats, or dressy sneakers recommended
+  - Light wrap suggested for cooler evening air
 - Children: not invited except nieces/nephews of couple only
 - Registry: Honeymoon fund only (Japan trip)
 - Seating: Assigned dinner seating
