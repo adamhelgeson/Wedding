@@ -31,6 +31,7 @@ Live URL: https://adamhelgeson.github.io/Wedding
 - rsvp.html — RSVP form connected to Google Sheets
 - guestbook.html — Live guestbook with messages
 - faq.html — FAQ accordion with all wedding details
+- chat widget — floating 💬 bubble on every page (chat.js + style.css); polls Chat Script URL every 5s
 
 ## Google Sheets & Apps Script URLs
 RSVP Sheet ID: 1VQNpAub4CShWOgjUGLdOrjoqUKkQIzh1Tuqw0y5i8zA
@@ -41,6 +42,9 @@ Honeymoon Fund Script URL: https://script.google.com/macros/s/AKfycbxy9HG8dtZW4A
 
 Guestbook Sheet ID: 1dsZ0skXfX7Xwh8e3Rxijn7IIOaQDuGWVo8qnuXDIYxI
 Guestbook Script URL: https://script.google.com/macros/s/AKfycbzgRhSCmNVM4k6rXQGQ0_ylHAZGa6KC41HSV0B0SBUuxLT0Qam_bexYk8FO1FIcYaDH/exec
+
+Chat Sheet ID: (open Apps Script editor to find — check openById call in doPost)
+Chat Script URL: https://script.google.com/macros/s/AKfycbxjOTivA57uMGwZml7A-mKrHHSyle_mTCkSk7LQ7ZKsakYRN5ZAV-ss0IL2isrmUcb4cw/exec
 
 Wedding Summary Agent: script.google.com (separate Apps Script project)
 - Reads all 3 sheets daily

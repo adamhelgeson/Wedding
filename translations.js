@@ -14,7 +14,19 @@ var TRANSLATIONS = {
     nav_registry: 'Registry',
     nav_guestbook: 'Guestbook',
     nav_faq: 'FAQ',
+    nav_chat: 'Chat',
     nav_rsvp: 'RSVP',
+
+    /* --- Chat widget --- */
+    chat_title:       'Wedding Chat \ud83d\udc92',
+    chat_subtitle:    'Chat with guests in real time',
+    chat_name_prompt: "What's your name?",
+    chat_join:        'Join Chat',
+    chat_placeholder: 'Type a message\u2026',
+    chat_send:        'Send',
+    chat_empty:       'No messages yet \u2014 say hello! \ud83d\udc4b',
+    chat_chatting_as: 'Chatting as',
+    chat_not_you:     'not you? change',
 
     /* --- Footer --- */
     footer_love: 'Made with love \u2665',
@@ -474,7 +486,19 @@ var TRANSLATIONS = {
     nav_registry: 'Registro',
     nav_guestbook: 'Visitas',
     nav_faq: 'FAQ',
+    nav_chat: 'Chat',
     nav_rsvp: 'RSVP',
+
+    /* --- Chat widget --- */
+    chat_title:       'Chat de Boda \ud83d\udc92',
+    chat_subtitle:    'Chatea con los invitados en tiempo real',
+    chat_name_prompt: '\u00bfCu\u00e1l es tu nombre?',
+    chat_join:        'Unirse al Chat',
+    chat_placeholder: 'Escribe un mensaje\u2026',
+    chat_send:        'Enviar',
+    chat_empty:       'Sin mensajes a\u00fan \u2014 \u00a1di hola! \ud83d\udc4b',
+    chat_chatting_as: 'Chateando como',
+    chat_not_you:     '\u00bfno eres t\u00fa? cambiar',
 
     /* --- Footer --- */
     footer_love: 'Hecho con amor \u2665',

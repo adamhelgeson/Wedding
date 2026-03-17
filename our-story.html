@@ -376,6 +376,7 @@
       <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
       <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
       <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+      <li><a href="#" data-i18n="nav_chat" onclick="event.preventDefault(); window.chatWidget && window.chatWidget.open();">Chat</a></li>
       <li class="lang-toggle-item" style="display:flex;align-items:center">
         <div class="lang-toggle" role="group" aria-label="Language">
           <button class="lang-btn lang-active" id="lang-en" data-lang="en" onclick="setLanguage('en')">EN</button>
@@ -589,6 +590,7 @@
     <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
     <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
     <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="#" data-i18n="nav_chat" onclick="event.preventDefault(); window.chatWidget && window.chatWidget.open();">Chat</a></li>
     <li><a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a></li>
   </ul>
   <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
@@ -596,5 +598,35 @@
 
 <script src="translations.js"></script>
 <script src="script.js"></script>
+
+<!-- ===== CHAT WIDGET ===== -->
+<div id="chat-widget">
+  <button id="chat-bubble" class="chat-bubble-btn" aria-label="Open wedding chat" aria-haspopup="dialog" aria-expanded="false">
+    💬
+    <span id="chat-unread-badge" class="chat-badge" style="display:none" aria-live="polite"></span>
+  </button>
+  <div id="chat-window" class="chat-window" role="dialog" aria-label="Wedding Chat" aria-hidden="true">
+    <div class="chat-header">
+      <div class="chat-header-text">
+        <div class="chat-title" data-i18n="chat_title">Wedding Chat 💒</div>
+        <div class="chat-subtitle" data-i18n="chat_subtitle">Chat with guests in real time</div>
+      </div>
+      <button class="chat-close-btn" aria-label="Close chat">✕</button>
+    </div>
+    <div id="chat-name-prompt" class="chat-name-prompt"></div>
+    <div id="chat-main" class="chat-main" style="display:none">
+      <div id="chat-user-bar" class="chat-user-bar"></div>
+      <div id="chat-messages" class="chat-messages"></div>
+      <div class="chat-input-wrap">
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" class="chat-input" maxlength="200" data-i18n-placeholder="chat_placeholder" placeholder="Type a message…" autocomplete="off" />
+          <button id="chat-send" class="chat-send-btn" data-i18n="chat_send" disabled>Send</button>
+        </div>
+        <span id="chat-char-count" class="chat-char-count" style="display:none"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="chat.js"></script>
 </body>
 </html>
