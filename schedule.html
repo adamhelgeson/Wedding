@@ -514,28 +514,127 @@
     .inspo-card p:last-child {
       margin-bottom: 0;
     }
-    .inspo-mood-btn {
+    .inspo-photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin: 1rem 0 0.8rem;
+    }
+    .inspo-thumb {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .inspo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .inspo-thumb:hover img { transform: scale(1.07); }
+    .inspo-thumb::after {
+      content: '🔍';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(163, 132, 79, 0.5);
+      font-size: 1.4rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .inspo-thumb:hover::after { opacity: 1; }
+    .inspo-viewall-btn {
       display: inline-block;
-      margin: 0.8rem 0 0.6rem;
-      padding: 0.55rem 1.3rem;
+      padding: 0.5rem 1.2rem;
       font-family: 'Lato', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--gold);
       border: 1px solid var(--gold);
-      text-decoration: none;
+      background: none;
+      cursor: pointer;
       transition: background 0.2s, color 0.2s;
     }
-    .inspo-mood-btn:hover {
-      background: var(--gold);
-      color: var(--ivory);
+    .inspo-viewall-btn:hover { background: var(--gold); color: var(--ivory); }
+    /* Inspiration lightbox */
+    .inspo-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 5, 0.94);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
     }
-    .inspo-pinterest-note {
-      font-size: 0.72rem;
-      color: var(--text-light);
-      margin-top: 0.5rem;
-      opacity: 0.8;
+    .inspo-lightbox.open { display: flex; }
+    .inspo-lightbox-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 92vw;
+      max-height: 92vh;
+    }
+    .inspo-lightbox-img {
+      max-width: min(88vw, 1100px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+      display: block;
+    }
+    .inspo-lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      transition: color 0.2s;
+      z-index: 10010;
+    }
+    .inspo-lightbox-close:hover { color: var(--gold); }
+    .inspo-lightbox-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 2.4rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s;
+      z-index: 10010;
+      line-height: 1;
+      user-select: none;
+    }
+    .inspo-lightbox-arrow:hover { color: var(--gold); }
+    .inspo-lightbox-arrow.prev { left: 0.6rem; }
+    .inspo-lightbox-arrow.next { right: 0.6rem; }
+    .inspo-lightbox-counter {
+      position: fixed;
+      top: 1.3rem;
+      left: 1.4rem;
+      color: rgba(255,255,255,0.65);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      z-index: 10010;
+    }
+    @media (max-width: 600px) {
+      .inspo-lightbox-arrow { font-size: 1.8rem; padding: 0.4rem 0.6rem; }
     }
   </style>
 </head>
@@ -783,7 +882,7 @@
               <span class="sched-ampm">AM</span>
             </div>
             <div class="sched-info">
-              <h3 data-i18n="sched_desayuno_title">El Desayuno — Post-Wedding Breakfast</h3>
+              <h3 data-i18n="sched_desayuno_title">Tornaboda — Post-Wedding Breakfast</h3>
               <p class="sched-location">Hacienda Galindo</p>
               <p class="sched-note" data-i18n="sched_desayuno_note">A beloved Mexican tradition — join the couple the morning after for a leisurely breakfast to relive the memories, say your goodbyes, and enjoy one last meal together before heading home.</p>
             </div>
@@ -860,17 +959,41 @@
           <div class="inspo-card">
             <div class="inspo-card-icon" aria-hidden="true">👗</div>
             <h4 data-i18n="sched_inspo_ladies_title">Ladies Inspiration</h4>
-            <p data-i18n="sched_inspo_ladies_text">Fannie has curated the perfect style guide for our wedding guests.</p>
-            <a href="https://pin.it/2EZmfeKM5" target="_blank" rel="noopener noreferrer" class="inspo-mood-btn" data-i18n="sched_inspo_ladies_btn">&#x1F4CC; View Ladies Mood Board →</a>
-            <p class="inspo-pinterest-note" data-i18n="sched_inspo_pinterest_note">You'll need a Pinterest account to view the full board.</p>
+            <div class="inspo-photo-grid">
+              <div class="inspo-thumb" onclick="openInspoLightbox('ladies',0)" role="button" tabindex="0" aria-label="View ladies inspiration photo 1">
+                <img src="photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (1).jpeg" alt="Ladies dress code inspiration" loading="lazy">
+              </div>
+              <div class="inspo-thumb" onclick="openInspoLightbox('ladies',1)" role="button" tabindex="0" aria-label="View ladies inspiration photo 2">
+                <img src="photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (2).jpeg" alt="Ladies dress code inspiration" loading="lazy">
+              </div>
+              <div class="inspo-thumb" onclick="openInspoLightbox('ladies',2)" role="button" tabindex="0" aria-label="View ladies inspiration photo 3">
+                <img src="photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (3).jpeg" alt="Ladies dress code inspiration" loading="lazy">
+              </div>
+              <div class="inspo-thumb" onclick="openInspoLightbox('ladies',3)" role="button" tabindex="0" aria-label="View ladies inspiration photo 4">
+                <img src="photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (4).jpeg" alt="Ladies dress code inspiration" loading="lazy">
+              </div>
+            </div>
+            <button class="inspo-viewall-btn" onclick="openInspoLightbox('ladies',0)" data-i18n="sched_inspo_ladies_viewall">View All 24 Photos →</button>
           </div>
 
           <div class="inspo-card">
             <div class="inspo-card-icon" aria-hidden="true">🤵</div>
             <h4 data-i18n="sched_inspo_gents_title">Gentlemen Inspiration</h4>
-            <p data-i18n="sched_inspo_gents_text">Not sure what to wear? Fannie has you covered.</p>
-            <a href="https://pin.it/6hZzEf67R" target="_blank" rel="noopener noreferrer" class="inspo-mood-btn" data-i18n="sched_inspo_gents_btn">&#x1F4CC; View Gentlemen Mood Board →</a>
-            <p class="inspo-pinterest-note" data-i18n="sched_inspo_pinterest_note">You'll need a Pinterest account to view the full board.</p>
+            <div class="inspo-photo-grid">
+              <div class="inspo-thumb" onclick="openInspoLightbox('men',0)" role="button" tabindex="0" aria-label="View gentlemen inspiration photo 1">
+                <img src="photos/Men/WhatsApp Image 2026-03-18 at 10.01.06 AM.jpeg" alt="Gentlemen dress code inspiration" loading="lazy">
+              </div>
+              <div class="inspo-thumb" onclick="openInspoLightbox('men',1)" role="button" tabindex="0" aria-label="View gentlemen inspiration photo 2">
+                <img src="photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM (1).jpeg" alt="Gentlemen dress code inspiration" loading="lazy">
+              </div>
+              <div class="inspo-thumb" onclick="openInspoLightbox('men',2)" role="button" tabindex="0" aria-label="View gentlemen inspiration photo 3">
+                <img src="photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM (2).jpeg" alt="Gentlemen dress code inspiration" loading="lazy">
+              </div>
+              <div class="inspo-thumb" onclick="openInspoLightbox('men',3)" role="button" tabindex="0" aria-label="View gentlemen inspiration photo 4">
+                <img src="photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM (3).jpeg" alt="Gentlemen dress code inspiration" loading="lazy">
+              </div>
+            </div>
+            <button class="inspo-viewall-btn" onclick="openInspoLightbox('men',0)" data-i18n="sched_inspo_gents_viewall">View All 28 Photos →</button>
           </div>
 
         </div>
@@ -1007,6 +1130,127 @@
   }
 
   loadWeather();
+</script>
+
+<!-- Dress Code Inspiration Lightbox -->
+<div class="inspo-lightbox" id="inspo-lightbox" role="dialog" aria-modal="true" aria-label="Dress code inspiration photos">
+  <span class="inspo-lightbox-counter" id="inspo-lb-counter"></span>
+  <button class="inspo-lightbox-close" id="inspo-lb-close" aria-label="Close lightbox">&times;</button>
+  <button class="inspo-lightbox-arrow prev" id="inspo-lb-prev" aria-label="Previous photo">&#8249;</button>
+  <div class="inspo-lightbox-inner">
+    <img class="inspo-lightbox-img" id="inspo-lb-img" src="" alt="" />
+  </div>
+  <button class="inspo-lightbox-arrow next" id="inspo-lb-next" aria-label="Next photo">&#8250;</button>
+</div>
+
+<script>
+(function () {
+  var SETS = {
+    ladies: [
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (1).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (2).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (3).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (4).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (5).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM (6).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.54 PM.jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (1).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (2).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (3).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (4).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (5).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (6).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (7).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (8).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM (9).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.55 PM.jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM (1).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM (2).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM (3).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM (4).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM (5).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM (6).jpeg',
+      'photos/Ladies/WhatsApp Image 2026-03-18 at 8.41.56 PM.jpeg'
+    ],
+    men: [
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.06 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM (2).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM (3).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.07 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.08 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.08 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.09 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.09 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.10 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.10 AM (2).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.10 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.11 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.11 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.12 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.12 AM (2).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.12 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.13 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.14 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.14 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.15 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.15 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.16 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.16 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.17 AM (1).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.17 AM (2).jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.17 AM.jpeg',
+      'photos/Men/WhatsApp Image 2026-03-18 at 10.01.18 AM.jpeg'
+    ]
+  };
+
+  var currentSet = [];
+  var currentIdx = 0;
+
+  function updateLightbox() {
+    document.getElementById('inspo-lb-img').src = currentSet[currentIdx];
+    document.getElementById('inspo-lb-counter').textContent = (currentIdx + 1) + ' / ' + currentSet.length;
+  }
+
+  window.openInspoLightbox = function (set, idx) {
+    currentSet = SETS[set];
+    currentIdx = idx;
+    updateLightbox();
+    document.getElementById('inspo-lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeInspoLightbox() {
+    document.getElementById('inspo-lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showInspoPhoto(idx) {
+    currentIdx = (idx + currentSet.length) % currentSet.length;
+    updateLightbox();
+  }
+
+  document.getElementById('inspo-lb-close').addEventListener('click', closeInspoLightbox);
+  document.getElementById('inspo-lb-prev').addEventListener('click', function () { showInspoPhoto(currentIdx - 1); });
+  document.getElementById('inspo-lb-next').addEventListener('click', function () { showInspoPhoto(currentIdx + 1); });
+  document.getElementById('inspo-lightbox').addEventListener('click', function (e) {
+    if (e.target === this) closeInspoLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    var lb = document.getElementById('inspo-lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeInspoLightbox();
+    if (e.key === 'ArrowLeft')  showInspoPhoto(currentIdx - 1);
+    if (e.key === 'ArrowRight') showInspoPhoto(currentIdx + 1);
+  });
+
+  // Keyboard support for thumb divs
+  document.querySelectorAll('.inspo-thumb').forEach(function (el) {
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') el.click();
+    });
+  });
+}());
 </script>
 
 <!-- ===== CHAT WIDGET ===== -->

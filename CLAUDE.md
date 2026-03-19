@@ -119,7 +119,7 @@ WEDDING DAY:
 - 12:00 AM Grand Farewell
 
 MORNING AFTER:
-- 10:00 AM El Desayuno (Post-Wedding Breakfast) — Hacienda Galindo
+- 10:00 AM Tornaboda (Post-Wedding Breakfast) — Hacienda Galindo
 
 ## Couple Info
 - Estefania: Born Acámbaro, Guanajuato. Raised Querétaro, Mexico.
@@ -146,7 +146,6 @@ Options to explore:
 - Our Story "Planning Our Day" chapter — content TBD
 - Our Story placeholder photos (Teams/Word logos) —
   waiting on real photos from Fannie
-- Dress code inspiration photos — Pinterest boards linked (https://pin.it/2EZmfeKM5 ladies, https://pin.it/6hZzEf67R men). Future improvement: download 5–6 images from each board and display directly on site instead of linking to Pinterest. Options: download from Pinterest, find similar on Unsplash/Pexels, or keep Pinterest links as-is.
 - Spanish translations — final review by Fannie needed
 - Real wedding date — update countdown timer when confirmed
 
