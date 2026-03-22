@@ -633,8 +633,91 @@
       letter-spacing: 0.08em;
       z-index: 10010;
     }
-    @media (max-width: 600px) {
-      .inspo-lightbox-arrow { font-size: 1.8rem; padding: 0.4rem 0.6rem; }
+    /* ── Arrow icon span (desktop: pass-through; mobile: circle pill) ── */
+    .inspo-lb-arrow-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: inherit;
+      color: inherit;
+      line-height: 1;
+    }
+    /* ── Swipe hint ── */
+    .inspo-lb-swipe-hint {
+      display: none;
+      position: fixed;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.55);
+      color: rgba(255,255,255,0.92);
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      z-index: 10020;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+      white-space: nowrap;
+    }
+    .inspo-lb-swipe-hint.fade-out { opacity: 0; }
+    /* ── Controls-hidden toggle ── */
+    .inspo-lightbox.lb-controls-hidden .inspo-lightbox-arrow,
+    .inspo-lightbox.lb-controls-hidden .inspo-lightbox-close { opacity: 0; pointer-events: none; }
+    /* ── Middle tap zone div (mobile only) ── */
+    .inspo-lb-middle-zone {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 40vw;
+      width: 20vw;
+      height: 100vh;
+      z-index: 10009;
+      cursor: pointer;
+    }
+    /* ── Mobile enhancements ── */
+    @media (max-width: 768px) {
+      .inspo-lightbox-arrow {
+        width: 40vw;
+        height: 100vh;
+        top: 0;
+        transform: none;
+        display: flex;
+        align-items: center;
+        font-size: 0;
+        padding: 0;
+        transition: none;
+      }
+      .inspo-lightbox-arrow.prev { left: 0; justify-content: flex-start; padding-left: 10px; }
+      .inspo-lightbox-arrow.next { right: 0; justify-content: flex-end;  padding-right: 10px; }
+      .inspo-lb-arrow-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(0,0,0,0.45);
+        border-radius: 50%;
+        font-size: 1.8rem;
+        color: rgba(255,255,255,0.9);
+        flex-shrink: 0;
+        transition: background 0.15s;
+      }
+      .inspo-lightbox-arrow:active .inspo-lb-arrow-icon { background: rgba(0,0,0,0.65); }
+      .inspo-lightbox-close {
+        width: 44px;
+        height: 44px;
+        font-size: 1.6rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.45);
+        border-radius: 50%;
+        padding: 0;
+      }
+      .inspo-lb-middle-zone { display: block; }
+      .inspo-lb-swipe-hint  { display: flex; }
     }
   </style>
 </head>
@@ -654,7 +737,6 @@
       <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
       <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
       <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
-      <li><a href="#" data-i18n="nav_chat" onclick="event.preventDefault(); window.chatWidget && window.chatWidget.open();">Chat</a></li>
       <li class="lang-toggle-item" style="display:flex;align-items:center">
         <div class="lang-toggle" role="group" aria-label="Language">
           <button class="lang-btn lang-active" id="lang-en" data-lang="en" onclick="setLanguage('en')">EN</button>
@@ -1032,7 +1114,6 @@
     <li><a href="registry.html" data-i18n="nav_registry">Registry</a></li>
     <li><a href="guestbook.html" data-i18n="nav_guestbook">Guestbook</a></li>
     <li><a href="faq.html" data-i18n="nav_faq">FAQ</a></li>
-    <li><a href="#" data-i18n="nav_chat" onclick="event.preventDefault(); window.chatWidget && window.chatWidget.open();">Chat</a></li>
     <li><a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a></li>
   </ul>
   <p class="footer-copy" data-i18n="footer_love">Made with love &hearts;</p>
@@ -1136,11 +1217,13 @@
 <div class="inspo-lightbox" id="inspo-lightbox" role="dialog" aria-modal="true" aria-label="Dress code inspiration photos">
   <span class="inspo-lightbox-counter" id="inspo-lb-counter"></span>
   <button class="inspo-lightbox-close" id="inspo-lb-close" aria-label="Close lightbox">&times;</button>
-  <button class="inspo-lightbox-arrow prev" id="inspo-lb-prev" aria-label="Previous photo">&#8249;</button>
+  <button class="inspo-lightbox-arrow prev" id="inspo-lb-prev" aria-label="Previous photo"><span class="inspo-lb-arrow-icon">&#8249;</span></button>
   <div class="inspo-lightbox-inner">
     <img class="inspo-lightbox-img" id="inspo-lb-img" src="" alt="" />
   </div>
-  <button class="inspo-lightbox-arrow next" id="inspo-lb-next" aria-label="Next photo">&#8250;</button>
+  <button class="inspo-lightbox-arrow next" id="inspo-lb-next" aria-label="Next photo"><span class="inspo-lb-arrow-icon">&#8250;</span></button>
+  <div class="inspo-lb-middle-zone" id="inspo-lb-middle-zone"></div>
+  <div class="inspo-lb-swipe-hint" id="inspo-lb-swipe-hint">Swipe to navigate</div>
 </div>
 
 <script>
@@ -1216,8 +1299,11 @@
     currentSet = SETS[set];
     currentIdx = idx;
     updateLightbox();
-    document.getElementById('inspo-lightbox').classList.add('open');
+    var lb = document.getElementById('inspo-lightbox');
+    lb.classList.add('open');
+    lb.classList.remove('lb-controls-hidden');
     document.body.style.overflow = 'hidden';
+    showInspoSwipeHint();
   };
 
   function closeInspoLightbox() {
@@ -1243,6 +1329,43 @@
     if (e.key === 'ArrowLeft')  showInspoPhoto(currentIdx - 1);
     if (e.key === 'ArrowRight') showInspoPhoto(currentIdx + 1);
   });
+
+  // Middle zone: toggle controls visibility (mobile)
+  document.getElementById('inspo-lb-middle-zone').addEventListener('click', function () {
+    document.getElementById('inspo-lightbox').classList.toggle('lb-controls-hidden');
+  });
+
+  // Touch swipe support
+  (function () {
+    var lb = document.getElementById('inspo-lightbox');
+    var tsX = 0, tsY = 0;
+    lb.addEventListener('touchstart', function (e) {
+      tsX = e.changedTouches[0].clientX;
+      tsY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - tsX;
+      var dy = e.changedTouches[0].clientY - tsY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) showInspoPhoto(currentIdx + 1);
+        else        showInspoPhoto(currentIdx - 1);
+      }
+    }, { passive: true });
+  })();
+
+  // Swipe hint: show once on mobile per device
+  function showInspoSwipeHint() {
+    if (window.innerWidth > 768) return;
+    if (localStorage.getItem('hasSeenSwipeHint')) return;
+    var hint = document.getElementById('inspo-lb-swipe-hint');
+    hint.style.display = 'flex';
+    hint.classList.remove('fade-out');
+    setTimeout(function () {
+      hint.classList.add('fade-out');
+      setTimeout(function () { hint.style.display = 'none'; }, 800);
+    }, 2000);
+    localStorage.setItem('hasSeenSwipeHint', '1');
+  }
 
   // Keyboard support for thumb divs
   document.querySelectorAll('.inspo-thumb').forEach(function (el) {
