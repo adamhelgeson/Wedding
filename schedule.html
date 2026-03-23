@@ -602,7 +602,7 @@
       cursor: pointer;
       padding: 0.2rem 0.5rem;
       transition: color 0.2s;
-      z-index: 10010;
+      z-index: 10015;
     }
     .inspo-lightbox-close:hover { color: var(--gold); }
     .inspo-lightbox-arrow {
@@ -681,8 +681,8 @@
     @media (max-width: 768px) {
       .inspo-lightbox-arrow {
         width: 40vw;
-        height: 100vh;
-        top: 0;
+        height: calc(100vh - 70px);
+        top: 70px;
         transform: none;
         display: flex;
         align-items: center;
@@ -704,15 +704,15 @@
       }
       .inspo-lightbox-arrow:active .inspo-lb-arrow-icon { background: rgba(0,0,0,0.65); }
       .inspo-lightbox-close {
-        width: 44px;
-        height: 44px;
+        width: 50px;
+        height: 50px;
         font-size: 1.6rem;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: 12px;
+        right: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(0,0,0,0.45);
+        background: rgba(0,0,0,0.5);
         border-radius: 50%;
         padding: 0;
       }
